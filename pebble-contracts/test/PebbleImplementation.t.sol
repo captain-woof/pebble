@@ -6,9 +6,9 @@ import {PebbleSetupLibraryTest} from "test/helpers/PebbleSetup.sol";
 import {Pebble} from "src/Pebble.sol";
 
 /**
-forge test --match-path ./test/Pebble.t.sol -vvv
+forge test --match-path ./test/PebbleImplementation.t.sol -vvv
  */
-contract PebbleTest is Test {
+contract PebbleImplementationTest is Test {
     Pebble pebbleImplementation;
 
     // Setup
