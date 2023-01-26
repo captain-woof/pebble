@@ -15,4 +15,18 @@ library UtilsTest {
             uint160(uint256(keccak256(abi.encodePacked(_stringToConvert))))
         );
     }
+
+    /**
+    @dev Converts an integer to an address
+    @return addressFromInt Address calculated from the hash of input integer
+     */
+    function convertIntToAddress(uint256 _intToConvert)
+        internal
+        pure
+        returns (address addressFromInt)
+    {
+        addressFromInt = address(
+            uint160(uint256(keccak256(abi.encodePacked(_intToConvert))))
+        );
+    }
 }
