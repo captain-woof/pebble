@@ -10,7 +10,4 @@
 	path = pebble-contracts/lib/openzeppelin-contracts-upgradeable
 	url = https://github.com/Openzeppelin/openzeppelin-contracts-upgradeable
 	branch = v4.8.1
-[submodule "lib/elliptic-curve-solidity"]
-	path = lib/elliptic-curve-solidity
-	url = https://github.com/witnet/elliptic-curve-solidity
-	branch = master
+	

@@ -1,49 +1,62 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity 0.8.17;
 
-import {GroupDataController} from "./Controllers/GroupDataController.sol";
-import {GroupCreatorController} from "./Controllers/GroupCreatorController.sol";
+import {PebbleSignManager} from "src/PebbleSignManager/PebbleSignManager.sol";
+import {GroupInternals} from "./GroupInternals.sol";
+import {PebbleMath} from "src/Utils/Math.sol";
 
-contract PebbleGroupManager is GroupDataController, GroupCreatorController {
+contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     /**
     @dev Initialization method
      */
     function __PebbleGroupManager_init_unchained() internal onlyInitializing {}
 
+    // Functions
+
     /**
     @dev Creates a new group, and sets it up for accepting (i.e, arriving at the final penultimate shared key)
-    @param _groupCreator Address of the group creator
     @param _groupParticipantsOtherThanCreator Array of group participants other than group creator
-    @param _updatedPenultimateSharedKeyFromCreator Initial value of penultimate shared key to use for all participants other than creator
+    @param _initialPenultimateSharedKeyFromCreatorX X coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * G
+    @param _initialPenultimateSharedKeyFromCreatorY Y coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * G
     @return groupId New group's ID
      */
     function createGroup(
-        address _groupCreator,
-        address[] memory _groupParticipantsOtherThanCreator,
-        uint256 _updatedPenultimateSharedKeyFromCreator
+        address[] calldata _groupParticipantsOtherThanCreator,
+        uint256 _initialPenultimateSharedKeyFromCreatorX,
+        uint256 _initialPenultimateSharedKeyFromCreatorY
     ) external returns (uint256 groupId) {
         groupId = _createGroup(
-            _groupCreator,
+            msg.sender,
             _groupParticipantsOtherThanCreator,
-            _updatedPenultimateSharedKeyFromCreator
+            PenultimateSharedKey(
+                _initialPenultimateSharedKeyFromCreatorX,
+                _initialPenultimateSharedKeyFromCreatorY
+            )
         );
     }
 
     /**
     @dev Accepts invititation to a group
-    @param _groupParticipant Group participant who wants to accept group invite
     @param _groupId Group id of the group to accept invite for
-    @param _updatedPenultimateSharedKeyFromParticipant Updated value of penultimate shared key to use for all participants other than participant
+    @param _penultimateKeysFor Addresses for which updated penultimate shared keys are meant for
+    @param _penultimateKeysXUpdated Array of X coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _penultimateKeysYUpdated Array of Y coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _timestampForWhichUpdatedKeysAreMeant Timestamp at which the invitee checked the last updated penultimate keys
     */
     function acceptGroupInvite(
-        address _groupParticipant,
         uint256 _groupId,
-        uint256 _updatedPenultimateSharedKeyFromParticipant
+        address[] calldata _penultimateKeysFor,
+        uint256[] calldata _penultimateKeysXUpdated,
+        uint256[] calldata _penultimateKeysYUpdated,
+        uint256 _timestampForWhichUpdatedKeysAreMeant
     ) external {
         _acceptGroupInvite(
-            _groupParticipant,
             _groupId,
-            _updatedPenultimateSharedKeyFromParticipant
+            msg.sender,
+            _penultimateKeysFor,
+            _penultimateKeysXUpdated,
+            _penultimateKeysYUpdated,
+            _timestampForWhichUpdatedKeysAreMeant
         );
     }
 }
