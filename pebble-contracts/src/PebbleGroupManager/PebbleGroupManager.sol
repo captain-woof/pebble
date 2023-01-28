@@ -69,6 +69,19 @@ contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     }
 
     /**
+    @dev Searches through group and finds all other group participants (excluding the participant who's invoking this)
+    @param _groupId Group id of the group
+    @return otherParticipants Array of other group participants
+     */
+    function getOtherGroupParticipants(uint256 _groupId)
+        external
+        view
+        returns (address[] memory otherParticipants)
+    {
+        otherParticipants = _getOtherGroupParticipants(_groupId, msg.sender);
+    }
+
+    /**
     @dev Gets timestamp when a group's penultimate shared keys were last updated
     @param _groupId Group id of the group
     @return timestamp Timestamp when a group's penultimate shared keys were last updated

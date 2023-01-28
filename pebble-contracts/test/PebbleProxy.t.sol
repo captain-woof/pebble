@@ -3,7 +3,7 @@ pragma solidity 0.8.17;
 
 import "forge-std/Test.sol";
 import {PebbleSetupLibraryTest} from "test/helpers/PebbleSetup.sol";
-import {UtilsTest} from "test/helpers/Utils.sol";
+import {PebbleUtilsTest} from "test/helpers/PebbleUtils.sol";
 import {Pebble} from "src/Pebble.sol";
 import {PebbleProxy} from "src/PebbleProxy.sol";
 
@@ -43,7 +43,7 @@ contract PebbleProxyTest is Test {
         (, PebbleProxy pebbleProxy) = PebbleSetupLibraryTest
             .setupNewPebbleEnvironment();
 
-        address unauthorisedAddr = UtilsTest.convertStringToAddress(
+        address unauthorisedAddr = PebbleUtilsTest.convertStringToAddress(
             "UNAUTHORISED_ADDRESS"
         );
         vm.startPrank(unauthorisedAddr);

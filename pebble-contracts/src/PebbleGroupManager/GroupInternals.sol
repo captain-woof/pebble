@@ -157,6 +157,51 @@ contract GroupInternals {
     }
 
     /**
+    @dev Searches through group and finds all other group participants (excluding the participant who's invoking this)
+    @param _groupId Group id of the group
+    @param _filterOutAddress Address of the participant to exclude while searching
+    @return otherParticipants Array of other group participants
+     */
+    function _getOtherGroupParticipants(
+        uint256 _groupId,
+        address _filterOutAddress
+    ) internal view returns (address[] memory otherParticipants) {
+        Group memory group = _getGroupFromGroupId(_groupId);
+        address groupCreator = group.creator;
+        address[] memory participantsOtherThanCreator = group
+            .participantsOtherThanCreator;
+        uint256 participantsOtherThanCreatorNum = group
+            .participantsOtherThanCreator
+            .length;
+        otherParticipants = new address[](participantsOtherThanCreatorNum);
+        uint256 storeIndex;
+
+        // Add group creator to result if they are not excluded
+        if (groupCreator != _filterOutAddress) {
+            otherParticipants[0] = groupCreator;
+            ++storeIndex;
+        }
+
+        // Add participants other than group creator if they are not excluded
+        for (
+            uint256 participantsOtherThanCreatorIndex;
+            participantsOtherThanCreatorIndex < participantsOtherThanCreatorNum;
+            ++participantsOtherThanCreatorIndex
+        ) {
+            if (
+                participantsOtherThanCreator[
+                    participantsOtherThanCreatorIndex
+                ] != _filterOutAddress
+            ) {
+                otherParticipants[storeIndex] = participantsOtherThanCreator[
+                    participantsOtherThanCreatorIndex
+                ];
+                ++storeIndex;
+            }
+        }
+    }
+
+    /**
     @dev Gets timestamp when a group's penultimate shared keys were last updated
     @param _groupId Group id of the group
     @return timestamp Timestamp when a group's penultimate shared keys were last updated
