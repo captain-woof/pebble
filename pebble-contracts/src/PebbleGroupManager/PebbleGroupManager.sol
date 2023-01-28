@@ -16,18 +16,26 @@ contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     /**
     @dev Creates a new group, and sets it up for accepting (i.e, arriving at the final penultimate shared key)
     @param _groupParticipantsOtherThanCreator Array of group participants other than group creator
-    @param _initialPenultimateSharedKeyFromCreatorX X coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * G
-    @param _initialPenultimateSharedKeyFromCreatorY Y coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * G
+    @param _initialPenultimateSharedKeyForCreatorX X coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyForCreatorY Y coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorX X coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorY Y coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
     @return groupId New group's ID
      */
     function createGroup(
         address[] calldata _groupParticipantsOtherThanCreator,
+        uint256 _initialPenultimateSharedKeyForCreatorX,
+        uint256 _initialPenultimateSharedKeyForCreatorY,
         uint256 _initialPenultimateSharedKeyFromCreatorX,
         uint256 _initialPenultimateSharedKeyFromCreatorY
     ) external returns (uint256 groupId) {
         groupId = _createGroup(
             msg.sender,
             _groupParticipantsOtherThanCreator,
+            PenultimateSharedKey(
+                _initialPenultimateSharedKeyForCreatorX,
+                _initialPenultimateSharedKeyForCreatorY
+            ),
             PenultimateSharedKey(
                 _initialPenultimateSharedKeyFromCreatorX,
                 _initialPenultimateSharedKeyFromCreatorY

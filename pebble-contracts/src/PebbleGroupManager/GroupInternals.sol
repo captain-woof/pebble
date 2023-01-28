@@ -262,12 +262,14 @@ contract GroupInternals {
     @dev Creates a new group, and sets it up for accepting (i.e, arriving at the final penultimate shared key)
     @param _groupCreator Address of the group creator
     @param _groupParticipantsOtherThanCreator Array of group participants other than group creator
-    @param _initialPenultimateSharedKeyFromCreator Initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * G
+    @param _initialPenultimateSharedKeyForCreator Initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreator Initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
     @return groupId New group's ID
      */
     function _createGroup(
         address _groupCreator,
         address[] memory _groupParticipantsOtherThanCreator,
+        PenultimateSharedKey memory _initialPenultimateSharedKeyForCreator,
         PenultimateSharedKey memory _initialPenultimateSharedKeyFromCreator
     ) internal returns (uint256 groupId) {
         // Create new group object
@@ -283,11 +285,27 @@ contract GroupInternals {
         // Update penultimate shared keys + Send invites
         require(
             PebbleMath.isPublicKeyOnCurve(
+                _initialPenultimateSharedKeyForCreator.penultimateSharedKeyX,
+                _initialPenultimateSharedKeyForCreator.penultimateSharedKeyY
+            ),
+            "PEBBLE: INITIAL PENULTIMATE SHARED KEY FOR CREATOR NOT ON CURVE"
+        );
+        require(
+            PebbleMath.isPublicKeyOnCurve(
                 _initialPenultimateSharedKeyFromCreator.penultimateSharedKeyX,
                 _initialPenultimateSharedKeyFromCreator.penultimateSharedKeyY
             ),
-            "PEBBLE: INITIAL PENULTIMATE SHARED KEY NOT ON CURVE"
+            "PEBBLE: INITIAL PENULTIMATE SHARED KEY FROM CREATOR NOT ON CURVE"
         );
+
+        // Update penultimate shared keys for creator
+        _updateParticipantGroupPenultimateSharedKey(
+            groupId,
+            _groupCreator,
+            _initialPenultimateSharedKeyForCreator
+        );
+
+        // Update penultimate shared keys from creator
         uint256 groupParticipantsOtherThanCreatorNum = _groupParticipantsOtherThanCreator
                 .length;
         address groupParticipantOtherThanCreator;
@@ -296,7 +314,7 @@ contract GroupInternals {
                 i
             ];
 
-            // Update penultimate shared keys
+            // Update penultimate shared keys from creator
             _updateParticipantGroupPenultimateSharedKey(
                 groupId,
                 groupParticipantOtherThanCreator,
