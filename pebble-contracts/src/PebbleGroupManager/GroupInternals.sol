@@ -55,6 +55,15 @@ contract GroupInternals {
      */
     event AllInvitesAccepted(uint256 indexed groupId);
 
+    /**
+    @dev Fired when group participant needs to send a message
+     */
+    event SendMessage(
+        uint256 indexed groupId,
+        address indexed sender,
+        bytes encryptedMessage
+    );
+
     // Data
     mapping(address => uint256[]) private __groupParticipantToGroupIdsMapping; // Maps a group participant to array of group ids; DON'T USE DIRECTLY; USE SLOT HELPER
     mapping(uint256 => Group) private __groupIdToGroupMapping; // Maps a group id to group data; DON'T USE DIRECTLY; USE SLOT HELPER
@@ -231,7 +240,9 @@ contract GroupInternals {
         address[] memory participantsOtherThanCreator = _getGroupFromGroupId(
             _groupId
         ).participantsOtherThanCreator;
-        for (uint256 i; i < participantsOtherThanCreator.length; ++i) {
+        uint256 participantsOtherThanCreatorNum = participantsOtherThanCreator
+            .length;
+        for (uint256 i; i < participantsOtherThanCreatorNum; ++i) {
             if (
                 !_didParticipantAcceptGroupInvite(
                     _groupId,
@@ -410,6 +421,33 @@ contract GroupInternals {
         if (_didAllParticipantsAcceptInvite(_groupId)) {
             emit AllInvitesAccepted(_groupId);
         }
+    }
+
+    /**
+    @dev Sends a message from Sender in a group
+    @param _groupId Group id of the group to send message in
+    @param _sender Sender who wants to send message
+    @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY)
+     */
+    function _sendMessageInGroup(
+        uint256 _groupId,
+        address _sender,
+        bytes memory _encryptedMessage
+    ) internal {
+        // Check if Group is ready (all invitees have accepted invites)
+        require(
+            _didAllParticipantsAcceptInvite(_groupId),
+            "PEBBLE: PARTICIPANTS YET TO ACCEPT GROUP INVITE"
+        );
+
+        // Check is sender is a group participant
+        require(
+            _didParticipantAcceptGroupInvite(_groupId, _sender),
+            "PEBBLE: SENDER NOT A PARTICIPANT"
+        );
+
+        // Emit message
+        emit SendMessage(_groupId, _sender, _encryptedMessage);
     }
 
     ////////////////
