@@ -69,6 +69,19 @@ contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     }
 
     /**
+    @dev Gets timestamp when a group's penultimate shared keys were last updated
+    @param _groupId Group id of the group
+    @return timestamp Timestamp when a group's penultimate shared keys were last updated
+     */
+    function getGroupPenultimateSharedKeyLastUpdateTimestamp(uint256 _groupId)
+        external
+        view
+        returns (uint256 timestamp)
+    {
+        timestamp = _getGroupPenultimateSharedKeyLastUpdateTimestamp(_groupId);
+    }
+
+    /**
     @dev Gets a participant's penultimate shared key for a group id
     @param _groupId Group id to use to fetch penultimate shared key
     @param _groupParticipant Group participant for whom to fetch the penultimate shared key
