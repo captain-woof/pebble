@@ -7,19 +7,21 @@ import "src/PebbleProxy.sol";
 library PebbleSetupLibraryTest {
     /**
      */
-    function setupNewPebbleEnvironment()
-        internal
-        returns (Pebble pebbleImplementation, PebbleProxy pebbleProxy)
-    {
+    function setupNewPebbleEnvironment(
+        address[] memory _pebbleAdmins,
+        address[] memory _delegatees
+    ) internal returns (Pebble pebbleImplementation, PebbleProxy pebbleProxy) {
         // Deploy Pebble implementation
         pebbleImplementation = new Pebble();
 
         // Deploy Pebble proxy
-        pebbleProxy = new PebbleProxy(
-            address(pebbleImplementation)
-        );
+        pebbleProxy = new PebbleProxy(address(pebbleImplementation));
 
         // Configure Pebble proxy
-        Pebble(address(pebbleProxy)).initialize("1.0.0");
+        Pebble(address(pebbleProxy)).initialize(
+            "1.0.0",
+            _pebbleAdmins,
+            _delegatees
+        );
     }
 }

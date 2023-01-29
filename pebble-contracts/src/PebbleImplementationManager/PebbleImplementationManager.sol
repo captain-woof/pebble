@@ -3,11 +3,11 @@ pragma solidity 0.8.17;
 
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {PebbleRoleManager} from "src/PebbleRoleManager/PebbleRoleManager.sol";
 
 contract PebbleImplementationManager is
     Initializable,
-    OwnableUpgradeable,
+    PebbleRoleManager,
     UUPSUpgradeable
 {
     // Constructor
@@ -20,10 +20,9 @@ contract PebbleImplementationManager is
         internal
         onlyInitializing
     {
-        __Ownable_init_unchained();
         __UUPSUpgradeable_init_unchained();
     }
 
-    // Checks to see if an upgrade is authorised, i.e, made by owner
-    function _authorizeUpgrade(address) internal override onlyOwner {}
+    // Checks to see if an upgrade is authorised, i.e, made by Pebble admin
+    function _authorizeUpgrade(address) internal override onlyPebbleAdmin {}
 }

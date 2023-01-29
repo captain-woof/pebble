@@ -31,7 +31,7 @@ contract PebbleGroupManagerTest is Test {
     // Setup
     function setUp() external {
         (pebbleImplementation, pebbleProxy) = PebbleSetupLibraryTest
-            .setupNewPebbleEnvironment();
+            .setupNewPebbleEnvironment(new address[](0), new address[](0));
     }
 
     // Groups should be correctly created
