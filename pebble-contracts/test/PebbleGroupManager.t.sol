@@ -361,20 +361,17 @@ contract PebbleGroupManagerTest is Test {
         ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
 
         uint256 penultimateKeysForNum = penultimateKeysFor.length;
-        uint256[] memory penultimateKeysXUpdated = new uint256[](
-            penultimateKeysForNum
-        );
-        uint256[] memory penultimateKeysYUpdated = new uint256[](
-            penultimateKeysForNum
-        );
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
 
         for (uint256 i; i < penultimateKeysForNum; ++i) {
-            (penultimateKeysXUpdated[i], penultimateKeysYUpdated[i]) = Pebble(
-                address(pebbleProxy)
-            ).getParticipantGroupPenultimateSharedKey(
-                    groupId,
-                    penultimateKeysFor[i]
-                );
             (
                 penultimateKeysXUpdated[i],
                 penultimateKeysYUpdated[i]
@@ -402,16 +399,11 @@ contract PebbleGroupManagerTest is Test {
             .getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
 
         penultimateKeysForNum = penultimateKeysFor.length;
-        penultimateKeysXUpdated = new uint256[](penultimateKeysForNum);
-        penultimateKeysYUpdated = new uint256[](penultimateKeysForNum);
+        (penultimateKeysXUpdated, penultimateKeysYUpdated) = Pebble(
+            address(pebbleProxy)
+        ).getParticipantsGroupPenultimateSharedKey(groupId, penultimateKeysFor);
 
         for (uint256 i; i < penultimateKeysForNum; ++i) {
-            (penultimateKeysXUpdated[i], penultimateKeysYUpdated[i]) = Pebble(
-                address(pebbleProxy)
-            ).getParticipantGroupPenultimateSharedKey(
-                    groupId,
-                    penultimateKeysFor[i]
-                );
             (
                 penultimateKeysXUpdated[i],
                 penultimateKeysYUpdated[i]
@@ -435,38 +427,28 @@ contract PebbleGroupManagerTest is Test {
 
         // All penultimate shared keys must give same shared key
         (
-            uint256 participant1PenultimateSharedKeyX,
-            uint256 participant1PenultimateSharedKeyY
+            uint256[] memory participantPenultimateSharedKeysX,
+            uint256[] memory participantPenultimateSharedKeysY
         ) = Pebble(address(pebbleProxy))
-                .getParticipantGroupPenultimateSharedKey(groupId, addresses[0]);
-        (
-            uint256 participant2PenultimateSharedKeyX,
-            uint256 participant2PenultimateSharedKeyY
-        ) = Pebble(address(pebbleProxy))
-                .getParticipantGroupPenultimateSharedKey(groupId, addresses[1]);
-        (
-            uint256 participant3PenultimateSharedKeyX,
-            uint256 participant3PenultimateSharedKeyY
-        ) = Pebble(address(pebbleProxy))
-                .getParticipantGroupPenultimateSharedKey(groupId, addresses[2]);
+                .getParticipantsGroupPenultimateSharedKey(groupId, addresses);
 
         (uint256 participant1SharedKeyX, ) = PebbleUtilsTest
             .multiplyScalarToPointOnCurve(
                 privateKeys[0],
-                participant1PenultimateSharedKeyX,
-                participant1PenultimateSharedKeyY
+                participantPenultimateSharedKeysX[0],
+                participantPenultimateSharedKeysY[0]
             );
         (uint256 participant2SharedKeyX, ) = PebbleUtilsTest
             .multiplyScalarToPointOnCurve(
                 privateKeys[1],
-                participant2PenultimateSharedKeyX,
-                participant2PenultimateSharedKeyY
+                participantPenultimateSharedKeysX[1],
+                participantPenultimateSharedKeysY[1]
             );
         (uint256 participant3SharedKeyX, ) = PebbleUtilsTest
             .multiplyScalarToPointOnCurve(
                 privateKeys[2],
-                participant3PenultimateSharedKeyX,
-                participant3PenultimateSharedKeyY
+                participantPenultimateSharedKeysX[2],
+                participantPenultimateSharedKeysY[2]
             );
 
         require(

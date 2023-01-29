@@ -121,6 +121,42 @@ contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     }
 
     /**
+    @dev Gets a participant's penultimate shared key for a group id
+    @param _groupId Group id to use to fetch penultimate shared key
+    @param _groupParticipants Array of group participants for whom to fetch the penultimate shared keys
+    @return penultimateSharedKeysX Array of X coordinate of penultimate shared keys of group participants; Participant 1 * Participant 2 ... * RANDOM * G
+    @return penultimateSharedKeysY Array of Y coordinate of penultimate shared keys of group participants; Participant 1 * Participant 2 ... * RANDOM * G
+     */
+    function getParticipantsGroupPenultimateSharedKey(
+        uint256 _groupId,
+        address[] memory _groupParticipants
+    )
+        external
+        view
+        returns (
+            uint256[] memory penultimateSharedKeysX,
+            uint256[] memory penultimateSharedKeysY
+        )
+    {
+        uint256 groupParticipantsNum = _groupParticipants.length;
+        (penultimateSharedKeysX, penultimateSharedKeysY) = (
+            new uint256[](groupParticipantsNum),
+            new uint256[](groupParticipantsNum)
+        );
+        PenultimateSharedKey memory penultimateSharedKey;
+        for (uint256 i; i < groupParticipantsNum; ++i) {
+            penultimateSharedKey = _getParticipantGroupPenultimateSharedKey(
+                _groupId,
+                _groupParticipants[i]
+            );
+            (penultimateSharedKeysX[i], penultimateSharedKeysY[i]) = (
+                penultimateSharedKey.penultimateSharedKeyX,
+                penultimateSharedKey.penultimateSharedKeyY
+            );
+        }
+    }
+
+    /**
     @dev Sends a message from Sender in a group
     @param _groupId Group id of the group to send message in
     @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY)
