@@ -159,7 +159,7 @@ contract PebbleGroupManager is PebbleSignManager, GroupInternals {
     /**
     @dev Sends a message from Sender in a group
     @param _groupId Group id of the group to send message in
-    @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY)
+    @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY; SHARED KEY = SENDER PRIVATE KEY * SENDER PENULTIMATE SHARED KEY; THIS MUST BE CALCULATED LOCALLY)
      */
     function sendMessageInGroup(
         uint256 _groupId,

@@ -166,6 +166,12 @@ contract GroupInternals {
         uint256 _groupId,
         address _filterOutAddress
     ) internal view returns (address[] memory otherParticipants) {
+        // Check if _filterOutAddress even exists
+        require(
+            _canParticipantAcceptGroupInvite(_groupId, _filterOutAddress),
+            "PEBBLE: NOT INVITED"
+        );
+
         Group memory group = _getGroupFromGroupId(_groupId);
         address groupCreator = group.creator;
         address[] memory participantsOtherThanCreator = group

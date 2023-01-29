@@ -415,7 +415,7 @@ contract PebbleGroupManagerTest is Test {
         }
 
         vm.expectEmit(true, false, false, false);
-        emit AllInvitesAccepted(groupId);
+        emit AllInvitesAccepted(groupId); // Must emit event when as all invites are accepted
         Pebble(address(pebbleProxy)).acceptGroupInvite(
             groupId,
             penultimateKeysFor,
@@ -462,8 +462,448 @@ contract PebbleGroupManagerTest is Test {
     }
 
     // Invitees should not be able to accept invitation twice
+    function testFailDoubleInvitationAcceptance() external {
+        // Create participants
+        (uint256[] memory privateKeys, , ) = PebbleUtilsTest.createNKeyPairs(3);
+        address[] memory addresses = PebbleUtilsTest.createNPublicAddresses(3);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        // Try accepting invite again
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+
+        vm.stopPrank();
+    }
 
     // Invitees should not be able to accept invitation to a non-existent group
+    function testFailAcceptInviteToNonExistentGroup() external {
+        // Create participants
+        (uint256[] memory privateKeys, , ) = PebbleUtilsTest.createNKeyPairs(3);
+        address[] memory addresses = PebbleUtilsTest.createNPublicAddresses(3);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId + 69,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+    }
 
     // Non-invitees should not be able to accept invitation
+    function testFailAcceptInviteUninvitedGroup() external {
+        // Create participants
+        (uint256[] memory privateKeys, , ) = PebbleUtilsTest.createNKeyPairs(3);
+        address[] memory addresses = PebbleUtilsTest.createNPublicAddresses(3);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Non-participant
+        vm.startPrank(PebbleUtilsTest.convertIntToAddress(69));
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId + 69,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+    }
+
+    // Message can be sent after all invitees accept invite
+    function testSendMessageAfterAllInviteesAcceptInvite() external {
+        // Create participants
+        (uint256[] memory privateKeys, , ) = PebbleUtilsTest.createNKeyPairs(3);
+        address[] memory addresses = PebbleUtilsTest.createNPublicAddresses(3);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 2
+        vm.startPrank(groupParticipantsOtherThanCreator[1]);
+        penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        timestampForWhichUpdatedKeysAreMeant = Pebble(address(pebbleProxy))
+            .getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        penultimateKeysForNum = penultimateKeysFor.length;
+        (penultimateKeysXUpdated, penultimateKeysYUpdated) = Pebble(
+            address(pebbleProxy)
+        ).getParticipantsGroupPenultimateSharedKey(groupId, penultimateKeysFor);
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[2],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        vm.expectEmit(true, false, false, false);
+        emit AllInvitesAccepted(groupId); // Must emit event when as all invites are accepted
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Send message
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        vm.expectEmit(true, true, false, false);
+        emit SendMessage(groupId, groupParticipantsOtherThanCreator[0], "");
+        Pebble(address(pebbleProxy)).sendMessageInGroup(
+            groupId,
+            abi.encodePacked("ASSUME THIS IS ENCRYPTED OONGA-BOONGA")
+        );
+        vm.stopPrank();
+    }
+
+    // Message cannot be sent before all invitees accept invite
+    function testFailSendMessageBeforeAllInviteesAcceptInvite() external {
+        // Create participants
+        (uint256[] memory privateKeys, , ) = PebbleUtilsTest.createNKeyPairs(3);
+        address[] memory addresses = PebbleUtilsTest.createNPublicAddresses(3);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Send message
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        Pebble(address(pebbleProxy)).sendMessageInGroup(
+            groupId,
+            abi.encodePacked("ASSUME THIS IS ENCRYPTED OONGA-BOONGA")
+        );
+        vm.stopPrank();
+    }
 }
