@@ -394,8 +394,8 @@ contract GroupInternals {
 
     /**
     @dev Accepts invititation to a group
-    @param _groupParticipant Group participant who wants to accept group invite
     @param _groupId Group id of the group to accept invite for
+    @param _groupParticipant Group participant who wants to accept group invite
     @param _penultimateKeysFor Addresses for which updated penultimate shared keys are meant for
     @param _penultimateKeysXUpdated Array of X coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
     @param _penultimateKeysYUpdated Array of Y coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`

@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity 0.8.17;
 
-import {PebbleImplementationManager} from "./PebbleImplementationManager/PebbleImplementationManager.sol";
-import {PebbleSignManager} from "./PebbleSignManager/PebbleSignManager.sol";
-import {PebbleGroupManager} from "./PebbleGroupManager/PebbleGroupManager.sol";
-import {PebbleRoleManager} from "./PebbleRoleManager/PebbleRoleManager.sol";
+import {PebbleImplementationManager} from "src/PebbleImplementationManager/PebbleImplementationManager.sol";
+import {PebbleSignManager} from "src/PebbleSignManager/PebbleSignManager.sol";
+import {PebbleGroupManager} from "src/PebbleGroupManager/PebbleGroupManager.sol";
+import {PebbleRoleManager} from "src/PebbleRoleManager/PebbleRoleManager.sol";
+import {PebbleDelegatee} from "src/PebbleDelegatee.sol";
 
 contract Pebble is
     PebbleRoleManager,
@@ -47,5 +48,18 @@ contract Pebble is
         __PebbleImplementatationManager_init_unchained();
         __PebbleSignMananger_init_unchained(_pebbleVersion);
         __PebbleGroupManager_init_unchained();
+    }
+
+    /**
+    @dev Deploys and assigns Delegatee role to a new Delegatee contract
+    @param _delegateFeesBasis Delegate fees (in basis) to use
+    @return pebbleDelegatee New pebble delegatee contract deployed
+     */
+    function deployAndAssignDelegateeContract(uint256 _delegateFeesBasis)
+        external
+        returns (PebbleDelegatee pebbleDelegatee)
+    {
+        pebbleDelegatee = new PebbleDelegatee(_delegateFeesBasis);
+        grantPebbleDelegateeRole(address(pebbleDelegatee));
     }
 }
