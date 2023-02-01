@@ -2,8 +2,9 @@
 pragma solidity 0.8.17;
 
 import {PebbleMath} from "src/Utils/Math.sol";
+import {PebbleSignManager} from "src/PebbleSignManager/PebbleSignManager.sol";
 
-contract GroupInternals {
+contract GroupInternals is PebbleSignManager {
     // Structs
     struct Group {
         address creator;
@@ -499,6 +500,117 @@ contract GroupInternals {
 
         // Emit message
         emit SendMessage(_groupId, _sender, _encryptedMessage);
+    }
+
+    /**
+    @dev Gets param hash needed for Creating group as delegatee
+    @param _groupCreator Address of the group creator (Delegator in this case)
+    @param _groupParticipantsOtherThanCreator Array of group participants other than group creator
+    @param _initialPenultimateSharedKeyForCreatorX X coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyForCreatorY Y coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorX X coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorY Y coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
+    @param _groupCreatorDelegatorNonce Group creator's delegator nonce
+    @param _CREATE_GROUP_FOR_DELEGATOR_TYPEHASH Typehash for delegate function
+    @return paramsDigest Param hash
+     */
+    function _getCreateGroupForDelegatorParamHash(
+        address _groupCreator,
+        address[] memory _groupParticipantsOtherThanCreator,
+        uint256 _initialPenultimateSharedKeyForCreatorX,
+        uint256 _initialPenultimateSharedKeyForCreatorY,
+        uint256 _initialPenultimateSharedKeyFromCreatorX,
+        uint256 _initialPenultimateSharedKeyFromCreatorY,
+        uint256 _groupCreatorDelegatorNonce,
+        bytes32 _CREATE_GROUP_FOR_DELEGATOR_TYPEHASH
+    ) internal view returns (bytes32 paramsDigest) {
+        paramsDigest = _hashTypedDataV4(
+            keccak256(
+                abi.encode(
+                    _CREATE_GROUP_FOR_DELEGATOR_TYPEHASH,
+                    _groupCreator,
+                    keccak256(abi.encode(_groupParticipantsOtherThanCreator)),
+                    keccak256(
+                        abi.encode(_initialPenultimateSharedKeyForCreatorX)
+                    ),
+                    keccak256(
+                        abi.encode(_initialPenultimateSharedKeyForCreatorY)
+                    ),
+                    keccak256(
+                        abi.encode(_initialPenultimateSharedKeyFromCreatorX)
+                    ),
+                    keccak256(
+                        abi.encode(_initialPenultimateSharedKeyFromCreatorY)
+                    ),
+                    _groupCreatorDelegatorNonce
+                )
+            )
+        );
+    }
+
+    /**
+    @dev Gets params hash for accepting invite via delegation
+    @param _groupId Group id of the group to accept invite for
+    @param _groupParticipant Group participant who wants to accept group invite
+    @param _penultimateKeysFor Addresses for which updated penultimate shared keys are meant for
+    @param _penultimateKeysXUpdated Array of X coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _penultimateKeysYUpdated Array of Y coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _timestampForWhichUpdatedKeysAreMeant Timestamp at which the invitee checked the last updated penultimate keys
+    @param _groupParticipantDelegatorNonce Group participant's delegator nonce
+    @param _ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH Typehash for delegate function
+    */
+    function _getAcceptGroupInviteForDelegatorParamHash(
+        uint256 _groupId,
+        address _groupParticipant,
+        address[] memory _penultimateKeysFor,
+        uint256[] memory _penultimateKeysXUpdated,
+        uint256[] memory _penultimateKeysYUpdated,
+        uint256 _timestampForWhichUpdatedKeysAreMeant,
+        uint256 _groupParticipantDelegatorNonce,
+        bytes32 _ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH
+    ) internal view returns (bytes32 paramsDigest) {
+        paramsDigest = _hashTypedDataV4(
+            keccak256(
+                abi.encode(
+                    _ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH,
+                    _groupId,
+                    _groupParticipant,
+                    abi.encode(_penultimateKeysFor),
+                    abi.encode(_penultimateKeysXUpdated),
+                    abi.encode(_penultimateKeysYUpdated),
+                    _timestampForWhichUpdatedKeysAreMeant,
+                    _groupParticipantDelegatorNonce
+                )
+            )
+        );
+    }
+
+    /**
+    @dev Gets param hash for sending message in group via delegation
+    @param _groupId Group id of the group to send message in
+    @param _sender Sender who wants to send message
+    @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY; SHARED KEY = SENDER PRIVATE KEY * SENDER PENULTIMATE SHARED KEY; THIS MUST BE CALCULATED LOCALLY)
+    @param _senderDelegatorNonce Sender's delegator nonce
+    @param _SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH Typehash for delegate function
+     */
+    function _getSendMessageInGroupForDelegatorParamsHash(
+        uint256 _groupId,
+        address _sender,
+        bytes memory _encryptedMessage,
+        uint256 _senderDelegatorNonce,
+        bytes32 _SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH
+    ) internal view returns (bytes32 paramHash) {
+        paramHash = _hashTypedDataV4(
+            keccak256(
+                abi.encode(
+                    _SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH,
+                    _groupId,
+                    _sender,
+                    keccak256(_encryptedMessage),
+                    _senderDelegatorNonce
+                )
+            )
+        );
     }
 
     ////////////////

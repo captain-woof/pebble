@@ -2,7 +2,6 @@
 pragma solidity 0.8.17;
 
 import {PebbleRoleManager} from "src/PebbleRoleManager/PebbleRoleManager.sol";
-import {PebbleSignManager} from "src/PebbleSignManager/PebbleSignManager.sol";
 import {PebbleDelagateVerificationManager} from "src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol";
 import {GroupInternals} from "./GroupInternals.sol";
 import {PebbleMath} from "src/Utils/Math.sol";
@@ -10,7 +9,6 @@ import {ECDSAUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/crypto
 
 contract PebbleGroupManager is
     PebbleRoleManager,
-    PebbleSignManager,
     PebbleDelagateVerificationManager,
     GroupInternals
 {
@@ -25,7 +23,7 @@ contract PebbleGroupManager is
         );
     bytes32 constant SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH =
         keccak256(
-            "uint256 _groupId,address _sender,bytes _encryptedMessage,uint256 _senderDelegatorNonce"
+            "function sendMessageInGroupForDelegator(uint256 _groupId,address _sender,bytes _encryptedMessage,uint256 _senderDelegatorNonce)"
         );
 
     /**
@@ -93,31 +91,87 @@ contract PebbleGroupManager is
         returns (uint256 groupId)
     {
         // Verify signature
-        bytes32 paramsDigest = _hashTypedDataV4(
-            keccak256(
-                abi.encode(
-                    CREATE_GROUP_FOR_DELEGATOR_TYPEHASH,
-                    _groupCreator,
-                    keccak256(abi.encode(_groupParticipantsOtherThanCreator)),
-                    keccak256(
-                        abi.encode(_initialPenultimateSharedKeyForCreatorX)
-                    ),
-                    keccak256(
-                        abi.encode(_initialPenultimateSharedKeyForCreatorY)
-                    ),
-                    keccak256(
-                        abi.encode(_initialPenultimateSharedKeyFromCreatorX)
-                    ),
-                    keccak256(
-                        abi.encode(_initialPenultimateSharedKeyFromCreatorY)
-                    ),
-                    _groupCreatorDelegatorNonce
-                )
-            )
+        bytes32 paramsDigest = _getCreateGroupForDelegatorParamHash(
+            _groupCreator,
+            _groupParticipantsOtherThanCreator,
+            _initialPenultimateSharedKeyForCreatorX,
+            _initialPenultimateSharedKeyForCreatorY,
+            _initialPenultimateSharedKeyFromCreatorX,
+            _initialPenultimateSharedKeyFromCreatorY,
+            _groupCreatorDelegatorNonce,
+            CREATE_GROUP_FOR_DELEGATOR_TYPEHASH
         );
         require(
             _groupCreator ==
                 ECDSAUpgradeable.recover(paramsDigest, _signatureFromDelegator),
+            "PEBBLE: INCORRECT SIGNATURE"
+        );
+
+        // Create group
+        groupId = _createGroup(
+            _groupCreator,
+            _groupParticipantsOtherThanCreator,
+            PenultimateSharedKey(
+                _initialPenultimateSharedKeyForCreatorX,
+                _initialPenultimateSharedKeyForCreatorY
+            ),
+            PenultimateSharedKey(
+                _initialPenultimateSharedKeyFromCreatorX,
+                _initialPenultimateSharedKeyFromCreatorY
+            )
+        );
+    }
+
+    /**
+    @dev Creates a new group on behalf of delegator, and sets it up for accepting (i.e, arriving at the final penultimate shared key)
+    @param _groupCreator Address of the group creator (Delegator in this case)
+    @param _groupParticipantsOtherThanCreator Array of group participants other than group creator
+    @param _initialPenultimateSharedKeyForCreatorX X coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyForCreatorY Y coordinate of initial value of penultimate shared key to use for creator, i.e, RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorX X coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
+    @param _initialPenultimateSharedKeyFromCreatorY Y coordinate of initial value of penultimate shared key to use for all participants other than creator, i.e, Creator private key * RANDOM * G
+    @param _groupCreatorDelegatorNonce Group creator's delegator nonce
+    @param _signatureFromDelegator_v v component of signature from delegator against which to confirm input params against
+    @param _signatureFromDelegator_r r component of signature from delegator against which to confirm input params against
+    @param _signatureFromDelegator_s s component of signature from delegator against which to confirm input params against
+    @return groupId New group's ID
+     */
+    function createGroupForDelegator(
+        address _groupCreator,
+        address[] calldata _groupParticipantsOtherThanCreator,
+        uint256 _initialPenultimateSharedKeyForCreatorX,
+        uint256 _initialPenultimateSharedKeyForCreatorY,
+        uint256 _initialPenultimateSharedKeyFromCreatorX,
+        uint256 _initialPenultimateSharedKeyFromCreatorY,
+        uint256 _groupCreatorDelegatorNonce,
+        uint8 _signatureFromDelegator_v,
+        bytes32 _signatureFromDelegator_r,
+        bytes32 _signatureFromDelegator_s
+    )
+        external
+        onlyPebbleDelegatee
+        delegatorNonceCorrect(_groupCreator, _groupCreatorDelegatorNonce)
+        returns (uint256 groupId)
+    {
+        // Verify signature
+        bytes32 paramsDigest = _getCreateGroupForDelegatorParamHash(
+            _groupCreator,
+            _groupParticipantsOtherThanCreator,
+            _initialPenultimateSharedKeyForCreatorX,
+            _initialPenultimateSharedKeyForCreatorY,
+            _initialPenultimateSharedKeyFromCreatorX,
+            _initialPenultimateSharedKeyFromCreatorY,
+            _groupCreatorDelegatorNonce,
+            CREATE_GROUP_FOR_DELEGATOR_TYPEHASH
+        );
+        require(
+            _groupCreator ==
+                ECDSAUpgradeable.recover(
+                    paramsDigest,
+                    _signatureFromDelegator_v,
+                    _signatureFromDelegator_r,
+                    _signatureFromDelegator_s
+                ),
             "PEBBLE: INCORRECT SIGNATURE"
         );
 
@@ -190,25 +244,86 @@ contract PebbleGroupManager is
         )
     {
         // Verify signature
-        bytes32 paramsDigest = _hashTypedDataV4(
-            keccak256(
-                abi.encode(
-                    ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH,
-                    _groupId,
-                    _groupParticipant,
-                    abi.encode(_penultimateKeysFor),
-                    abi.encode(_penultimateKeysXUpdated),
-                    abi.encode(_penultimateKeysYUpdated),
-                    _timestampForWhichUpdatedKeysAreMeant,
-                    _groupParticipantDelegatorNonce
-                )
-            )
+        bytes32 paramsDigest = _getAcceptGroupInviteForDelegatorParamHash(
+            _groupId,
+            _groupParticipant,
+            _penultimateKeysFor,
+            _penultimateKeysXUpdated,
+            _penultimateKeysYUpdated,
+            _timestampForWhichUpdatedKeysAreMeant,
+            _groupParticipantDelegatorNonce,
+            ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH
         );
         require(
             _groupParticipant ==
                 ECDSAUpgradeable.recover(
                     paramsDigest,
                     _signatureFromGroupParticipant
+                ),
+            "PEBBLE: INCORRECT SIGNATURE"
+        );
+
+        // Accept invite
+        _acceptGroupInvite(
+            _groupId,
+            _groupParticipant,
+            _penultimateKeysFor,
+            _penultimateKeysXUpdated,
+            _penultimateKeysYUpdated,
+            _timestampForWhichUpdatedKeysAreMeant
+        );
+    }
+
+    /**
+    @dev Accepts invititation to a group
+    @param _groupId Group id of the group to accept invite for
+    @param _groupParticipant Group participant who wants to accept group invite
+    @param _penultimateKeysFor Addresses for which updated penultimate shared keys are meant for
+    @param _penultimateKeysXUpdated Array of X coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _penultimateKeysYUpdated Array of Y coordinates of updated penultimate shared key corresponding to `_penultimateKeysFor`
+    @param _timestampForWhichUpdatedKeysAreMeant Timestamp at which the invitee checked the last updated penultimate keys
+    @param _groupParticipantDelegatorNonce Group participant's delegator nonce
+    @param _signatureFromGroupParticipant_v v component of signature from participant against which to confirm input params against
+    @param _signatureFromGroupParticipant_r r component of signature from participant against which to confirm input params against
+    @param _signatureFromGroupParticipant_s s component of signature from participant against which to confirm input params against
+    */
+    function acceptGroupInviteForDelegator(
+        uint256 _groupId,
+        address _groupParticipant,
+        address[] calldata _penultimateKeysFor,
+        uint256[] calldata _penultimateKeysXUpdated,
+        uint256[] calldata _penultimateKeysYUpdated,
+        uint256 _timestampForWhichUpdatedKeysAreMeant,
+        uint256 _groupParticipantDelegatorNonce,
+        uint8 _signatureFromGroupParticipant_v,
+        bytes32 _signatureFromGroupParticipant_r,
+        bytes32 _signatureFromGroupParticipant_s
+    )
+        external
+        onlyPebbleDelegatee
+        delegatorNonceCorrect(
+            _groupParticipant,
+            _groupParticipantDelegatorNonce
+        )
+    {
+        // Verify signature
+        bytes32 paramsDigest = _getAcceptGroupInviteForDelegatorParamHash(
+            _groupId,
+            _groupParticipant,
+            _penultimateKeysFor,
+            _penultimateKeysXUpdated,
+            _penultimateKeysYUpdated,
+            _timestampForWhichUpdatedKeysAreMeant,
+            _groupParticipantDelegatorNonce,
+            ACCEPT_GROUP_INVITE_FOR_DELEGATOR_TYPEHASH
+        );
+        require(
+            _groupParticipant ==
+                ECDSAUpgradeable.recover(
+                    paramsDigest,
+                    _signatureFromGroupParticipant_v,
+                    _signatureFromGroupParticipant_r,
+                    _signatureFromGroupParticipant_s
                 ),
             "PEBBLE: INCORRECT SIGNATURE"
         );
@@ -344,20 +459,62 @@ contract PebbleGroupManager is
         delegatorNonceCorrect(_sender, _senderDelegatorNonce)
     {
         // Verify signature
-        bytes32 paramsDigest = _hashTypedDataV4(
-            keccak256(
-                abi.encode(
-                    SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH,
-                    _groupId,
-                    _sender,
-                    _encryptedMessage,
-                    _senderDelegatorNonce
-                )
-            )
+        bytes32 paramsDigest = _getSendMessageInGroupForDelegatorParamsHash(
+            _groupId,
+            _sender,
+            _encryptedMessage,
+            _senderDelegatorNonce,
+            SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH
         );
         require(
             _sender ==
                 ECDSAUpgradeable.recover(paramsDigest, _signatureFromSender),
+            "PEBBLE: INCORRECT SIGNATURE"
+        );
+
+        // Send message
+        _sendMessageInGroup(_groupId, _sender, _encryptedMessage);
+    }
+
+    /**
+    @dev Sends a message from Sender in a group
+    @param _groupId Group id of the group to send message in
+    @param _sender Sender who wants to send message
+    @param _encryptedMessage Encrypted message to send (MUST BE ENCRYPTED BY SHARED KEY, NOT PENULTIMATE SHARED KEY; SHARED KEY = SENDER PRIVATE KEY * SENDER PENULTIMATE SHARED KEY; THIS MUST BE CALCULATED LOCALLY)
+    @param _senderDelegatorNonce Sender's delegator nonce
+    @param _signatureFromSender_v v component of signature from sender against which to confirm input params against
+    @param _signatureFromSender_r r component of signature from sender against which to confirm input params against
+    @param _signatureFromSender_s s component of signature from sender against which to confirm input params against
+     */
+    function sendMessageInGroupForDelegator(
+        uint256 _groupId,
+        address _sender,
+        bytes calldata _encryptedMessage,
+        uint256 _senderDelegatorNonce,
+        uint8 _signatureFromSender_v,
+        bytes32 _signatureFromSender_r,
+        bytes32 _signatureFromSender_s
+    )
+        external
+        onlyPebbleDelegatee
+        delegatorNonceCorrect(_sender, _senderDelegatorNonce)
+    {
+        // Verify signature
+        bytes32 paramsDigest = _getSendMessageInGroupForDelegatorParamsHash(
+            _groupId,
+            _sender,
+            _encryptedMessage,
+            _senderDelegatorNonce,
+            SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH
+        );
+        require(
+            _sender ==
+                ECDSAUpgradeable.recover(
+                    paramsDigest,
+                    _signatureFromSender_v,
+                    _signatureFromSender_r,
+                    _signatureFromSender_s
+                ),
             "PEBBLE: INCORRECT SIGNATURE"
         );
 

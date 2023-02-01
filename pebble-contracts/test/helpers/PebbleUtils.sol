@@ -2,6 +2,7 @@
 pragma solidity 0.8.17;
 
 import {EllipticCurve} from "src/Libraries/EllipticCurve.sol";
+import {Vm} from "forge-std/Vm.sol";
 
 library PebbleUtilsTest {
     /**
@@ -77,51 +78,37 @@ library PebbleUtilsTest {
     }
 
     /**
-    @dev Creates N number of key pairs
-    @param _numOfKeyPairs Number of key pairs to create
+    @dev Creates users for testing, i.e, their private keys, public keys
+    @param _numOfUsers Number of users to create
+    @param _vm vm instance for forge test
     @return privateKeys Array of private keys
-    @return publicKeyX Array of X coordinates of public keys
-    @return publicKeyY Array of Y coordinates of public keys
+    @return publicKeysX Array of X coordinates of public keys
+    @return publicKeysY Array of Y coordinates of public keys
+    @return addresses Array of addresses corresponding to publicKeyX and publicKeyY
      */
-    function createNKeyPairs(uint256 _numOfKeyPairs)
+    function createUsers(uint256 _numOfUsers, Vm _vm)
         internal
         pure
         returns (
             uint256[] memory privateKeys,
-            uint256[] memory publicKeyX,
-            uint256[] memory publicKeyY
+            uint256[] memory publicKeysX,
+            uint256[] memory publicKeysY,
+            address[] memory addresses
         )
     {
         // Create array of results
-        privateKeys = new uint256[](_numOfKeyPairs);
-        publicKeyX = new uint256[](_numOfKeyPairs);
-        publicKeyY = new uint256[](_numOfKeyPairs);
+        privateKeys = new uint256[](_numOfUsers);
+        publicKeysX = new uint256[](_numOfUsers);
+        publicKeysY = new uint256[](_numOfUsers);
+        addresses = new address[](_numOfUsers);
 
         // Fill with results
-        for (uint256 i; i < _numOfKeyPairs; ++i) {
+        for (uint256 i; i < _numOfUsers; ++i) {
             privateKeys[i] = uint256(keccak256(abi.encodePacked(i)));
-            (publicKeyX[i], publicKeyY[i]) = getPublicKeyFromPrivateKey(
+            (publicKeysX[i], publicKeysY[i]) = getPublicKeyFromPrivateKey(
                 privateKeys[i]
             );
-        }
-    }
-
-    /**
-    @dev Creates N number of addresses
-    @param _numOfAddresses Number of addresses to create
-    @return addresses Array of addresses
-     */
-    function createNPublicAddresses(uint256 _numOfAddresses)
-        internal
-        pure
-        returns (address[] memory addresses)
-    {
-        // Create array of results
-        addresses = new address[](_numOfAddresses);
-
-        // Fill with results
-        for (uint256 i; i < _numOfAddresses; ++i) {
-            addresses[i] = convertIntToAddress(i);
+            addresses[i] = _vm.addr(privateKeys[i]);
         }
     }
 
