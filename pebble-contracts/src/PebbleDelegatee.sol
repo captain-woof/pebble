@@ -61,10 +61,9 @@ contract PebbleDelegatee {
     @dev Sets delegate fees (basis)
     @param _delegateFeesBasisNew New delegate fees (basis) to set
      */
-    function setDelegateFeesBasis(uint16 _delegateFeesBasisNew)
-        external
-        onlyPebbleDelegateeAdmins
-    {
+    function setDelegateFeesBasis(
+        uint16 _delegateFeesBasisNew
+    ) external onlyPebbleDelegateeAdmins {
         delegateFeesBasis = _delegateFeesBasisNew;
     }
 
@@ -126,17 +125,16 @@ contract PebbleDelegatee {
         uint256 _groupCreatorDelegatorNonce,
         bytes calldata _signatureFromDelegator
     ) external delegateFor(_groupCreator) returns (uint256 groupId) {
-        return
-            pebbleProxy.createGroupForDelegator(
-                _groupCreator,
-                _groupParticipantsOtherThanCreator,
-                _initialPenultimateSharedKeyForCreatorX,
-                _initialPenultimateSharedKeyForCreatorY,
-                _initialPenultimateSharedKeyFromCreatorX,
-                _initialPenultimateSharedKeyFromCreatorY,
-                _groupCreatorDelegatorNonce,
-                _signatureFromDelegator
-            );
+        groupId = pebbleProxy.createGroupForDelegator(
+            _groupCreator,
+            _groupParticipantsOtherThanCreator,
+            _initialPenultimateSharedKeyForCreatorX,
+            _initialPenultimateSharedKeyForCreatorY,
+            _initialPenultimateSharedKeyFromCreatorX,
+            _initialPenultimateSharedKeyFromCreatorY,
+            _groupCreatorDelegatorNonce,
+            _signatureFromDelegator
+        );
     }
 
     /**
@@ -165,19 +163,18 @@ contract PebbleDelegatee {
         bytes32 _signatureFromDelegator_r,
         bytes32 _signatureFromDelegator_s
     ) external delegateFor(_groupCreator) returns (uint256 groupId) {
-        return
-            pebbleProxy.createGroupForDelegator(
-                _groupCreator,
-                _groupParticipantsOtherThanCreator,
-                _initialPenultimateSharedKeyForCreatorX,
-                _initialPenultimateSharedKeyForCreatorY,
-                _initialPenultimateSharedKeyFromCreatorX,
-                _initialPenultimateSharedKeyFromCreatorY,
-                _groupCreatorDelegatorNonce,
-                _signatureFromDelegator_v,
-                _signatureFromDelegator_r,
-                _signatureFromDelegator_s
-            );
+        groupId = pebbleProxy.createGroupForDelegator(
+            _groupCreator,
+            _groupParticipantsOtherThanCreator,
+            _initialPenultimateSharedKeyForCreatorX,
+            _initialPenultimateSharedKeyForCreatorY,
+            _initialPenultimateSharedKeyFromCreatorX,
+            _initialPenultimateSharedKeyFromCreatorY,
+            _groupCreatorDelegatorNonce,
+            _signatureFromDelegator_v,
+            _signatureFromDelegator_r,
+            _signatureFromDelegator_s
+        );
     }
 
     /**
@@ -313,7 +310,9 @@ contract PebbleDelegatee {
     @param _value Deposited value
      */
     function _addFunds(address _depositor, uint256 _value) internal {
-        addressToFundsMapping[_depositor] += _value;
+        unchecked {
+            addressToFundsMapping[_depositor] += _value;
+        }
     }
 
     /**
@@ -358,9 +357,15 @@ contract PebbleDelegatee {
         address _delegatee,
         uint256 _valueToMove
     ) internal {
-        uint256 valueToMoveWithFees = _valueToMove +
-            ((_valueToMove * delegateFeesBasis) / 10000);
+        uint256 valueToMoveWithFees;
+        unchecked {
+            valueToMoveWithFees =
+                _valueToMove +
+                ((_valueToMove * delegateFeesBasis) / 10000);
+        }
         addressToFundsMapping[_delegator] -= valueToMoveWithFees;
-        addressToFundsMapping[_delegatee] += valueToMoveWithFees;
+        unchecked {
+            addressToFundsMapping[_delegatee] += valueToMoveWithFees;
+        }
     }
 }
