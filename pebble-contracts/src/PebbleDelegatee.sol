@@ -7,7 +7,7 @@ contract PebbleDelegatee {
     // DATA
     Pebble public pebbleProxy;
     mapping(address => uint256) public addressToFundsMapping;
-    uint256 delegateFeesBasis;
+    uint256 public delegateFeesBasis;
 
     // MODIFIERS
 
@@ -310,9 +310,7 @@ contract PebbleDelegatee {
     @param _value Deposited value
      */
     function _addFunds(address _depositor, uint256 _value) internal {
-        unchecked {
-            addressToFundsMapping[_depositor] += _value;
-        }
+        addressToFundsMapping[_depositor] += _value;
     }
 
     /**

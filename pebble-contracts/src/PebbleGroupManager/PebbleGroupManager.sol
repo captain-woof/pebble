@@ -344,11 +344,9 @@ contract PebbleGroupManager is
     @param _groupId Group id of the group
     @return otherParticipants Array of other group participants
      */
-    function getOtherGroupParticipants(uint256 _groupId)
-        external
-        view
-        returns (address[] memory otherParticipants)
-    {
+    function getOtherGroupParticipants(
+        uint256 _groupId
+    ) external view returns (address[] memory otherParticipants) {
         otherParticipants = _getOtherGroupParticipants(_groupId, msg.sender);
     }
 
@@ -357,11 +355,9 @@ contract PebbleGroupManager is
     @param _groupId Group id of the group
     @return timestamp Timestamp when a group's penultimate shared keys were last updated
      */
-    function getGroupPenultimateSharedKeyLastUpdateTimestamp(uint256 _groupId)
-        external
-        view
-        returns (uint256 timestamp)
-    {
+    function getGroupPenultimateSharedKeyLastUpdateTimestamp(
+        uint256 _groupId
+    ) external view returns (uint256 timestamp) {
         timestamp = _getGroupPenultimateSharedKeyLastUpdateTimestamp(_groupId);
     }
 
@@ -425,6 +421,18 @@ contract PebbleGroupManager is
                 penultimateSharedKey.penultimateSharedKeyY
             );
         }
+    }
+
+    /**
+     * @dev Returns `true` if a participant has accepted a group invite
+     * @param _groupId Group id of the group to check in
+     * @param _participant Participant whose acceptance is to be checked
+     */
+    function didParticipantAcceptGroupInvite(
+        uint256 _groupId,
+        address _participant
+    ) external view returns (bool) {
+        return _didParticipantAcceptGroupInvite(_groupId, _participant);
     }
 
     /**

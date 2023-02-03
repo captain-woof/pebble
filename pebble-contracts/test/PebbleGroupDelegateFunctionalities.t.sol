@@ -20,6 +20,7 @@ contract PebbleGroupDelegateFunctionalitiesTest is Test {
     uint256 delegateFeesBasis = 500;
     address delegateeCaller =
         PebbleUtilsTest.convertStringToAddress("DELEGATEE_CALLER");
+    address[] pebbleAdmins;
 
     // Events
     event Invite(
@@ -36,14 +37,285 @@ contract PebbleGroupDelegateFunctionalitiesTest is Test {
 
     // Setup
     function setUp() external {
-        address[] memory pebbleAdmins = new address[](2);
-        pebbleAdmins[0] = msg.sender;
-        pebbleAdmins[1] = address(this);
+        pebbleAdmins.push(msg.sender);
+        pebbleAdmins.push(address(this));
 
         (pebbleImplementation, pebbleProxy) = PebbleSetupLibraryTest
             .setupNewPebbleEnvironment(pebbleAdmins, new address[](0));
         pebbleDelegatee = Pebble(address(pebbleProxy))
             .deployAndAssignDelegateeContract(delegateFeesBasis);
+    }
+
+    // Delegate fees basis can set by Delegatee admin (Pebble admin)
+    function testUpdateDelegateFeesByDelegateeAdmin(
+        uint16 _delegateFeesBasis
+    ) external {
+        pebbleDelegatee.setDelegateFeesBasis(_delegateFeesBasis);
+        require(
+            _delegateFeesBasis == pebbleDelegatee.delegateFeesBasis(),
+            "INCORRECT DELEGATE FEES BASIS SET"
+        );
+    }
+
+    // Delegate fees basis cannot be set by non-Delegatee admin (Pebble admin)
+    function testFailUpdateDelegateFeesByNonDelegateeAdmin(
+        address _nonDelegateeAdmin,
+        uint16 _delegateFeesBasis
+    ) external {
+        vm.assume(_nonDelegateeAdmin != pebbleAdmins[0]);
+        vm.assume(_nonDelegateeAdmin != pebbleAdmins[1]);
+        vm.startPrank(_nonDelegateeAdmin);
+        pebbleDelegatee.setDelegateFeesBasis(_delegateFeesBasis);
+        vm.stopPrank();
+    }
+
+    // Adding funds should work with `fallback()` and `receive()`
+    function testAddFundsWithFallbackOrReceive(
+        address _depositor,
+        uint256 _amountToDeposit
+    ) external {
+        vm.assume(_depositor != address(pebbleImplementation));
+        vm.assume(_depositor != address(pebbleProxy));
+        vm.assume(_depositor != address(pebbleDelegatee));
+        _amountToDeposit = bound(
+            _amountToDeposit,
+            1,
+            UINT256_MAX - 0.001 ether
+        );
+
+        vm.startPrank(_depositor);
+
+        vm.deal(_depositor, _amountToDeposit + 0.001 ether); // Extra for gas
+        (bool success, ) = address(pebbleDelegatee).call{
+            value: _amountToDeposit
+        }("");
+        require(
+            success &&
+                pebbleDelegatee.addressToFundsMapping(_depositor) ==
+                _amountToDeposit,
+            "INCORRECT AMOUNT DEPOSITED"
+        );
+        vm.stopPrank();
+    }
+
+    // Adding funds should work with `addFunds()`
+    function testAddFundsWithAddFunds(
+        address _depositor,
+        uint256 _amountToDeposit
+    ) external {
+        vm.assume(_depositor != address(pebbleImplementation));
+        vm.assume(_depositor != address(pebbleProxy));
+        vm.assume(_depositor != address(pebbleDelegatee));
+        _amountToDeposit = bound(
+            _amountToDeposit,
+            1,
+            UINT256_MAX - 0.001 ether
+        );
+
+        vm.startPrank(_depositor);
+
+        vm.deal(_depositor, _amountToDeposit + 0.001 ether); // Extra for gas
+        pebbleDelegatee.addFunds{value: _amountToDeposit}();
+        require(
+            pebbleDelegatee.addressToFundsMapping(_depositor) ==
+                _amountToDeposit,
+            "INCORRECT AMOUNT DEPOSITED"
+        );
+        vm.stopPrank();
+    }
+
+    // Withdrawing all funds should work
+    function testWithdrawAllFunds(
+        address _depositor,
+        uint256 _amountToDeposit
+    ) external {
+        vm.assume(_depositor != address(pebbleImplementation));
+        vm.assume(_depositor != address(pebbleProxy));
+        vm.assume(_depositor != address(pebbleDelegatee));
+        _amountToDeposit = bound(
+            _amountToDeposit,
+            1,
+            UINT256_MAX - 0.001 ether
+        );
+
+        // First, deposit
+        vm.startPrank(_depositor);
+
+        vm.deal(_depositor, _amountToDeposit + 0.001 ether); // Extra for gas
+        pebbleDelegatee.addFunds{value: _amountToDeposit}();
+
+        // Now, try withdrawing
+        uint256 balanceBefore = _depositor.balance;
+        pebbleDelegatee.withdrawFunds();
+
+        require(
+            _depositor.balance - balanceBefore == _amountToDeposit,
+            "INCORRECT BALANCE WITHDRAWN"
+        );
+
+        require(
+            pebbleDelegatee.addressToFundsMapping(_depositor) == 0,
+            "INCORRECT FUNDS REMAINING AFTER WITHDRAW"
+        );
+    }
+
+    // Withdrawing some funds should work
+    function testWithdrawSomeFunds(
+        address _depositor,
+        uint256 _amountToDeposit,
+        uint256 _amountToWithdraw
+    ) external {
+        vm.assume(_depositor != address(pebbleImplementation));
+        vm.assume(_depositor != address(pebbleProxy));
+        vm.assume(_depositor != address(pebbleDelegatee));
+        _amountToDeposit = bound(
+            _amountToDeposit,
+            1,
+            UINT256_MAX - 0.001 ether
+        );
+        _amountToWithdraw = bound(
+            _amountToWithdraw,
+            1,
+            UINT256_MAX - 0.001 ether
+        );
+        vm.assume(_amountToDeposit > _amountToWithdraw);
+
+        // First, deposit
+        vm.startPrank(_depositor);
+
+        vm.deal(_depositor, _amountToDeposit + 0.001 ether); // Extra for gas
+        pebbleDelegatee.addFunds{value: _amountToDeposit}();
+
+        // Now, try withdrawing
+        uint256 balanceBefore = _depositor.balance;
+        pebbleDelegatee.withdrawFunds(_amountToWithdraw);
+
+        require(
+            _depositor.balance - balanceBefore == _amountToWithdraw,
+            "INCORRECT BALANCE WITHDRAWN"
+        );
+
+        require(
+            pebbleDelegatee.addressToFundsMapping(_depositor) ==
+                _amountToDeposit - _amountToWithdraw,
+            "INCORRECT FUNDS REMAINING AFTER WITHDRAW"
+        );
+    }
+
+    // Withdrawing some funds should work
+    function testFailWithdrawFundsMoreThanDeposited(
+        address _depositor,
+        uint256 _amountToDeposit,
+        uint256 _amountToWithdraw
+    ) external {
+        vm.assume(_depositor != address(pebbleImplementation));
+        vm.assume(_depositor != address(pebbleProxy));
+        vm.assume(_depositor != address(pebbleDelegatee));
+        _amountToDeposit = bound(
+            _amountToDeposit,
+            1,
+            (UINT256_MAX / 2) - 0.001 ether
+        );
+        _amountToWithdraw = bound(
+            _amountToWithdraw,
+            (UINT256_MAX / 2),
+            UINT256_MAX - 0.001 ether
+        );
+        vm.assume(_amountToDeposit < _amountToWithdraw);
+
+        // First, deposit
+        vm.startPrank(_depositor);
+
+        vm.deal(_depositor, _amountToDeposit + 0.001 ether); // Extra for gas
+        pebbleDelegatee.addFunds{value: _amountToDeposit}();
+
+        // Now, try withdrawing
+        pebbleDelegatee.withdrawFunds(_amountToWithdraw);
+    }
+
+    // Delegating compensates delgatee caller
+    function testDelegateCompensation() external {
+        /**
+         * Delegation would be tested with creating group function
+         * Results should be the same for other functions too
+         */
+        uint256 delegateeFundsBefore = pebbleDelegatee.addressToFundsMapping(
+            delegateeCaller
+        );
+
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(46);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        (
+            uint256 groupCreatorDelegatorNonce,
+            uint8 v,
+            bytes32 r,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getCreateGroupForDelegatorParams(
+                addresses[0],
+                groupParticipantsOtherThanCreator,
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY,
+                initialPenultimateSharedKeyFromCreatorX,
+                initialPenultimateSharedKeyFromCreatorY,
+                Pebble(address(pebbleProxy)),
+                privateKeys[0],
+                vm
+            );
+
+        // Create group (delegate)
+        vm.deal(addresses[0], 100 ether);
+        vm.startPrank(addresses[0]);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.createGroupForDelegator(
+            addresses[0],
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY,
+            groupCreatorDelegatorNonce,
+            v,
+            r,
+            s
+        );
+
+        vm.stopPrank();
+
+        // Check if delegatee caller has more funds now
+        require(
+            delegateeFundsBefore <
+                pebbleDelegatee.addressToFundsMapping(delegateeCaller),
+            "DELEGATEE CALLER WAS NOT COMPENSATED"
+        );
     }
 
     // Groups should be correctly created
@@ -113,6 +385,159 @@ contract PebbleGroupDelegateFunctionalitiesTest is Test {
             initialPenultimateSharedKeyFromCreatorX,
             initialPenultimateSharedKeyFromCreatorY,
             groupCreatorDelegatorNonce,
+            v,
+            r,
+            s
+        );
+
+        vm.stopPrank();
+    }
+
+    // Groups cannot be created with incorrect signature
+    function testFailCreateGroupWithIncorrectSignature() external {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        (
+            uint256 groupCreatorDelegatorNonce,
+            uint8 v,
+            ,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getCreateGroupForDelegatorParams(
+                addresses[0],
+                groupParticipantsOtherThanCreator,
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY,
+                initialPenultimateSharedKeyFromCreatorX,
+                initialPenultimateSharedKeyFromCreatorY,
+                Pebble(address(pebbleProxy)),
+                privateKeys[0],
+                vm
+            );
+
+        // Create group (delegate)
+        vm.deal(addresses[0], 100 ether);
+        vm.startPrank(addresses[0]);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.createGroupForDelegator(
+            addresses[0],
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY,
+            groupCreatorDelegatorNonce,
+            v,
+            bytes32("WEIRD"),
+            s
+        );
+
+        vm.stopPrank();
+    }
+
+    // Groups should not be created with delegator signature replay
+    function testFailCreateGroupWithSignatureReplay() external {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        (
+            uint256 groupCreatorDelegatorNonce,
+            uint8 v,
+            bytes32 r,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getCreateGroupForDelegatorParams(
+                addresses[0],
+                groupParticipantsOtherThanCreator,
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY,
+                initialPenultimateSharedKeyFromCreatorX,
+                initialPenultimateSharedKeyFromCreatorY,
+                Pebble(address(pebbleProxy)),
+                privateKeys[0],
+                vm
+            );
+
+        // Create group (delegate)
+        vm.deal(addresses[0], 100 ether);
+        vm.startPrank(addresses[0]);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.createGroupForDelegator(
+            addresses[0],
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY,
+            groupCreatorDelegatorNonce,
+            v,
+            r,
+            s
+        );
+
+        pebbleDelegatee.createGroupForDelegator(
+            addresses[0],
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY,
+            groupCreatorDelegatorNonce + 1,
             v,
             r,
             s
@@ -746,6 +1171,239 @@ contract PebbleGroupDelegateFunctionalitiesTest is Test {
         );
     }
 
+    // Invite acceptance should not work with incorrect signature from delegator
+    function testFailInvitedParticipantsInvitationAcceptanceWithIncorrectSignature()
+        external
+    {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        (
+            uint256 groupParticipantDelegatorNonce,
+            uint8 v,
+            ,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getAcceptGroupInviteForDelegatorParams(
+                groupId,
+                groupParticipantsOtherThanCreator[0],
+                penultimateKeysFor,
+                penultimateKeysXUpdated,
+                penultimateKeysYUpdated,
+                timestampForWhichUpdatedKeysAreMeant,
+                Pebble(address(pebbleProxy)),
+                privateKeys[1],
+                vm
+            );
+
+        vm.deal(groupParticipantsOtherThanCreator[0], 100 ether);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.acceptGroupInviteForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant,
+            groupParticipantDelegatorNonce,
+            v,
+            bytes32("INCORRECT SIGNATURE"),
+            s
+        );
+        vm.stopPrank();
+    }
+
+    // Invite acceptance should not work with signature replay from delegator
+    function testFailInvitedParticipantsInvitationAcceptanceWithSignatureReplay()
+        external
+    {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        (
+            uint256 groupParticipantDelegatorNonce,
+            uint8 v,
+            bytes32 r,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getAcceptGroupInviteForDelegatorParams(
+                groupId,
+                groupParticipantsOtherThanCreator[0],
+                penultimateKeysFor,
+                penultimateKeysXUpdated,
+                penultimateKeysYUpdated,
+                timestampForWhichUpdatedKeysAreMeant,
+                Pebble(address(pebbleProxy)),
+                privateKeys[1],
+                vm
+            );
+
+        vm.deal(groupParticipantsOtherThanCreator[0], 100 ether);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.acceptGroupInviteForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant,
+            groupParticipantDelegatorNonce,
+            v,
+            r,
+            s
+        );
+
+        pebbleDelegatee.acceptGroupInviteForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant,
+            groupParticipantDelegatorNonce + 1,
+            v,
+            r,
+            s
+        );
+        vm.stopPrank();
+    }
+
     // Invitees should not be able to accept invitation twice
     function testFailDoubleInvitationAcceptance() external {
         // Create participants
@@ -1241,6 +1899,316 @@ contract PebbleGroupDelegateFunctionalitiesTest is Test {
             groupParticipantsOtherThanCreator[0],
             bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
             senderDelegatorNonce,
+            v,
+            r,
+            s
+        );
+        vm.stopPrank();
+    }
+
+    // Message cannot be sent after all invitees accept invite, if incorrect signature is used
+    function testFailSendMessageAfterAllInviteesAcceptInviteWithIncorrectSignature()
+        external
+    {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(458);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 2
+        vm.startPrank(groupParticipantsOtherThanCreator[1]);
+        penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        timestampForWhichUpdatedKeysAreMeant = Pebble(address(pebbleProxy))
+            .getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        penultimateKeysForNum = penultimateKeysFor.length;
+        (penultimateKeysXUpdated, penultimateKeysYUpdated) = Pebble(
+            address(pebbleProxy)
+        ).getParticipantsGroupPenultimateSharedKey(groupId, penultimateKeysFor);
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[2],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        vm.expectEmit(true, false, false, false);
+        emit AllInvitesAccepted(groupId); // Must emit event when as all invites are accepted
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Send message
+        vm.deal(groupParticipantsOtherThanCreator[0], 100 ether);
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        (
+            uint256 senderDelegatorNonce,
+            uint8 v,
+            ,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getSendMessageInGroupForDelegatorParams(
+                groupId,
+                groupParticipantsOtherThanCreator[0],
+                bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
+                Pebble(address(pebbleProxy)),
+                privateKeys[1],
+                vm
+            );
+
+        vm.startPrank(delegateeCaller);
+        pebbleDelegatee.sendMessageInGroupForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
+            senderDelegatorNonce,
+            v,
+            bytes32("INCORRECT SIGNATURE"),
+            s
+        );
+        vm.stopPrank();
+    }
+
+    // Message cannot be sent after all invitees accept invite, if same signature is replayed
+    function testFailSendMessageAfterAllInviteesAcceptInviteWithSignatureReplay()
+        external
+    {
+        // Create participants
+        (
+            uint256[] memory privateKeys,
+            ,
+            ,
+            address[] memory addresses
+        ) = PebbleUtilsTest.createUsers(3, vm);
+
+        // Get large integer
+        uint256 random = PebbleUtilsTest.createRandomInteger(80);
+
+        // Prepare arguments for creating group
+        address[] memory groupParticipantsOtherThanCreator = new address[](2);
+        groupParticipantsOtherThanCreator[0] = addresses[1];
+        groupParticipantsOtherThanCreator[1] = addresses[2];
+        (
+            uint256 initialPenultimateSharedKeyForCreatorX,
+            uint256 initialPenultimateSharedKeyForCreatorY
+        ) = PebbleUtilsTest.getPublicKeyFromPrivateKey(random);
+        (
+            uint256 initialPenultimateSharedKeyFromCreatorX,
+            uint256 initialPenultimateSharedKeyFromCreatorY
+        ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[0],
+                initialPenultimateSharedKeyForCreatorX,
+                initialPenultimateSharedKeyForCreatorY
+            );
+
+        // Create group
+        vm.startPrank(addresses[0]);
+        uint256 groupId = Pebble(address(pebbleProxy)).createGroup(
+            groupParticipantsOtherThanCreator,
+            initialPenultimateSharedKeyForCreatorX,
+            initialPenultimateSharedKeyForCreatorY,
+            initialPenultimateSharedKeyFromCreatorX,
+            initialPenultimateSharedKeyFromCreatorY
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 1
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        address[] memory penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        uint256 timestampForWhichUpdatedKeysAreMeant = Pebble(
+            address(pebbleProxy)
+        ).getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        uint256 penultimateKeysForNum = penultimateKeysFor.length;
+
+        (
+            uint256[] memory penultimateKeysXUpdated,
+            uint256[] memory penultimateKeysYUpdated
+        ) = Pebble(address(pebbleProxy))
+                .getParticipantsGroupPenultimateSharedKey(
+                    groupId,
+                    penultimateKeysFor
+                );
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[1],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Accept invite - Participant 2
+        vm.startPrank(groupParticipantsOtherThanCreator[1]);
+        penultimateKeysFor = Pebble(address(pebbleProxy))
+            .getOtherGroupParticipants(groupId);
+        timestampForWhichUpdatedKeysAreMeant = Pebble(address(pebbleProxy))
+            .getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        penultimateKeysForNum = penultimateKeysFor.length;
+        (penultimateKeysXUpdated, penultimateKeysYUpdated) = Pebble(
+            address(pebbleProxy)
+        ).getParticipantsGroupPenultimateSharedKey(groupId, penultimateKeysFor);
+
+        for (uint256 i; i < penultimateKeysForNum; ++i) {
+            (
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            ) = PebbleUtilsTest.multiplyScalarToPointOnCurve(
+                privateKeys[2],
+                penultimateKeysXUpdated[i],
+                penultimateKeysYUpdated[i]
+            );
+        }
+
+        vm.expectEmit(true, false, false, false);
+        emit AllInvitesAccepted(groupId); // Must emit event when as all invites are accepted
+        Pebble(address(pebbleProxy)).acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateKeysXUpdated,
+            penultimateKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        vm.stopPrank();
+
+        // Send message
+        vm.deal(groupParticipantsOtherThanCreator[0], 100 ether);
+        vm.startPrank(groupParticipantsOtherThanCreator[0]);
+        pebbleDelegatee.addFunds{value: 0.0005 ether}();
+        vm.stopPrank();
+
+        (
+            uint256 senderDelegatorNonce,
+            uint8 v,
+            bytes32 r,
+            bytes32 s
+        ) = PebbleDelegateHelpersTest.getSendMessageInGroupForDelegatorParams(
+                groupId,
+                groupParticipantsOtherThanCreator[0],
+                bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
+                Pebble(address(pebbleProxy)),
+                privateKeys[1],
+                vm
+            );
+
+        vm.startPrank(delegateeCaller);
+        vm.expectEmit(true, true, false, false);
+        emit SendMessage(groupId, groupParticipantsOtherThanCreator[0], "");
+        pebbleDelegatee.sendMessageInGroupForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
+            senderDelegatorNonce,
+            v,
+            r,
+            s
+        );
+
+        pebbleDelegatee.sendMessageInGroupForDelegator(
+            groupId,
+            groupParticipantsOtherThanCreator[0],
+            bytes("ASSUME THIS IS ENCRYPTED OONGA-BOONGA"),
+            senderDelegatorNonce + 1,
             v,
             r,
             s
