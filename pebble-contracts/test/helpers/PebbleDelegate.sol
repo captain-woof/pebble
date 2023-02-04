@@ -22,7 +22,7 @@ library PebbleDelegateHelpersTest {
         );
     bytes32 constant SEND_MESSAGE_IN_GROUP_FOR_DELEGATOR_TYPEHASH =
         keccak256(
-            "function sendMessageInGroupForDelegator(uint256 _groupId,address _sender,bytes _encryptedMessage,uint256 _senderDelegatorNonce)"
+            "sendMessageInGroupForDelegator(uint256 _groupId,address _sender,bytes _encryptedMessage,uint256 _senderDelegatorNonce)"
         );
 
     /**
