@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "rootDir": "src",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ]
+}
