@@ -40,6 +40,7 @@
         "vite.config.js",
         "tsconfig.json",
         "jest.config.ts",
-        "types/**/*.ts"
+        "types/**/*.ts",
+        "dist/**/*"
     ]
 }
