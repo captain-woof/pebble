@@ -39,6 +39,7 @@
         ".eslintrc.json",
         "vite.config.js",
         "tsconfig.json",
-        "jest.config.ts"
+        "jest.config.ts",
+        "types/**/*.ts"
     ]
 }

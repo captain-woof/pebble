@@ -1,6 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ethersproject/abi': ^5.7.0
+  '@ethersproject/bytes': ^5.0.0
+  '@ethersproject/providers': ^5.7.2
   '@typechain/ethers-v5': ^10.2.0
   '@types/jest': ^29.4.0
   '@types/node': ^18.15.0
@@ -20,7 +23,10 @@ dependencies:
   ethers: 5.7.2
 
 devDependencies:
-  '@typechain/ethers-v5': 10.2.0_adzcvilraqwpmvhi27pqolfk7m
+  '@ethersproject/abi': 5.7.0
+  '@ethersproject/bytes': 5.7.0
+  '@ethersproject/providers': 5.7.2
+  '@typechain/ethers-v5': 10.2.0_kuvqdvnhbslgxdpi2awxjzdvhe
   '@types/jest': 29.4.0
   '@types/node': 18.15.0
   '@typescript-eslint/eslint-plugin': 5.54.1_mlk7dnz565t663n4razh6a6v6i
@@ -1354,7 +1360,7 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
-  /@typechain/ethers-v5/10.2.0_adzcvilraqwpmvhi27pqolfk7m:
+  /@typechain/ethers-v5/10.2.0_kuvqdvnhbslgxdpi2awxjzdvhe:
     resolution: {integrity: sha512-ikaq0N/w9fABM+G01OFmU3U3dNnyRwEahkdvi9mqy1a3XwKiPZaF/lu54OcNaEWnpvEYyhhS0N7buCtLQqC92w==}
     peerDependencies:
       '@ethersproject/abi': ^5.0.0
@@ -1364,6 +1370,9 @@ packages:
       typechain: ^8.1.1
       typescript: '>=4.3.0'
     dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@ethersproject/bytes': 5.7.0
+      '@ethersproject/providers': 5.7.2
       ethers: 5.7.2
       lodash: 4.17.21
       ts-essentials: 7.0.3_typescript@4.9.5

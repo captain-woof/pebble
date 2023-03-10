@@ -16,8 +16,8 @@
   },
   "description": "SDK for Pebble's client-side functionalities",
   "scripts": {
-    "build": "pnpm run lint && pnpm run test && pnpm run build:vite",
-    "typechain": "cd ../pebble-contracts/",
+    "build": "pnpm run typechain && pnpm run lint && pnpm run test && pnpm run build:vite",
+    "typechain": "cd ../pebble-contracts/ && forge clean && forge build --via-ir --skip test --skip script && cd ../pebble-sdk && rm -r types; mkdir types && typechain --target ethers-v5 --out-dir types \"../pebble-contracts/out/Pebble*.sol/**/*.json\"",
     "build:vite": "vite build",
     "lint": "eslint --fix .",
     "test": "jest ."
@@ -31,6 +31,9 @@
   ],
   "author": "Sohail Saha <captainwoof.official@gmail.com>",
   "devDependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/bytes": "^5.0.0",
+    "@ethersproject/providers": "^5.7.2",
     "@typechain/ethers-v5": "^10.2.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.15.0",
