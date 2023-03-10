@@ -1,5 +1,4 @@
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 
 export default defineConfig(({ mode }) => {
     return {
@@ -12,14 +11,11 @@ export default defineConfig(({ mode }) => {
             emptyOutDir: true,
             minify: true
         },
-        clearScreen: true,
         resolve: {
             alias: {
                 "@/": "src/"
             }
         },
-        plugins: [
-            dts()
-        ]
+        plugins: []
     }
 });

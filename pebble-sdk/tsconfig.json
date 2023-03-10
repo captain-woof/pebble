@@ -4,15 +4,27 @@
         "allowJs": true,
         "esModuleInterop": true,
         "declaration": true,
+        "declarationMap": true,
         "emitDeclarationOnly": true,
+        "declarationDir": "dist/types",
         "moduleResolution": "node",
         "paths": {
             "@/*": [
                 "./src/*"
             ]
-        }
+        },
+        "typeRoots": [
+            "node_modules/@types",
+            "types/**"
+        ]
     },
     "include": [
-        "src"
+        "src/**/*.js",
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "src/**/*.test.js",
+        "src/**/*.test.ts",
+        "src/**/__tests__/**/*"
     ]
 }
