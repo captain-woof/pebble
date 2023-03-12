@@ -1,17 +1,20 @@
 import { Contract, Signer, BigNumber } from "ethers";
 import { IPebbleClient } from "types/clients/PebbleClient";
 import { Pebble } from "types/pebble-contracts";
-import { InviteEvent } from "types/pebble-contracts/Pebble";
+import { InviteEvent, AllInvitesAcceptedEvent } from "types/pebble-contracts/Pebble";
 import { abi as PEBBLE_ABI } from "abi/Pebble.json";
 import { generateRandomPrivateKey, generateRandomNumber, getScalarProductWithGeneratorPoint, getScalarProductWithPoint } from "./utils";
+import { Point } from "@noble/secp256k1";
 
 export class PebbleClient {
     signer: Signer;
     pebbleContract: Pebble;
+    blockConfirmations: number;
 
     // Constructor
     constructor({ config, contracts }: IPebbleClient) {
         this.signer = config.signer;
+        this.blockConfirmations = config.blockConfirmations ?? 1;
         this.pebbleContract = new Contract(contracts.pebbleContractAddr, PEBBLE_ABI, this.signer) as Pebble;
     }
 
@@ -42,7 +45,7 @@ export class PebbleClient {
             initialPenultimateSharedKeyFromCreatorX,
             initialPenultimateSharedKeyFromCreatorY
         );
-        const rcpt = await tx.wait();
+        const rcpt = await tx.wait(this.blockConfirmations);
 
         // Get group ID
         const eventInvite = (rcpt.events?.find(({ event }) => event === "Invite")) as InviteEvent;
@@ -53,8 +56,92 @@ export class PebbleClient {
 
         // Return params
         return {
-            privateKeyCreator: BigNumber.from(privKeyCreator),
+            privateKeyCreator: BigNumber.from(privKeyCreator.toString()),
             groupId
+        };
+    }
+
+    /**
+     * @dev Gets all group participants in a Group other than signer
+     * @param groupId Group id to check in
+     * @return otherGroupParticipants Array of other group members' addresses
+     */
+    async getOtherGroupParticipants(groupId: BigNumber) {
+        const otherGroupParticipants = await this.pebbleContract.getOtherGroupParticipants(groupId);
+        return otherGroupParticipants;
+    }
+
+    /**
+     * @dev Gets current penultimate shared keys for participants in a group
+     * @param groupId Group ID to check in
+     * @param participants Array of participants' addresses
+     * @returns return.penultimateSharedKeysX Array of penultimate shared keys' X
+     * @returns return.penultimateSharedKeysY Array of penultimate shared keys' Y
+     */
+    async getPenultimateSharedKeysFor(groupId: BigNumber, participants: Array<string>) {
+        const { penultimateSharedKeysX, penultimateSharedKeysY } = await this.pebbleContract.getParticipantsGroupPenultimateSharedKey(groupId, participants);
+
+        return {
+            penultimateSharedKeysX, penultimateSharedKeysY
+        };
+    }
+
+    /**
+     * @dev Accepts invite to a group
+     * @param groupId Group ID to accept invitation for
+     * @returns return.privKeyParticipant Private key for participant corresponding to this group
+     * @returns return.haveAllParticipantsAcceptedInvite True, if all participants have accepted group invite
+     */
+    async acceptInviteToGroup(groupId: BigNumber) {
+        // Get other group participants
+        const penultimateKeysFor = await this.getOtherGroupParticipants(groupId);
+
+        // Generate private key
+        const privKeyParticipant = generateRandomPrivateKey();
+
+        // Get updated penultimate keys
+        const { penultimateSharedKeysX, penultimateSharedKeysY } = await this.getPenultimateSharedKeysFor(groupId, penultimateKeysFor);
+        const [penultimateSharedKeysXUpdated, penultimateSharedKeysYUpdated]: Array<Array<BigNumber>> = [[], []];
+
+        for (let i = 0; i < penultimateSharedKeysX.length; i++) {
+            const penultimateSharedKeyPoint = new Point(
+                BigInt(penultimateSharedKeysX[i].toString()),
+                BigInt(penultimateSharedKeysY[i].toString())
+            );
+
+            const { x, y } = getScalarProductWithPoint(
+                BigInt(privKeyParticipant.toString()),
+                penultimateSharedKeyPoint
+            );
+            penultimateSharedKeysXUpdated.push(BigNumber.from(x.toString()));
+            penultimateSharedKeysYUpdated.push(BigNumber.from(y.toString()));
+        }
+
+        // Get timestamp at which above keys were fetched
+        const timestampForWhichUpdatedKeysAreMeant = await this.pebbleContract.getGroupPenultimateSharedKeyLastUpdateTimestamp(groupId);
+
+        // Do transaction
+        const tx = await this.pebbleContract.acceptGroupInvite(
+            groupId,
+            penultimateKeysFor,
+            penultimateSharedKeysXUpdated,
+            penultimateSharedKeysYUpdated,
+            timestampForWhichUpdatedKeysAreMeant
+        );
+        const rcpt = await tx.wait(this.blockConfirmations);
+
+        // Check if all participants have accepted invites
+        let haveAllParticipantsAcceptedInvite = false;
+        const eventAllInvitesAcceptedEvent = (rcpt.events?.find(({ event }) => event === "AllInvitesAccepted")) as AllInvitesAcceptedEvent;
+        const groupIdFromEvent = eventAllInvitesAcceptedEvent?.args?.groupId;
+        if (groupIdFromEvent && groupIdFromEvent?._isBigNumber) {
+            haveAllParticipantsAcceptedInvite = true;
+        }
+
+        // Return result
+        return {
+            privKeyParticipant: BigNumber.from(privKeyParticipant.toString()),
+            haveAllParticipantsAcceptedInvite
         };
     }
 }

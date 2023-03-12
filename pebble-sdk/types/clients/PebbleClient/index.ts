@@ -5,6 +5,7 @@ export interface IPebbleClient {
         pebbleContractAddr: string;
     },
     config: {
-        signer: Signer
+        signer: Signer;
+        blockConfirmations?: number;
     }
 }

@@ -26,7 +26,7 @@ describe("PebbleClient", () => {
             .attach((await deployPebbleProxy(pebbleContractImpl.address)).address);
     });
 
-    it("Create group - Correct group IDs and Randomised creator private keys", async () => {
+    it("Create group", async () => {
         // Create Pebble Client for group creator
         const groupCreatorSigner = signersTest[1];
         const pebbleClientGroupCreator = new PebbleClient({
@@ -57,5 +57,52 @@ describe("PebbleClient", () => {
 
         // Test if private keys for creator are different
         expect(privateKeyCreator1.eq(privateKeyCreator2)).toEqual(false);
+    });
+
+    it("Accept group invite", async () => {
+        // Create test group
+        const groupCreatorSigner = signersTest[1];
+        const pebbleClientGroupCreator = new PebbleClient({
+            config: {
+                signer: groupCreatorSigner
+            },
+            contracts: {
+                pebbleContractAddr: pebbleContract.address
+            }
+        });
+        const groupParticipantsOtherThanCreatorSigners = signersTest.slice(2, 4);
+        const { groupId, privateKeyCreator } = await pebbleClientGroupCreator.createGroup(
+            groupParticipantsOtherThanCreatorSigners.map((groupParticipantsOtherThanCreatorSigner) => groupParticipantsOtherThanCreatorSigner.address)
+        );
+
+        // Accept invite - participant 1
+        const pebbleClientGroupParticipant1 = new PebbleClient({
+            config: {
+                signer: groupParticipantsOtherThanCreatorSigners[0]
+            },
+            contracts: {
+                pebbleContractAddr: pebbleContract.address
+            }
+        });
+        const { haveAllParticipantsAcceptedInvite: haveAllParticipantsAcceptedInvite1, privKeyParticipant: privKeyParticipant1 } = await pebbleClientGroupParticipant1.acceptInviteToGroup(groupId);
+
+        // Accept invite - participant 2
+        const pebbleClientGroupParticipant2 = new PebbleClient({
+            config: {
+                signer: groupParticipantsOtherThanCreatorSigners[1]
+            },
+            contracts: {
+                pebbleContractAddr: pebbleContract.address
+            }
+        });
+        const { haveAllParticipantsAcceptedInvite: haveAllParticipantsAcceptedInvite2, privKeyParticipant: privKeyParticipant2 } = await pebbleClientGroupParticipant2.acceptInviteToGroup(groupId);
+
+        // Test for private keys
+        expect(privateKeyCreator.eq(privKeyParticipant1)).toEqual(false);
+        expect(privKeyParticipant1.eq(privKeyParticipant2)).toEqual(false);
+
+        // Test for all participants accepted invite
+        expect(haveAllParticipantsAcceptedInvite1).toEqual(false);
+        expect(haveAllParticipantsAcceptedInvite2).toEqual(true);
     });
 });
