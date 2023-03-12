@@ -2,7 +2,7 @@ import { Contract, Signer, BigNumber } from "ethers";
 import { IPebbleClient } from "types/clients/PebbleClient";
 import { Pebble } from "types/pebble-contracts";
 import { InviteEvent } from "types/pebble-contracts/Pebble";
-import PEBBLE_INTERFACE from "abi/Pebble.json";
+import { abi as PEBBLE_ABI } from "abi/Pebble.json";
 import { generateRandomPrivateKey, generateRandomNumber, getScalarProductWithGeneratorPoint, getScalarProductWithPoint } from "./utils";
 
 export class PebbleClient {
@@ -12,7 +12,7 @@ export class PebbleClient {
     // Constructor
     constructor({ config, contracts }: IPebbleClient) {
         this.signer = config.signer;
-        this.pebbleContract = new Contract(contracts.pebbleContractAddr, PEBBLE_INTERFACE.abi, this.signer) as Pebble;
+        this.pebbleContract = new Contract(contracts.pebbleContractAddr, PEBBLE_ABI, this.signer) as Pebble;
     }
 
     /**
