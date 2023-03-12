@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig(({ mode }) => {
     return {
@@ -9,7 +10,7 @@ export default defineConfig(({ mode }) => {
                 fileName: "pebble-sdk"
             },
             emptyOutDir: true,
-            minify: true,
+            minify: "terser",
             rollupOptions: {
                 external: [
                     "ethers",
@@ -25,6 +26,12 @@ export default defineConfig(({ mode }) => {
                 "abi/": "abi/"
             }
         },
-        plugins: []
+        plugins: [
+            dts({
+                tsConfigFilePath: "tsconfig.build.json",
+                entryRoot: "src",
+                outputDir: "dist/types"
+            })
+        ]
     }
 });

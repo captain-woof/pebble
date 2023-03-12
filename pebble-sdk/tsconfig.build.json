@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "dist/types",
+        "emitDeclarationOnly": true,
+        "declarationDir": "dist/types",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+            "~/*": [
+                "./*"
+            ],
+            "types/*": [
+                "./types/*"
+            ],
+            "abi/*": [
+                "./abi/*"
+            ]
+        },
+        "typeRoots": [
+            "node_modules/@types",
+            "types/**"
+        ]
+    },
+    "include": [
+        "src/**/*.js",
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "src/**/*.test.ts",
+        "src/**/*-test.ts"
+    ]
+}
