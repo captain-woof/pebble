@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "rootDir": "src",
+        "rootDir": "./",
         "allowJs": true,
         "esModuleInterop": true,
         "declaration": true,
@@ -8,9 +8,19 @@
         "emitDeclarationOnly": true,
         "declarationDir": "dist/types",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         "paths": {
             "@/*": [
                 "./src/*"
+            ],
+            "~/*": [
+                "./*"
+            ],
+            "types/*": [
+                "./types/*"
+            ],
+            "abi/*": [
+                "./abi/*"
             ]
         },
         "typeRoots": [
@@ -22,9 +32,4 @@
         "src/**/*.js",
         "src/**/*.ts"
     ],
-    "exclude": [
-        "src/**/*.test.js",
-        "src/**/*.test.ts",
-        "src/**/__tests__/**/*"
-    ]
 }

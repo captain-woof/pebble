@@ -1,0 +1,1069 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea2646970667358221220dead91def2fe78d2aed334ccb840dab71476aeb55b256cfe6b62c8073649af0264736f6c63430008110033",
+    "sourceMap": "126:607:38:-:0;;;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x600080fdfea2646970667358221220dead91def2fe78d2aed334ccb840dab71476aeb55b256cfe6b62c8073649af0264736f6c63430008110033",
+    "sourceMap": "126:607:38:-:0;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {},
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"test/helpers/PebbleSetup.sol\":\"PebbleSetupLibraryTest\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"],\"viaIR\":true},\"sources\":{\"lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol\":{\"keccak256\":\"0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626\",\"dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol\":{\"keccak256\":\"0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c\",\"dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/interfaces/draft-IERC1822Upgradeable.sol\":{\"keccak256\":\"0x77c89f893e403efc6929ba842b7ccf6534d4ffe03afe31670b4a528c0ad78c0f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://496bd9b3df2455d571018c09f0c6badd29713fdeb907c6aa09d8d28cb603f053\",\"dweb:/ipfs/QmXdJDyYs6WMwMh21dez2BYPxhSUaUYFMDtVNcn2cgFR79\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol\":{\"keccak256\":\"0x315887e846f1e5f8d8fa535a229d318bb9290aaa69485117f1ee8a9a6b3be823\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://29dda00da6d269685b555e710e4abf1c3eb6d00c15b888a7880a2f8dd3c4fdc2\",\"dweb:/ipfs/QmSqcjtdECygtT1Gy7uEo42x8542srpgGEeKKHfcnQqXgn\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/beacon/IBeaconUpgradeable.sol\":{\"keccak256\":\"0x24b86ac8c005b8c654fbf6ac34a5a4f61580d7273541e83e013e89d66fbf0908\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4dbfe1a3b3b3fb64294ce41fd2ad362e7b7012208117864f42c1a67620a6d5c1\",\"dweb:/ipfs/QmVMU5tWt7zBQMmf5cpMX8UMHV86T3kFeTxBTBjFqVWfoJ\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618\",\"dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol\":{\"keccak256\":\"0x7967d130887c4b40666cd88f8744691d4527039a1b2a38aa0de41481ef646778\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40e60cbf0e2efede4d9c169e66336a64615af7b719a896ef1f37ae8cd4614ec1\",\"dweb:/ipfs/QmYNiwY22ifhfa8yK6mLCEKfj39caYUHLqe2VBtzDnvdsV\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06\",\"dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c\",\"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/StorageSlotUpgradeable.sol\":{\"keccak256\":\"0x09864aea84f01e39313375b5610c73a3c1c68abbdc51e5ccdd25ff977fdadf9a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://aedb48081190fa828d243529ce25c708202c7d4ccfe99f0e4ecd6bc0cfcd03f3\",\"dweb:/ipfs/QmWyiDQHPZA56iqsAwTmiJoxvNeRQLUVr4gTfzpdpXivpo\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8\",\"dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/ECDSAUpgradeable.sol\":{\"keccak256\":\"0x12f297cafe6e2847ae0378502f155654d0764b532a9873c8afe4350950fa7971\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://28074f6df7132e83819042a06ef75ae53c88c53c077b8222b9772b780d58bd58\",\"dweb:/ipfs/QmXXwSxWn4XGCy218fn3f2m3UmFNUiroeQ8sCR3vzNU6Wc\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol\":{\"keccak256\":\"0x3017aded62c4a2b9707f5f06f92934e592c1c9b6f384b91b51340a6d5f841931\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bb693afc2a614ec7afee965caaf5d53c3f32644e33286f60d17ae0e9aca84d44\",\"dweb:/ipfs/QmVJy43EBWvVT5NgpsV8WJfDHtZbnqZGMhmv1WbWaV5dJV\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol\":{\"keccak256\":\"0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7\",\"dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758\",\"dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4\",\"dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt\"]},\"lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol\":{\"keccak256\":\"0x1d4afe6cb24200cc4545eed814ecf5847277dfe5d613a1707aad5fceecebcfff\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://383fb7b8181016ac5ccf07bc9cdb7c1b5045ea36e2cc4df52bcbf20396fc7688\",\"dweb:/ipfs/QmYJ7Cg4WmE3rR8KGQxjUCXFfTH6TcwZ2Z1f6tPrq7jHFr\"]},\"lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol\":{\"keccak256\":\"0xa2b22da3032e50b55f95ec1d13336102d675f341167aa76db571ef7f8bb7975d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://96b6d77a20bebd4eb06b801d3d020c7e82be13bd535cb0d0a6b7181c51dab5d5\",\"dweb:/ipfs/QmPUR9Cv9jNFdQX6PtBfaBW1ZCnKwiu65R2VD5kbdanDyn\"]},\"lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Upgrade.sol\":{\"keccak256\":\"0xabf3f59bc0e5423eae45e459dbe92e7052c6983628d39008590edc852a62f94a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://89c2a0f70157c13845be5cb49b078a6374fee3a78fa950052a3af26190255da8\",\"dweb:/ipfs/QmUcvMEQH1oMM2pUyMuDiBUKdvvnTz1NRB8bmPHrVq8725\"]},\"lib/openzeppelin-contracts/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0xc130fe33f1b2132158531a87734153293f6d07bc263ff4ac90e85da9c82c0e27\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8831721b6f4cc26534d190f9f1631c3f59c9ff38efdd911f85e0882b8e360472\",\"dweb:/ipfs/QmQZnLErZNStirSQ13ZNWQgvEYUtGE5tXYwn4QUPaVUfPN\"]},\"lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol\":{\"keccak256\":\"0xd50a3421ac379ccb1be435fa646d66a65c986b4924f0849839f08692f39dde61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ada1e030c0231db8d143b44ce92b4d1158eedb087880cad6d8cc7bd7ebe7b354\",\"dweb:/ipfs/QmWZ2NHZweRpz1U9GF6R1h65ri76dnX7fNxLBeM2t5N5Ce\"]},\"lib/openzeppelin-contracts/contracts/utils/Address.sol\":{\"keccak256\":\"0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269\",\"dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj\"]},\"lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol\":{\"keccak256\":\"0xd5c50c54bf02740ebd122ff06832546cb5fa84486d52695a9ccfd11666e0c81d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://39e096c60a6eb1c6a257122d515496bd92d0c6a693a8f07acb6aa4b1263e95d4\",\"dweb:/ipfs/QmPs5trJBacCiSkezP6tpevapuRYWNY6mqSFzsMCJj7e6B\"]},\"src/Libraries/EllipticCurve.sol\":{\"keccak256\":\"0xbfd8643cdaac862de36538dac31e89d5d435099e4a91572c719d684cf2d738ad\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://caeade761315556d39bc8930b9901104c9d2659f33b6c92f6d9d5fa5eaef88a6\",\"dweb:/ipfs/QmVKyRXPs9WE7N7AeDozTNcjAf57qR5ToMZCgYYjUd1AN9\"]},\"src/Pebble.sol\":{\"keccak256\":\"0x84f7bdb33306790505677177e7da86bdba5a47a164430a6c647ebc98826dfa12\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://a228ec5c3c879060198c681472338c764ee177d5bd97f0a88667e14b20a871f1\",\"dweb:/ipfs/QmUBL1jt7gA3W68WtQjPGkjw1jjJEmG7ZvJY3QQQBbMoxZ\"]},\"src/PebbleDelagateVerificationManager/DelagateVerificationInternals.sol\":{\"keccak256\":\"0x0a2fa8bd1208c24760cb21e7a2ff52d86b39949c48ea9afcd019a313b1675cf4\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://7250ab6b6227d83d6a4804edc1183b729f4fb2b69d22509f84b872618f329b7d\",\"dweb:/ipfs/QmWHWTUZsWmBRJJGQXPnbsMP5E9wTjy6pseGVBbEcacnwn\"]},\"src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol\":{\"keccak256\":\"0x5135ecc285067dc968fecc97ded7dda0ddb6d1f7cd2e977f92bc580aa1040ee5\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://4c8a37d1756ba715ed6b181e97b54391338c79c24d15d7f872b982de213ccc92\",\"dweb:/ipfs/Qmbo916R8BPSdA1QVZTZZzTxYmH3LAbJgz6N3J6nJuffLq\"]},\"src/PebbleDelegatee.sol\":{\"keccak256\":\"0x686e4a9eeadeaf42793a81897722f21ea8616bb5e3be514dd19941d96833c184\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://265edd3e1f0aa4df471af27575b389ffce94c6e693cf677fe75ddf5ffefaddb3\",\"dweb:/ipfs/QmRciK36skztaPAUuBwYB4JHCYp5LdjTXbDiuKcskEKL5u\"]},\"src/PebbleGroupManager/GroupInternals.sol\":{\"keccak256\":\"0xc22127c869621204348e0a4965a0a0620841d268c55a63e05c82203c123bdb21\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://bf123047841b909e2a2419761349cb2d9b29db3b60613ead4f66787c4809dbcc\",\"dweb:/ipfs/QmdRENL3YoUg363tD8LtZEwVpwRCtqrJ31M3mrt8FZ6K8F\"]},\"src/PebbleGroupManager/PebbleGroupManager.sol\":{\"keccak256\":\"0x2ed4d2c32229826540978ca2bb2df6a67364fc38e0c664bec3fedfe70968f255\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://889b129f8fa1af8d2a7545d61419d11017779e484141b86970b8fd72afab6de7\",\"dweb:/ipfs/QmZBhFFASHzUR6FCJKCbZhoRM4LFpmLVz1Mxh8xvzSqFQm\"]},\"src/PebbleImplementationManager/PebbleImplementationManager.sol\":{\"keccak256\":\"0x6ebd79e2b0e5cc5f14faf88f0092c80e106e52d4d3c7d8b229a07f3e973c8f60\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://fbbe8a8b75583818092a982ad5865cb0a10c2f43fa317514e61b22d54c48abac\",\"dweb:/ipfs/QmR6PYJd8EXrzBRJZTtF1D3VbFQGP6mKDpKDzSLn1JHypJ\"]},\"src/PebbleProxy.sol\":{\"keccak256\":\"0xf226030ce5e92644e6ca0fa13fc67cd21a86525acf0889a35497702424bc65df\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://cee715fd0a03b0f2082a5e1c2f18c184173e6cc7fff9ca00229392d62c475718\",\"dweb:/ipfs/QmYN7pgaBVgWwKaMBPNtTg2tKE79RGAnnhwtrA4tMKtrUK\"]},\"src/PebbleRoleManager/PebbleRoleManager.sol\":{\"keccak256\":\"0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d\",\"dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ\"]},\"src/PebbleSignManager/PebbleSignManager.sol\":{\"keccak256\":\"0x35bd3079c1ecb1a02602eed7bd4e3e4fcb5a9409e252b84dec0344da68a0f419\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://3bed6e1b6854af62eaeee8d7944eb16b90d5eaf4bf4d4ecd4f87278d01aa14db\",\"dweb:/ipfs/QmTr9CZx4rEkSeL364HwjA6rYPpCXxgDSujPos1zB6mFfg\"]},\"src/PebbleSignManager/SignInternals.sol\":{\"keccak256\":\"0x4b335a321bb3cd60c459a336cf16cadfb6a3c37f4287de6a2fef73d86f9e1ee1\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://22117862195a24977f68a72a86129c843d5f97b4c45e6756457b46d6237b1cb4\",\"dweb:/ipfs/QmZc99GeJih6GMFeosm9kiS9EuafHSWbciAJpf1y5r7cSF\"]},\"src/Utils/Math.sol\":{\"keccak256\":\"0x9e44d3f93e9d6b15cc30278cf562306a8e948d29efaa685b0cc3cdd6d4ccfe14\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://7bd35dc2d2308d7e84cfa8c11da613a897710ccfbd8ba14269ec59515b057f16\",\"dweb:/ipfs/QmbrzoG1ijb9NATzGeWQPRGWHFzPXTWEGSwFRp1QCw83Kg\"]},\"test/helpers/PebbleSetup.sol\":{\"keccak256\":\"0x9d356dd089488db2df692ca02d60d4b217f743a8bf4fa383193c9243a4ab3d80\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://691c1ec19314ea41b688c107eae9a7baa8bb05608ab0b48b0051babc57c54f37\",\"dweb:/ipfs/Qmb8T3rxfPcPqTXwxhKcwba3h6Acfzu5NWMafXPsvyxmhR\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "test/helpers/PebbleSetup.sol": "PebbleSetupLibraryTest"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol": {
+        "keccak256": "0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a",
+        "urls": [
+          "bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626",
+          "dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol": {
+        "keccak256": "0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa",
+        "urls": [
+          "bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c",
+          "dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/interfaces/draft-IERC1822Upgradeable.sol": {
+        "keccak256": "0x77c89f893e403efc6929ba842b7ccf6534d4ffe03afe31670b4a528c0ad78c0f",
+        "urls": [
+          "bzz-raw://496bd9b3df2455d571018c09f0c6badd29713fdeb907c6aa09d8d28cb603f053",
+          "dweb:/ipfs/QmXdJDyYs6WMwMh21dez2BYPxhSUaUYFMDtVNcn2cgFR79"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol": {
+        "keccak256": "0x315887e846f1e5f8d8fa535a229d318bb9290aaa69485117f1ee8a9a6b3be823",
+        "urls": [
+          "bzz-raw://29dda00da6d269685b555e710e4abf1c3eb6d00c15b888a7880a2f8dd3c4fdc2",
+          "dweb:/ipfs/QmSqcjtdECygtT1Gy7uEo42x8542srpgGEeKKHfcnQqXgn"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/beacon/IBeaconUpgradeable.sol": {
+        "keccak256": "0x24b86ac8c005b8c654fbf6ac34a5a4f61580d7273541e83e013e89d66fbf0908",
+        "urls": [
+          "bzz-raw://4dbfe1a3b3b3fb64294ce41fd2ad362e7b7012208117864f42c1a67620a6d5c1",
+          "dweb:/ipfs/QmVMU5tWt7zBQMmf5cpMX8UMHV86T3kFeTxBTBjFqVWfoJ"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol": {
+        "keccak256": "0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271",
+        "urls": [
+          "bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618",
+          "dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol": {
+        "keccak256": "0x7967d130887c4b40666cd88f8744691d4527039a1b2a38aa0de41481ef646778",
+        "urls": [
+          "bzz-raw://40e60cbf0e2efede4d9c169e66336a64615af7b719a896ef1f37ae8cd4614ec1",
+          "dweb:/ipfs/QmYNiwY22ifhfa8yK6mLCEKfj39caYUHLqe2VBtzDnvdsV"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol": {
+        "keccak256": "0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183",
+        "urls": [
+          "bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06",
+          "dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol": {
+        "keccak256": "0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149",
+        "urls": [
+          "bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c",
+          "dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/StorageSlotUpgradeable.sol": {
+        "keccak256": "0x09864aea84f01e39313375b5610c73a3c1c68abbdc51e5ccdd25ff977fdadf9a",
+        "urls": [
+          "bzz-raw://aedb48081190fa828d243529ce25c708202c7d4ccfe99f0e4ecd6bc0cfcd03f3",
+          "dweb:/ipfs/QmWyiDQHPZA56iqsAwTmiJoxvNeRQLUVr4gTfzpdpXivpo"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol": {
+        "keccak256": "0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da",
+        "urls": [
+          "bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8",
+          "dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/ECDSAUpgradeable.sol": {
+        "keccak256": "0x12f297cafe6e2847ae0378502f155654d0764b532a9873c8afe4350950fa7971",
+        "urls": [
+          "bzz-raw://28074f6df7132e83819042a06ef75ae53c88c53c077b8222b9772b780d58bd58",
+          "dweb:/ipfs/QmXXwSxWn4XGCy218fn3f2m3UmFNUiroeQ8sCR3vzNU6Wc"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol": {
+        "keccak256": "0x3017aded62c4a2b9707f5f06f92934e592c1c9b6f384b91b51340a6d5f841931",
+        "urls": [
+          "bzz-raw://bb693afc2a614ec7afee965caaf5d53c3f32644e33286f60d17ae0e9aca84d44",
+          "dweb:/ipfs/QmVJy43EBWvVT5NgpsV8WJfDHtZbnqZGMhmv1WbWaV5dJV"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol": {
+        "keccak256": "0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a",
+        "urls": [
+          "bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7",
+          "dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol": {
+        "keccak256": "0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09",
+        "urls": [
+          "bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758",
+          "dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol": {
+        "keccak256": "0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a",
+        "urls": [
+          "bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4",
+          "dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol": {
+        "keccak256": "0x1d4afe6cb24200cc4545eed814ecf5847277dfe5d613a1707aad5fceecebcfff",
+        "urls": [
+          "bzz-raw://383fb7b8181016ac5ccf07bc9cdb7c1b5045ea36e2cc4df52bcbf20396fc7688",
+          "dweb:/ipfs/QmYJ7Cg4WmE3rR8KGQxjUCXFfTH6TcwZ2Z1f6tPrq7jHFr"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Proxy.sol": {
+        "keccak256": "0xa2b22da3032e50b55f95ec1d13336102d675f341167aa76db571ef7f8bb7975d",
+        "urls": [
+          "bzz-raw://96b6d77a20bebd4eb06b801d3d020c7e82be13bd535cb0d0a6b7181c51dab5d5",
+          "dweb:/ipfs/QmPUR9Cv9jNFdQX6PtBfaBW1ZCnKwiu65R2VD5kbdanDyn"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Upgrade.sol": {
+        "keccak256": "0xabf3f59bc0e5423eae45e459dbe92e7052c6983628d39008590edc852a62f94a",
+        "urls": [
+          "bzz-raw://89c2a0f70157c13845be5cb49b078a6374fee3a78fa950052a3af26190255da8",
+          "dweb:/ipfs/QmUcvMEQH1oMM2pUyMuDiBUKdvvnTz1NRB8bmPHrVq8725"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/proxy/Proxy.sol": {
+        "keccak256": "0xc130fe33f1b2132158531a87734153293f6d07bc263ff4ac90e85da9c82c0e27",
+        "urls": [
+          "bzz-raw://8831721b6f4cc26534d190f9f1631c3f59c9ff38efdd911f85e0882b8e360472",
+          "dweb:/ipfs/QmQZnLErZNStirSQ13ZNWQgvEYUtGE5tXYwn4QUPaVUfPN"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol": {
+        "keccak256": "0xd50a3421ac379ccb1be435fa646d66a65c986b4924f0849839f08692f39dde61",
+        "urls": [
+          "bzz-raw://ada1e030c0231db8d143b44ce92b4d1158eedb087880cad6d8cc7bd7ebe7b354",
+          "dweb:/ipfs/QmWZ2NHZweRpz1U9GF6R1h65ri76dnX7fNxLBeM2t5N5Ce"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/utils/Address.sol": {
+        "keccak256": "0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1",
+        "urls": [
+          "bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269",
+          "dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol": {
+        "keccak256": "0xd5c50c54bf02740ebd122ff06832546cb5fa84486d52695a9ccfd11666e0c81d",
+        "urls": [
+          "bzz-raw://39e096c60a6eb1c6a257122d515496bd92d0c6a693a8f07acb6aa4b1263e95d4",
+          "dweb:/ipfs/QmPs5trJBacCiSkezP6tpevapuRYWNY6mqSFzsMCJj7e6B"
+        ],
+        "license": "MIT"
+      },
+      "src/Libraries/EllipticCurve.sol": {
+        "keccak256": "0xbfd8643cdaac862de36538dac31e89d5d435099e4a91572c719d684cf2d738ad",
+        "urls": [
+          "bzz-raw://caeade761315556d39bc8930b9901104c9d2659f33b6c92f6d9d5fa5eaef88a6",
+          "dweb:/ipfs/QmVKyRXPs9WE7N7AeDozTNcjAf57qR5ToMZCgYYjUd1AN9"
+        ],
+        "license": "MIT"
+      },
+      "src/Pebble.sol": {
+        "keccak256": "0x84f7bdb33306790505677177e7da86bdba5a47a164430a6c647ebc98826dfa12",
+        "urls": [
+          "bzz-raw://a228ec5c3c879060198c681472338c764ee177d5bd97f0a88667e14b20a871f1",
+          "dweb:/ipfs/QmUBL1jt7gA3W68WtQjPGkjw1jjJEmG7ZvJY3QQQBbMoxZ"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleDelagateVerificationManager/DelagateVerificationInternals.sol": {
+        "keccak256": "0x0a2fa8bd1208c24760cb21e7a2ff52d86b39949c48ea9afcd019a313b1675cf4",
+        "urls": [
+          "bzz-raw://7250ab6b6227d83d6a4804edc1183b729f4fb2b69d22509f84b872618f329b7d",
+          "dweb:/ipfs/QmWHWTUZsWmBRJJGQXPnbsMP5E9wTjy6pseGVBbEcacnwn"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol": {
+        "keccak256": "0x5135ecc285067dc968fecc97ded7dda0ddb6d1f7cd2e977f92bc580aa1040ee5",
+        "urls": [
+          "bzz-raw://4c8a37d1756ba715ed6b181e97b54391338c79c24d15d7f872b982de213ccc92",
+          "dweb:/ipfs/Qmbo916R8BPSdA1QVZTZZzTxYmH3LAbJgz6N3J6nJuffLq"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleDelegatee.sol": {
+        "keccak256": "0x686e4a9eeadeaf42793a81897722f21ea8616bb5e3be514dd19941d96833c184",
+        "urls": [
+          "bzz-raw://265edd3e1f0aa4df471af27575b389ffce94c6e693cf677fe75ddf5ffefaddb3",
+          "dweb:/ipfs/QmRciK36skztaPAUuBwYB4JHCYp5LdjTXbDiuKcskEKL5u"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleGroupManager/GroupInternals.sol": {
+        "keccak256": "0xc22127c869621204348e0a4965a0a0620841d268c55a63e05c82203c123bdb21",
+        "urls": [
+          "bzz-raw://bf123047841b909e2a2419761349cb2d9b29db3b60613ead4f66787c4809dbcc",
+          "dweb:/ipfs/QmdRENL3YoUg363tD8LtZEwVpwRCtqrJ31M3mrt8FZ6K8F"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleGroupManager/PebbleGroupManager.sol": {
+        "keccak256": "0x2ed4d2c32229826540978ca2bb2df6a67364fc38e0c664bec3fedfe70968f255",
+        "urls": [
+          "bzz-raw://889b129f8fa1af8d2a7545d61419d11017779e484141b86970b8fd72afab6de7",
+          "dweb:/ipfs/QmZBhFFASHzUR6FCJKCbZhoRM4LFpmLVz1Mxh8xvzSqFQm"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleImplementationManager/PebbleImplementationManager.sol": {
+        "keccak256": "0x6ebd79e2b0e5cc5f14faf88f0092c80e106e52d4d3c7d8b229a07f3e973c8f60",
+        "urls": [
+          "bzz-raw://fbbe8a8b75583818092a982ad5865cb0a10c2f43fa317514e61b22d54c48abac",
+          "dweb:/ipfs/QmR6PYJd8EXrzBRJZTtF1D3VbFQGP6mKDpKDzSLn1JHypJ"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleProxy.sol": {
+        "keccak256": "0xf226030ce5e92644e6ca0fa13fc67cd21a86525acf0889a35497702424bc65df",
+        "urls": [
+          "bzz-raw://cee715fd0a03b0f2082a5e1c2f18c184173e6cc7fff9ca00229392d62c475718",
+          "dweb:/ipfs/QmYN7pgaBVgWwKaMBPNtTg2tKE79RGAnnhwtrA4tMKtrUK"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleRoleManager/PebbleRoleManager.sol": {
+        "keccak256": "0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247",
+        "urls": [
+          "bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d",
+          "dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleSignManager/PebbleSignManager.sol": {
+        "keccak256": "0x35bd3079c1ecb1a02602eed7bd4e3e4fcb5a9409e252b84dec0344da68a0f419",
+        "urls": [
+          "bzz-raw://3bed6e1b6854af62eaeee8d7944eb16b90d5eaf4bf4d4ecd4f87278d01aa14db",
+          "dweb:/ipfs/QmTr9CZx4rEkSeL364HwjA6rYPpCXxgDSujPos1zB6mFfg"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleSignManager/SignInternals.sol": {
+        "keccak256": "0x4b335a321bb3cd60c459a336cf16cadfb6a3c37f4287de6a2fef73d86f9e1ee1",
+        "urls": [
+          "bzz-raw://22117862195a24977f68a72a86129c843d5f97b4c45e6756457b46d6237b1cb4",
+          "dweb:/ipfs/QmZc99GeJih6GMFeosm9kiS9EuafHSWbciAJpf1y5r7cSF"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/Utils/Math.sol": {
+        "keccak256": "0x9e44d3f93e9d6b15cc30278cf562306a8e948d29efaa685b0cc3cdd6d4ccfe14",
+        "urls": [
+          "bzz-raw://7bd35dc2d2308d7e84cfa8c11da613a897710ccfbd8ba14269ec59515b057f16",
+          "dweb:/ipfs/QmbrzoG1ijb9NATzGeWQPRGWHFzPXTWEGSwFRp1QCw83Kg"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "test/helpers/PebbleSetup.sol": {
+        "keccak256": "0x9d356dd089488db2df692ca02d60d4b217f743a8bf4fa383193c9243a4ab3d80",
+        "urls": [
+          "bzz-raw://691c1ec19314ea41b688c107eae9a7baa8bb05608ab0b48b0051babc57c54f37",
+          "dweb:/ipfs/Qmb8T3rxfPcPqTXwxhKcwba3h6Acfzu5NWMafXPsvyxmhR"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "test/helpers/PebbleSetup.sol",
+    "id": 9462,
+    "exportedSymbols": {
+      "Address": [
+        5142
+      ],
+      "ERC1967Proxy": [
+        4432
+      ],
+      "ERC1967Upgrade": [
+        4750
+      ],
+      "IBeacon": [
+        4812
+      ],
+      "IERC1822Proxiable": [
+        4395
+      ],
+      "Pebble": [
+        6465
+      ],
+      "PebbleDelegatee": [
+        7108
+      ],
+      "PebbleGroupManager": [
+        8734
+      ],
+      "PebbleImplementationManager": [
+        8774
+      ],
+      "PebbleProxy": [
+        8800
+      ],
+      "PebbleRoleManager": [
+        8973
+      ],
+      "PebbleSetupLibraryTest": [
+        9461
+      ],
+      "PebbleSignManager": [
+        9011
+      ],
+      "Proxy": [
+        4802
+      ],
+      "StorageSlot": [
+        5202
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:689:38",
+    "nodes": [
+      {
+        "id": 9412,
+        "nodeType": "PragmaDirective",
+        "src": "45:23:38",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 9413,
+        "nodeType": "ImportDirective",
+        "src": "70:24:38",
+        "nodes": [],
+        "absolutePath": "src/Pebble.sol",
+        "file": "src/Pebble.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 9462,
+        "sourceUnit": 6466,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 9414,
+        "nodeType": "ImportDirective",
+        "src": "95:29:38",
+        "nodes": [],
+        "absolutePath": "src/PebbleProxy.sol",
+        "file": "src/PebbleProxy.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 9462,
+        "sourceUnit": 8801,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 9461,
+        "nodeType": "ContractDefinition",
+        "src": "126:607:38",
+        "nodes": [
+          {
+            "id": 9460,
+            "nodeType": "FunctionDefinition",
+            "src": "179:552:38",
+            "nodes": [],
+            "body": {
+              "id": 9459,
+              "nodeType": "Block",
+              "src": "370:361:38",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 9434,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 9429,
+                      "name": "pebbleImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9424,
+                      "src": "420:20:38",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Pebble_$6465",
+                        "typeString": "contract Pebble"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [],
+                      "expression": {
+                        "argumentTypes": [],
+                        "id": 9432,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "443:10:38",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_Pebble_$6465_$",
+                          "typeString": "function () returns (contract Pebble)"
+                        },
+                        "typeName": {
+                          "id": 9431,
+                          "nodeType": "UserDefinedTypeName",
+                          "pathNode": {
+                            "id": 9430,
+                            "name": "Pebble",
+                            "nameLocations": [
+                              "447:6:38"
+                            ],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 6465,
+                            "src": "447:6:38"
+                          },
+                          "referencedDeclaration": 6465,
+                          "src": "447:6:38",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_Pebble_$6465",
+                            "typeString": "contract Pebble"
+                          }
+                        }
+                      },
+                      "id": 9433,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "443:12:38",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Pebble_$6465",
+                        "typeString": "contract Pebble"
+                      }
+                    },
+                    "src": "420:35:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Pebble_$6465",
+                      "typeString": "contract Pebble"
+                    }
+                  },
+                  "id": 9435,
+                  "nodeType": "ExpressionStatement",
+                  "src": "420:35:38"
+                },
+                {
+                  "expression": {
+                    "id": 9445,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 9436,
+                      "name": "pebbleProxy",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9427,
+                      "src": "497:11:38",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                        "typeString": "contract PebbleProxy"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "arguments": [
+                            {
+                              "id": 9442,
+                              "name": "pebbleImplementation",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 9424,
+                              "src": "535:20:38",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_Pebble_$6465",
+                                "typeString": "contract Pebble"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_contract$_Pebble_$6465",
+                                "typeString": "contract Pebble"
+                              }
+                            ],
+                            "id": 9441,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "527:7:38",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 9440,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "527:7:38",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 9443,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "527:29:38",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 9439,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "NewExpression",
+                        "src": "511:15:38",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_PebbleProxy_$8800_$",
+                          "typeString": "function (address) returns (contract PebbleProxy)"
+                        },
+                        "typeName": {
+                          "id": 9438,
+                          "nodeType": "UserDefinedTypeName",
+                          "pathNode": {
+                            "id": 9437,
+                            "name": "PebbleProxy",
+                            "nameLocations": [
+                              "515:11:38"
+                            ],
+                            "nodeType": "IdentifierPath",
+                            "referencedDeclaration": 8800,
+                            "src": "515:11:38"
+                          },
+                          "referencedDeclaration": 8800,
+                          "src": "515:11:38",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                            "typeString": "contract PebbleProxy"
+                          }
+                        }
+                      },
+                      "id": 9444,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "511:46:38",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                        "typeString": "contract PebbleProxy"
+                      }
+                    },
+                    "src": "497:60:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                      "typeString": "contract PebbleProxy"
+                    }
+                  },
+                  "id": 9446,
+                  "nodeType": "ExpressionStatement",
+                  "src": "497:60:38"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "hexValue": "312e302e30",
+                        "id": 9454,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "655:7:38",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_06c015bd22b4c69690933c1058878ebdfef31f9aaae40bbe86d8a09fe1b2972c",
+                          "typeString": "literal_string \"1.0.0\""
+                        },
+                        "value": "1.0.0"
+                      },
+                      {
+                        "id": 9455,
+                        "name": "_pebbleAdmins",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9417,
+                        "src": "676:13:38",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        }
+                      },
+                      {
+                        "id": 9456,
+                        "name": "_delegatees",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 9420,
+                        "src": "703:11:38",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_06c015bd22b4c69690933c1058878ebdfef31f9aaae40bbe86d8a09fe1b2972c",
+                          "typeString": "literal_string \"1.0.0\""
+                        },
+                        {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        },
+                        {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[] memory"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "arguments": [
+                              {
+                                "id": 9450,
+                                "name": "pebbleProxy",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 9427,
+                                "src": "617:11:38",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                                  "typeString": "contract PebbleProxy"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                                  "typeString": "contract PebbleProxy"
+                                }
+                              ],
+                              "id": 9449,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "nodeType": "ElementaryTypeNameExpression",
+                              "src": "609:7:38",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_address_$",
+                                "typeString": "type(address)"
+                              },
+                              "typeName": {
+                                "id": 9448,
+                                "name": "address",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "609:7:38",
+                                "typeDescriptions": {}
+                              }
+                            },
+                            "id": 9451,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "nameLocations": [],
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "609:20:38",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 9447,
+                          "name": "Pebble",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 6465,
+                          "src": "602:6:38",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_Pebble_$6465_$",
+                            "typeString": "type(contract Pebble)"
+                          }
+                        },
+                        "id": 9452,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "602:28:38",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_Pebble_$6465",
+                          "typeString": "contract Pebble"
+                        }
+                      },
+                      "id": 9453,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "631:10:38",
+                      "memberName": "initialize",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 6403,
+                      "src": "602:39:38",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_string_memory_ptr_$_t_array$_t_address_$dyn_memory_ptr_$_t_array$_t_address_$dyn_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,address[] memory,address[] memory) external"
+                      }
+                    },
+                    "id": 9457,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "602:122:38",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 9458,
+                  "nodeType": "ExpressionStatement",
+                  "src": "602:122:38"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setupNewPebbleEnvironment",
+            "nameLocation": "188:25:38",
+            "parameters": {
+              "id": 9421,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9417,
+                  "mutability": "mutable",
+                  "name": "_pebbleAdmins",
+                  "nameLocation": "240:13:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9460,
+                  "src": "223:30:38",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 9415,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "223:7:38",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 9416,
+                    "nodeType": "ArrayTypeName",
+                    "src": "223:9:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9420,
+                  "mutability": "mutable",
+                  "name": "_delegatees",
+                  "nameLocation": "280:11:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9460,
+                  "src": "263:28:38",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 9418,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "263:7:38",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 9419,
+                    "nodeType": "ArrayTypeName",
+                    "src": "263:9:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:84:38"
+            },
+            "returnParameters": {
+              "id": 9428,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9424,
+                  "mutability": "mutable",
+                  "name": "pebbleImplementation",
+                  "nameLocation": "323:20:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9460,
+                  "src": "316:27:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Pebble_$6465",
+                    "typeString": "contract Pebble"
+                  },
+                  "typeName": {
+                    "id": 9423,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 9422,
+                      "name": "Pebble",
+                      "nameLocations": [
+                        "316:6:38"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 6465,
+                      "src": "316:6:38"
+                    },
+                    "referencedDeclaration": 6465,
+                    "src": "316:6:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Pebble_$6465",
+                      "typeString": "contract Pebble"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9427,
+                  "mutability": "mutable",
+                  "name": "pebbleProxy",
+                  "nameLocation": "357:11:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9460,
+                  "src": "345:23:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                    "typeString": "contract PebbleProxy"
+                  },
+                  "typeName": {
+                    "id": 9426,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 9425,
+                      "name": "PebbleProxy",
+                      "nameLocations": [
+                        "345:11:38"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8800,
+                      "src": "345:11:38"
+                    },
+                    "referencedDeclaration": 8800,
+                    "src": "345:11:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_PebbleProxy_$8800",
+                      "typeString": "contract PebbleProxy"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "315:54:38"
+            },
+            "scope": 9461,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "PebbleSetupLibraryTest",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          9461
+        ],
+        "name": "PebbleSetupLibraryTest",
+        "nameLocation": "134:22:38",
+        "scope": 9462,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0-or-later"
+  },
+  "id": 38
+}

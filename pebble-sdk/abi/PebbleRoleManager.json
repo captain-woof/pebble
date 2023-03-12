@@ -1,0 +1,2905 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "version",
+          "type": "uint8"
+        }
+      ],
+      "name": "Initialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PEBBLE_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PEBBLE_DELEGATEE_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_pebbleAdminNew",
+          "type": "address"
+        }
+      ],
+      "name": "grantPebbleAdminRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_delegateeNew",
+          "type": "address"
+        }
+      ],
+      "name": "grantPebbleDelegateeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_pebbleAdminToRevoke",
+          "type": "address"
+        }
+      ],
+      "name": "revokePebbleAdminRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_delegateeToRevoke",
+          "type": "address"
+        }
+      ],
+      "name": "revokePebbleDelegateeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x6080806040523461001657610995908161001c8239f35b600080fdfe608060408181526004918236101561001657600080fd5b600092833560e01c91826301ffc9a71461044a5750816317ad43b6146104245781631d63e3b8146103f7578163248a9ca3146103cc5781632f2ff15d1461031f57816336568abe1461028d5781633bb5d660146101db57816391d1485414610194578163a217fddf14610179578163ace4fba41461015c578163c9776e6b1461011d578163d547741f146100da575063f45dd5b2146100b457600080fd5b346100d657816003193601126100d6576020906100cf61053e565b9051908152f35b5080fd5b91905034610119578060031936011261011957610116913561011160016100ff6104b8565b93838752606560205286200154610576565b6108c2565b80f35b8280fd5b5050346100d65760203660031901126100d6576101169061013c61049d565b90610111600161014a610500565b92838752606560205286200154610576565b5050346100d657816003193601126100d6576020906100cf610500565b5050346100d657816003193601126100d65751908152602090f35b9050346101195781600319360112610119578160209360ff926101b56104b8565b90358252606586528282206001600160a01b039091168252855220549151911615158152f35b5050346100d65760209081600319360112610119576101f861049d565b9061020161053e565b928385526065815261021860018387200154610576565b838552606581528185206001600160a01b039093168086529281528185205460ff1615610243578480f35b8385526065815281852083865290528320805460ff1916600117905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a4388080808480f35b839150346100d657826003193601126100d6576102a86104b8565b90336001600160a01b038316036102c4579061011691356108c2565b608490602085519162461bcd60e51b8352820152602f60248201527f416363657373436f6e74726f6c3a2063616e206f6e6c792072656e6f756e636560448201526e103937b632b9903337b91039b2b63360891b6064820152fd5b905034610119578160031936011261011957359061033b6104b8565b90828452606560205261035360018286200154610576565b828452606560209081528185206001600160a01b039093168086529290528084205460ff1615610381578380f35b82845260656020528084208285526020528320600160ff1982541617905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a43880808380f35b9050346101195760203660031901126101195781602093600192358152606585522001549051908152f35b5050346100d65760203660031901126100d6576101169061041661049d565b90610111600161014a61053e565b5050346100d657602090816003193601126101195761044161049d565b90610201610500565b849134610119576020366003190112610119573563ffffffff60e01b81168091036101195760209250637965db0b60e01b811490811561048c575b5015158152f35b6301ffc9a760e01b14905083610485565b600435906001600160a01b03821682036104b357565b600080fd5b602435906001600160a01b03821682036104b357565b6040810190811067ffffffffffffffff8211176104ea57604052565b634e487b7160e01b600052604160045260246000fd5b60405160208101907f504542424c453a504542424c455f44454c4547415445455f524f4c45000000008252601c8152610538816104ce565b51902090565b60405160208101907f504542424c453a504542424c455f41444d494e5f524f4c450000000000000000825260188152610538816104ce565b600081815260209160658352604092838320338452815260ff84842054161561059f5750505050565b835167ffffffffffffffff93909233606085018681118682101761088b578752602a855283850191873684378551156108775760308353855191600192831015610863576078602188015360295b8381116107f957506107235787519060808201828110898211176107e5578952604282528582019260603685378251156107d1576030845382518110156107d157607860218401536041905b80821161076557505061072357916106b89493918893606798995196879361068e8886019a7f416363657373436f6e74726f6c3a206163636f756e74200000000000000000008c52518092603788019061089f565b8401917001034b99036b4b9b9b4b733903937b6329607d1b6037840152518093604884019061089f565b0103602881018552601f1996879101168401968488109088111761070f57509261070660449593601f938880975262461bcd60e51b875260048701525180928160248801528787019061089f565b01168101030190fd5b634e487b7160e01b81526041600452602490fd5b60648589519062461bcd60e51b825280600483015260248201527f537472696e67733a20686578206c656e67746820696e73756666696369656e746044820152fd5b9091600f811660108110156107bd576f181899199a1a9b1b9c1cb0b131b232b360811b901a6107948486610938565b5360041c9180156107a9576000190190610639565b634e487b7160e01b87526011600452602487fd5b634e487b7160e01b88526032600452602488fd5b634e487b7160e01b86526032600452602486fd5b634e487b7160e01b86526041600452602486fd5b90600f8116601081101561084f576f181899199a1a9b1b9c1cb0b131b232b360811b901a610827838a610938565b5360041c90801561083b57600019016105ed565b634e487b7160e01b86526011600452602486fd5b634e487b7160e01b87526032600452602487fd5b634e487b7160e01b85526032600452602485fd5b634e487b7160e01b84526032600452602484fd5b634e487b7160e01b84526041600452602484fd5b60005b8381106108b25750506000910152565b81810151838201526020016108a2565b906000918083526065602052604083209160018060a01b03169182845260205260ff6040842054166108f357505050565b8083526065602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4565b908151811015610949570160200190565b634e487b7160e01b600052603260045260246000fdfea2646970667358221220775ac3417a3882cf1ffb1476e849f8e7f4b8acdaac1ef91b15d2b5d5dbee45c564736f6c63430008110033",
+    "sourceMap": "185:3245:33:-:0;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060408181526004918236101561001657600080fd5b600092833560e01c91826301ffc9a71461044a5750816317ad43b6146104245781631d63e3b8146103f7578163248a9ca3146103cc5781632f2ff15d1461031f57816336568abe1461028d5781633bb5d660146101db57816391d1485414610194578163a217fddf14610179578163ace4fba41461015c578163c9776e6b1461011d578163d547741f146100da575063f45dd5b2146100b457600080fd5b346100d657816003193601126100d6576020906100cf61053e565b9051908152f35b5080fd5b91905034610119578060031936011261011957610116913561011160016100ff6104b8565b93838752606560205286200154610576565b6108c2565b80f35b8280fd5b5050346100d65760203660031901126100d6576101169061013c61049d565b90610111600161014a610500565b92838752606560205286200154610576565b5050346100d657816003193601126100d6576020906100cf610500565b5050346100d657816003193601126100d65751908152602090f35b9050346101195781600319360112610119578160209360ff926101b56104b8565b90358252606586528282206001600160a01b039091168252855220549151911615158152f35b5050346100d65760209081600319360112610119576101f861049d565b9061020161053e565b928385526065815261021860018387200154610576565b838552606581528185206001600160a01b039093168086529281528185205460ff1615610243578480f35b8385526065815281852083865290528320805460ff1916600117905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a4388080808480f35b839150346100d657826003193601126100d6576102a86104b8565b90336001600160a01b038316036102c4579061011691356108c2565b608490602085519162461bcd60e51b8352820152602f60248201527f416363657373436f6e74726f6c3a2063616e206f6e6c792072656e6f756e636560448201526e103937b632b9903337b91039b2b63360891b6064820152fd5b905034610119578160031936011261011957359061033b6104b8565b90828452606560205261035360018286200154610576565b828452606560209081528185206001600160a01b039093168086529290528084205460ff1615610381578380f35b82845260656020528084208285526020528320600160ff1982541617905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a43880808380f35b9050346101195760203660031901126101195781602093600192358152606585522001549051908152f35b5050346100d65760203660031901126100d6576101169061041661049d565b90610111600161014a61053e565b5050346100d657602090816003193601126101195761044161049d565b90610201610500565b849134610119576020366003190112610119573563ffffffff60e01b81168091036101195760209250637965db0b60e01b811490811561048c575b5015158152f35b6301ffc9a760e01b14905083610485565b600435906001600160a01b03821682036104b357565b600080fd5b602435906001600160a01b03821682036104b357565b6040810190811067ffffffffffffffff8211176104ea57604052565b634e487b7160e01b600052604160045260246000fd5b60405160208101907f504542424c453a504542424c455f44454c4547415445455f524f4c45000000008252601c8152610538816104ce565b51902090565b60405160208101907f504542424c453a504542424c455f41444d494e5f524f4c450000000000000000825260188152610538816104ce565b600081815260209160658352604092838320338452815260ff84842054161561059f5750505050565b835167ffffffffffffffff93909233606085018681118682101761088b578752602a855283850191873684378551156108775760308353855191600192831015610863576078602188015360295b8381116107f957506107235787519060808201828110898211176107e5578952604282528582019260603685378251156107d1576030845382518110156107d157607860218401536041905b80821161076557505061072357916106b89493918893606798995196879361068e8886019a7f416363657373436f6e74726f6c3a206163636f756e74200000000000000000008c52518092603788019061089f565b8401917001034b99036b4b9b9b4b733903937b6329607d1b6037840152518093604884019061089f565b0103602881018552601f1996879101168401968488109088111761070f57509261070660449593601f938880975262461bcd60e51b875260048701525180928160248801528787019061089f565b01168101030190fd5b634e487b7160e01b81526041600452602490fd5b60648589519062461bcd60e51b825280600483015260248201527f537472696e67733a20686578206c656e67746820696e73756666696369656e746044820152fd5b9091600f811660108110156107bd576f181899199a1a9b1b9c1cb0b131b232b360811b901a6107948486610938565b5360041c9180156107a9576000190190610639565b634e487b7160e01b87526011600452602487fd5b634e487b7160e01b88526032600452602488fd5b634e487b7160e01b86526032600452602486fd5b634e487b7160e01b86526041600452602486fd5b90600f8116601081101561084f576f181899199a1a9b1b9c1cb0b131b232b360811b901a610827838a610938565b5360041c90801561083b57600019016105ed565b634e487b7160e01b86526011600452602486fd5b634e487b7160e01b87526032600452602487fd5b634e487b7160e01b85526032600452602485fd5b634e487b7160e01b84526032600452602484fd5b634e487b7160e01b84526041600452602484fd5b60005b8381106108b25750506000910152565b81810151838201526020016108a2565b906000918083526065602052604083209160018060a01b03169182845260205260ff6040842054166108f357505050565b8083526065602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4565b908151811015610949570160200190565b634e487b7160e01b600052603260045260246000fdfea2646970667358221220775ac3417a3882cf1ffb1476e849f8e7f4b8acdaac1ef91b15d2b5d5dbee45c564736f6c63430008110033",
+    "sourceMap": "185:3245:33:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;259:107;;;:::i;:::-;185:3245;;;;;;;;;;;;;;;;;;;;;;;;;5690:7:1;185:3245:33;;2813:4:1;185:3245:33;;;:::i;:::-;;;;;4808:6:1;185:3245:33;;;;4808:22:1;185:3245:33;2813:4:1;:::i;:::-;5690:7;:::i;:::-;185:3245:33;;;;;;;;;;;;;;-1:-1:-1;;185:3245:33;;;;5690:7:1;185:3245:33;;;:::i;:::-;3059:21;2813:4:1;4808:22;3059:21:33;;:::i;:::-;185:3245;;;;4808:6:1;185:3245:33;;;;4808:22:1;185:3245:33;2813:4:1;:::i;185:3245:33:-;;;;;;;;;;;;;;;372:115;;;:::i;185:3245::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;3312:6:1;185:3245:33;;;;;-1:-1:-1;;;;;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;2011:17;;;:::i;:::-;185:3245;;;;4808:6:1;185:3245:33;;2813:4:1;4808:22;185:3245:33;;;4808:22:1;185:3245:33;2813:4:1;:::i;:::-;185:3245:33;;;4808:6:1;185:3245:33;;;;;-1:-1:-1;;;;;185:3245:33;;;;;;;;;;;;;;;7873:23:1;7869:149;;185:3245:33;;;7869:149:1;185:3245:33;;;4808:6:1;185:3245:33;;;;;;;;;;;;;;-1:-1:-1;;185:3245:33;4808:22:1;185:3245:33;;;929:10:9;;7967:40:1;185:3245:33;;7967:40:1;7869:149;;;;185:3245:33;;;;;;;;;;;;;;;;;;;;:::i;:::-;929:10:9;;-1:-1:-1;;;;;185:3245:33;;6337:23:1;185:3245:33;;;6441:7:1;185:3245:33;;6441:7:1;:::i;185:3245:33:-;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;4808:6:1;185:3245:33;;2813:4:1;185:3245:33;;;;4808:22:1;185:3245:33;2813:4:1;:::i;:::-;185:3245:33;;;4808:6:1;185:3245:33;;;;;;;-1:-1:-1;;;;;185:3245:33;;;;;;;;;;;;;;;7873:23:1;7869:149;;185:3245:33;;;7869:149:1;185:3245:33;;;4808:6:1;185:3245:33;;;;;;;;;;;;;;;;;;;;;929:10:9;7967:40:1;;;;;7869:149;;;185:3245:33;;;;;;;;;;;-1:-1:-1;;185:3245:33;;;;;;;;;;;;4808:6:1;185:3245:33;;;4808:22:1;185:3245:33;;;;;;;;;;;;;;;-1:-1:-1;;185:3245:33;;;;5690:7:1;185:3245:33;;;:::i;:::-;2715:17;2813:4:1;4808:22;2715:17:33;;:::i;185:3245::-;;;;;;;;;;;;;;;;;;:::i;:::-;2358:21;;;:::i;185:3245::-;;;;;;;;-1:-1:-1;;185:3245:33;;;;;;;;;;;;;;;;;-1:-1:-1;;;;3011:58:1;;;:98;;;;185:3245:33;;;;;;;3011:98:1;-1:-1:-1;;;1168:51:14;;-1:-1:-1;3011:98:1;;;185:3245:33;;;;-1:-1:-1;;;;;185:3245:33;;;;;;:::o;:::-;;;;;;;;-1:-1:-1;;;;;185:3245:33;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;372:115;185:3245;;438:48;;;185:3245;;;;438:48;;;;;;:::i;:::-;185:3245;428:59;;372:115;:::o;259:107::-;185:3245;;321:44;;;185:3245;;;;321:44;;;;;;:::i;3642:103:1:-;-1:-1:-1;185:3245:33;;;;;3312:6:1;185:3245:33;;;;;;;929:10:9;185:3245:33;;;;;;;;;;4113:23:1;4109:412;;3642:103;;;;:::o;4109:412::-;185:3245:33;;;;;;929:10:9;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1714:15:11;;;185:3245:33;;;;;;;;;;1739:15:11;185:3245:33;;;1739:15:11;185:3245:33;1797:5:11;;;;;;1909:10;268:18;;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1714:15:11;;;185:3245:33;;;;;;;1739:15:11;185:3245:33;;;1739:15:11;185:3245:33;1764:128:11;1797:5;;;;;;1909:10;;268:18;;185:3245:33;;;;;;;;;;;4204:274:1;;;185:3245:33;4204:274:1;;;185:3245:33;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;;185:3245:33;;;;;;;;;;;;:::i;:::-;;4204:274:1;;;;;;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4152:358:1;;1880:1:11;4152:358:1;;185:3245:33;;;;;;;;;;;;;;:::i;:::-;;;;;4152:358:1;;;;185:3245:33;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;268:18:11;;185:3245:33;;;;;;;268:18:11;;;1880:1;268:18;;;;;;185:3245:33;268:18:11;185:3245:33;;;268:18:11;;1804:3;1844:11;;1852:3;1844:11;;1835:21;;;;;;-1:-1:-1;;;1835:21:11;;1823:33;;;;:::i;:::-;;1880:1;268:18;1804:3;185:3245:33;;;;-1:-1:-1;;185:3245:33;;1769:26:11;;185:3245:33;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;1835:21:11;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;1804:3:11;1844:11;1852:3;1844:11;;1835:21;;;;;;-1:-1:-1;;;1835:21:11;;1823:33;;;;:::i;:::-;;1880:1;268:18;1804:3;185:3245:33;;;;-1:-1:-1;;185:3245:33;1769:26:11;;185:3245:33;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;1835:21:11;-1:-1:-1;;;185:3245:33;;;1880:1:11;185:3245:33;;;;;-1:-1:-1;;;185:3245:33;;;;;;;;;-1:-1:-1;;;185:3245:33;;;;;;;;;-1:-1:-1;;;185:3245:33;;;;;;;;;;;;;;;;-1:-1:-1;;185:3245:33;;;;:::o;:::-;;;;;;;;;;;;;8195:234:1;;-1:-1:-1;185:3245:33;;;;3312:6:1;185:3245:33;;;;;;;;;;;;;;;;;;;;;;;;8274:149:1;;8195:234;;;:::o;8274:149::-;185:3245:33;;;3312:6:1;185:3245:33;;;;;;;;;;;;;;;;;;;;8372:40:1;929:10:9;8372:40:1;;;8195:234::o;185:3245:33:-;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "DEFAULT_ADMIN_ROLE()": "a217fddf",
+    "PEBBLE_ADMIN_ROLE()": "f45dd5b2",
+    "PEBBLE_DELEGATEE_ROLE()": "ace4fba4",
+    "getRoleAdmin(bytes32)": "248a9ca3",
+    "grantPebbleAdminRole(address)": "3bb5d660",
+    "grantPebbleDelegateeRole(address)": "17ad43b6",
+    "grantRole(bytes32,address)": "2f2ff15d",
+    "hasRole(bytes32,address)": "91d14854",
+    "renounceRole(bytes32,address)": "36568abe",
+    "revokePebbleAdminRole(address)": "1d63e3b8",
+    "revokePebbleDelegateeRole(address)": "c9776e6b",
+    "revokeRole(bytes32,address)": "d547741f",
+    "supportsInterface(bytes4)": "01ffc9a7"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PEBBLE_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PEBBLE_DELEGATEE_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_pebbleAdminNew\",\"type\":\"address\"}],\"name\":\"grantPebbleAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_delegateeNew\",\"type\":\"address\"}],\"name\":\"grantPebbleDelegateeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_pebbleAdminToRevoke\",\"type\":\"address\"}],\"name\":\"revokePebbleAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_delegateeToRevoke\",\"type\":\"address\"}],\"name\":\"revokePebbleDelegateeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getRoleAdmin(bytes32)\":{\"details\":\"Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.\"},\"grantPebbleAdminRole(address)\":{\"details\":\"Grants Pebble admin role to an addressCan only be called by Role admin of Pebble admin role, for obvious reasons\",\"params\":{\"_pebbleAdminNew\":\"New address to be granted Pebble admin role\"}},\"grantPebbleDelegateeRole(address)\":{\"details\":\"Grants Pebble Delegatee role to an addressCan only be called by Role admin of Delegatee role, for obvious reasons\",\"params\":{\"_delegateeNew\":\"New address to be granted Delegatee role\"}},\"grantRole(bytes32,address)\":{\"details\":\"Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event.\"},\"hasRole(bytes32,address)\":{\"details\":\"Returns `true` if `account` has been granted `role`.\"},\"renounceRole(bytes32,address)\":{\"details\":\"Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`. May emit a {RoleRevoked} event.\"},\"revokePebbleAdminRole(address)\":{\"details\":\"Revokes Pebble admin role from an addressCan only be called by Role admin of Pebble admin role, for obvious reasons\",\"params\":{\"_pebbleAdminToRevoke\":\"Pebble admin role holder to revoke\"}},\"revokePebbleDelegateeRole(address)\":{\"details\":\"Revokes Delegatee role from an addressCan only be called by Role admin of Delegatee role, for obvious reasons\",\"params\":{\"_delegateeToRevoke\":\"Delegatee role to revoke\"}},\"revokeRole(bytes32,address)\":{\"details\":\"Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event.\"},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/PebbleRoleManager/PebbleRoleManager.sol\":\"PebbleRoleManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"],\"viaIR\":true},\"sources\":{\"lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol\":{\"keccak256\":\"0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626\",\"dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol\":{\"keccak256\":\"0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c\",\"dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618\",\"dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06\",\"dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c\",\"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8\",\"dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol\":{\"keccak256\":\"0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7\",\"dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758\",\"dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4\",\"dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt\"]},\"src/PebbleRoleManager/PebbleRoleManager.sol\":{\"keccak256\":\"0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d\",\"dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "version",
+              "type": "uint8",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Initialized",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "bytes32",
+              "name": "previousAdminRole",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "bytes32",
+              "name": "newAdminRole",
+              "type": "bytes32",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleAdminChanged",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleGranted",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleRevoked",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "DEFAULT_ADMIN_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "PEBBLE_ADMIN_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "PEBBLE_DELEGATEE_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getRoleAdmin",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_pebbleAdminNew",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantPebbleAdminRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_delegateeNew",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantPebbleDelegateeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "hasRole",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "renounceRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_pebbleAdminToRevoke",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokePebbleAdminRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_delegateeToRevoke",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokePebbleDelegateeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "supportsInterface",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "getRoleAdmin(bytes32)": {
+            "details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+          },
+          "grantPebbleAdminRole(address)": {
+            "details": "Grants Pebble admin role to an addressCan only be called by Role admin of Pebble admin role, for obvious reasons",
+            "params": {
+              "_pebbleAdminNew": "New address to be granted Pebble admin role"
+            }
+          },
+          "grantPebbleDelegateeRole(address)": {
+            "details": "Grants Pebble Delegatee role to an addressCan only be called by Role admin of Delegatee role, for obvious reasons",
+            "params": {
+              "_delegateeNew": "New address to be granted Delegatee role"
+            }
+          },
+          "grantRole(bytes32,address)": {
+            "details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+          },
+          "hasRole(bytes32,address)": {
+            "details": "Returns `true` if `account` has been granted `role`."
+          },
+          "renounceRole(bytes32,address)": {
+            "details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`. May emit a {RoleRevoked} event."
+          },
+          "revokePebbleAdminRole(address)": {
+            "details": "Revokes Pebble admin role from an addressCan only be called by Role admin of Pebble admin role, for obvious reasons",
+            "params": {
+              "_pebbleAdminToRevoke": "Pebble admin role holder to revoke"
+            }
+          },
+          "revokePebbleDelegateeRole(address)": {
+            "details": "Revokes Delegatee role from an addressCan only be called by Role admin of Delegatee role, for obvious reasons",
+            "params": {
+              "_delegateeToRevoke": "Delegatee role to revoke"
+            }
+          },
+          "revokeRole(bytes32,address)": {
+            "details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+          },
+          "supportsInterface(bytes4)": {
+            "details": "See {IERC165-supportsInterface}."
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/PebbleRoleManager/PebbleRoleManager.sol": "PebbleRoleManager"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol": {
+        "keccak256": "0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a",
+        "urls": [
+          "bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626",
+          "dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol": {
+        "keccak256": "0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa",
+        "urls": [
+          "bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c",
+          "dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol": {
+        "keccak256": "0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271",
+        "urls": [
+          "bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618",
+          "dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol": {
+        "keccak256": "0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183",
+        "urls": [
+          "bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06",
+          "dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol": {
+        "keccak256": "0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149",
+        "urls": [
+          "bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c",
+          "dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol": {
+        "keccak256": "0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da",
+        "urls": [
+          "bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8",
+          "dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol": {
+        "keccak256": "0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a",
+        "urls": [
+          "bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7",
+          "dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol": {
+        "keccak256": "0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09",
+        "urls": [
+          "bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758",
+          "dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol": {
+        "keccak256": "0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a",
+        "urls": [
+          "bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4",
+          "dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt"
+        ],
+        "license": "MIT"
+      },
+      "src/PebbleRoleManager/PebbleRoleManager.sol": {
+        "keccak256": "0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247",
+        "urls": [
+          "bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d",
+          "dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/PebbleRoleManager/PebbleRoleManager.sol",
+    "id": 8974,
+    "exportedSymbols": {
+      "AccessControlUpgradeable": [
+        1625
+      ],
+      "PebbleRoleManager": [
+        8973
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:3386:33",
+    "nodes": [
+      {
+        "id": 8802,
+        "nodeType": "PragmaDirective",
+        "src": "45:23:33",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 8804,
+        "nodeType": "ImportDirective",
+        "src": "70:113:33",
+        "nodes": [],
+        "absolutePath": "lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 8974,
+        "sourceUnit": 1626,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 8803,
+              "name": "AccessControlUpgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 1625,
+              "src": "78:24:33",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 8973,
+        "nodeType": "ContractDefinition",
+        "src": "185:3245:33",
+        "nodes": [
+          {
+            "id": 8814,
+            "nodeType": "VariableDeclaration",
+            "src": "259:107:33",
+            "nodes": [],
+            "constant": true,
+            "functionSelector": "f45dd5b2",
+            "mutability": "constant",
+            "name": "PEBBLE_ADMIN_ROLE",
+            "nameLocation": "283:17:33",
+            "scope": 8973,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 8807,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "259:7:33",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "arguments": [
+                    {
+                      "hexValue": "504542424c453a504542424c455f41444d494e5f524f4c45",
+                      "id": 8811,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "338:26:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_59701b1390b32aea04e76c0368c44f7c615653f92feba407e473dc75dc387655",
+                        "typeString": "literal_string \"PEBBLE:PEBBLE_ADMIN_ROLE\""
+                      },
+                      "value": "PEBBLE:PEBBLE_ADMIN_ROLE"
+                    }
+                  ],
+                  "expression": {
+                    "argumentTypes": [
+                      {
+                        "typeIdentifier": "t_stringliteral_59701b1390b32aea04e76c0368c44f7c615653f92feba407e473dc75dc387655",
+                        "typeString": "literal_string \"PEBBLE:PEBBLE_ADMIN_ROLE\""
+                      }
+                    ],
+                    "expression": {
+                      "id": 8809,
+                      "name": "abi",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -1,
+                      "src": "321:3:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_abi",
+                        "typeString": "abi"
+                      }
+                    },
+                    "id": 8810,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "memberLocation": "325:12:33",
+                    "memberName": "encodePacked",
+                    "nodeType": "MemberAccess",
+                    "src": "321:16:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                      "typeString": "function () pure returns (bytes memory)"
+                    }
+                  },
+                  "id": 8812,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "functionCall",
+                  "lValueRequested": false,
+                  "nameLocations": [],
+                  "names": [],
+                  "nodeType": "FunctionCall",
+                  "src": "321:44:33",
+                  "tryCall": false,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                ],
+                "id": 8808,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": -8,
+                "src": "311:9:33",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 8813,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "nameLocations": [],
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "311:55:33",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 8822,
+            "nodeType": "VariableDeclaration",
+            "src": "372:115:33",
+            "nodes": [],
+            "constant": true,
+            "functionSelector": "ace4fba4",
+            "mutability": "constant",
+            "name": "PEBBLE_DELEGATEE_ROLE",
+            "nameLocation": "396:21:33",
+            "scope": 8973,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 8815,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "372:7:33",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "arguments": [
+                    {
+                      "hexValue": "504542424c453a504542424c455f44454c4547415445455f524f4c45",
+                      "id": 8819,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "string",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "455:30:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_stringliteral_1290ae063cf8c7d320d29236e55f516a40e78446cee8365a0f046121d3c06640",
+                        "typeString": "literal_string \"PEBBLE:PEBBLE_DELEGATEE_ROLE\""
+                      },
+                      "value": "PEBBLE:PEBBLE_DELEGATEE_ROLE"
+                    }
+                  ],
+                  "expression": {
+                    "argumentTypes": [
+                      {
+                        "typeIdentifier": "t_stringliteral_1290ae063cf8c7d320d29236e55f516a40e78446cee8365a0f046121d3c06640",
+                        "typeString": "literal_string \"PEBBLE:PEBBLE_DELEGATEE_ROLE\""
+                      }
+                    ],
+                    "expression": {
+                      "id": 8817,
+                      "name": "abi",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -1,
+                      "src": "438:3:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_magic_abi",
+                        "typeString": "abi"
+                      }
+                    },
+                    "id": 8818,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "memberLocation": "442:12:33",
+                    "memberName": "encodePacked",
+                    "nodeType": "MemberAccess",
+                    "src": "438:16:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
+                      "typeString": "function () pure returns (bytes memory)"
+                    }
+                  },
+                  "id": 8820,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "functionCall",
+                  "lValueRequested": false,
+                  "nameLocations": [],
+                  "names": [],
+                  "nodeType": "FunctionCall",
+                  "src": "438:48:33",
+                  "tryCall": false,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes memory"
+                  }
+                ],
+                "id": 8816,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": -8,
+                "src": "428:9:33",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 8821,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "nameLocations": [],
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "428:59:33",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 8831,
+            "nodeType": "ModifierDefinition",
+            "src": "571:84:33",
+            "nodes": [],
+            "body": {
+              "id": 8830,
+              "nodeType": "Block",
+              "src": "598:57:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8826,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "619:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 8825,
+                      "name": "_checkRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1397,
+                        1436
+                      ],
+                      "referencedDeclaration": 1397,
+                      "src": "608:10:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32) view"
+                      }
+                    },
+                    "id": 8827,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "608:29:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8828,
+                  "nodeType": "ExpressionStatement",
+                  "src": "608:29:33"
+                },
+                {
+                  "id": 8829,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "647:1:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8823,
+              "nodeType": "StructuredDocumentation",
+              "src": "512:54:33",
+              "text": "@dev Check if sender is a Pebble admin"
+            },
+            "name": "onlyPebbleAdmin",
+            "nameLocation": "580:15:33",
+            "parameters": {
+              "id": 8824,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "595:2:33"
+            },
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 8840,
+            "nodeType": "ModifierDefinition",
+            "src": "724:92:33",
+            "nodes": [],
+            "body": {
+              "id": 8839,
+              "nodeType": "Block",
+              "src": "755:61:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8835,
+                        "name": "PEBBLE_DELEGATEE_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8822,
+                        "src": "776:21:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 8834,
+                      "name": "_checkRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        1397,
+                        1436
+                      ],
+                      "referencedDeclaration": 1397,
+                      "src": "765:10:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32) view"
+                      }
+                    },
+                    "id": 8836,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "765:33:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8837,
+                  "nodeType": "ExpressionStatement",
+                  "src": "765:33:33"
+                },
+                {
+                  "id": 8838,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "808:1:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8832,
+              "nodeType": "StructuredDocumentation",
+              "src": "661:58:33",
+              "text": "@dev Check if caller is a Pebble delegatee"
+            },
+            "name": "onlyPebbleDelegatee",
+            "nameLocation": "733:19:33",
+            "parameters": {
+              "id": 8833,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "752:2:33"
+            },
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 8912,
+            "nodeType": "FunctionDefinition",
+            "src": "968:736:33",
+            "nodes": [],
+            "body": {
+              "id": 8911,
+              "nodeType": "Block",
+              "src": "1122:582:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 8852,
+                      "name": "__AccessControl_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1317,
+                      "src": "1132:30:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 8853,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1132:32:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8854,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1132:32:33"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8856,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "1216:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8857,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "1235:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 8855,
+                      "name": "_setRoleAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1556,
+                      "src": "1202:13:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32,bytes32)"
+                      }
+                    },
+                    "id": 8858,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1202:51:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8859,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1202:51:33"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8861,
+                        "name": "PEBBLE_DELEGATEE_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8822,
+                        "src": "1277:21:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8862,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "1300:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 8860,
+                      "name": "_setRoleAdmin",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1556,
+                      "src": "1263:13:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32,bytes32)"
+                      }
+                    },
+                    "id": 8863,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1263:55:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8864,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1263:55:33"
+                },
+                {
+                  "assignments": [
+                    8866
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8866,
+                      "mutability": "mutable",
+                      "name": "pebbleAdminNum",
+                      "nameLocation": "1361:14:33",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8911,
+                      "src": "1353:22:33",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8865,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1353:7:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8869,
+                  "initialValue": {
+                    "expression": {
+                      "id": 8867,
+                      "name": "_pebbleAdmins",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8844,
+                      "src": "1378:13:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                        "typeString": "address[] memory"
+                      }
+                    },
+                    "id": 8868,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1392:6:33",
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "src": "1378:20:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1353:45:33"
+                },
+                {
+                  "assignments": [
+                    8871
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8871,
+                      "mutability": "mutable",
+                      "name": "delegateesNum",
+                      "nameLocation": "1416:13:33",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8911,
+                      "src": "1408:21:33",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8870,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1408:7:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8874,
+                  "initialValue": {
+                    "expression": {
+                      "id": 8872,
+                      "name": "_delegatees",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8847,
+                      "src": "1432:11:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                        "typeString": "address[] memory"
+                      }
+                    },
+                    "id": 8873,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberLocation": "1444:6:33",
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "src": "1432:18:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1408:42:33"
+                },
+                {
+                  "body": {
+                    "id": 8891,
+                    "nodeType": "Block",
+                    "src": "1502:72:33",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 8885,
+                              "name": "PEBBLE_ADMIN_ROLE",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 8814,
+                              "src": "1527:17:33",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "baseExpression": {
+                                "id": 8886,
+                                "name": "_pebbleAdmins",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8844,
+                                "src": "1546:13:33",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                  "typeString": "address[] memory"
+                                }
+                              },
+                              "id": 8888,
+                              "indexExpression": {
+                                "id": 8887,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8876,
+                                "src": "1560:1:33",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1546:16:33",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 8884,
+                            "name": "_grantRole",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1588,
+                            "src": "1516:10:33",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                              "typeString": "function (bytes32,address)"
+                            }
+                          },
+                          "id": 8889,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1516:47:33",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 8890,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1516:47:33"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 8880,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 8878,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8876,
+                      "src": "1477:1:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "id": 8879,
+                      "name": "pebbleAdminNum",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8866,
+                      "src": "1481:14:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1477:18:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8892,
+                  "initializationExpression": {
+                    "assignments": [
+                      8876
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 8876,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "1474:1:33",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 8892,
+                        "src": "1466:9:33",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 8875,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1466:7:33",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 8877,
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1466:9:33"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 8882,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": true,
+                      "src": "1497:3:33",
+                      "subExpression": {
+                        "id": 8881,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8876,
+                        "src": "1499:1:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 8883,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1497:3:33"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1461:113:33"
+                },
+                {
+                  "body": {
+                    "id": 8909,
+                    "nodeType": "Block",
+                    "src": "1624:74:33",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 8903,
+                              "name": "PEBBLE_DELEGATEE_ROLE",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 8822,
+                              "src": "1649:21:33",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "baseExpression": {
+                                "id": 8904,
+                                "name": "_delegatees",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8847,
+                                "src": "1672:11:33",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                  "typeString": "address[] memory"
+                                }
+                              },
+                              "id": 8906,
+                              "indexExpression": {
+                                "id": 8905,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8894,
+                                "src": "1684:1:33",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "nodeType": "IndexAccess",
+                              "src": "1672:14:33",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 8902,
+                            "name": "_grantRole",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1588,
+                            "src": "1638:10:33",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                              "typeString": "function (bytes32,address)"
+                            }
+                          },
+                          "id": 8907,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1638:49:33",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 8908,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1638:49:33"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 8898,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 8896,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8894,
+                      "src": "1600:1:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "id": 8897,
+                      "name": "delegateesNum",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8871,
+                      "src": "1604:13:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1600:17:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8910,
+                  "initializationExpression": {
+                    "assignments": [
+                      8894
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 8894,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "1597:1:33",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 8910,
+                        "src": "1589:9:33",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 8893,
+                          "name": "uint256",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1589:7:33",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 8895,
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1589:9:33"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 8900,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": true,
+                      "src": "1619:3:33",
+                      "subExpression": {
+                        "id": 8899,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8894,
+                        "src": "1621:1:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 8901,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1619:3:33"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1584:114:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8841,
+              "nodeType": "StructuredDocumentation",
+              "src": "840:123:33",
+              "text": "@dev Initializer\n@param _pebbleAdmins Array of Pebble admins\n@param _delegatees Array of delegatees"
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 8850,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 8849,
+                  "name": "onlyInitializing",
+                  "nameLocations": [
+                    "1105:16:33"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2201,
+                  "src": "1105:16:33"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1105:16:33"
+              }
+            ],
+            "name": "__PebbleRoleManager_init_unchained",
+            "nameLocation": "977:34:33",
+            "parameters": {
+              "id": 8848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8844,
+                  "mutability": "mutable",
+                  "name": "_pebbleAdmins",
+                  "nameLocation": "1038:13:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8912,
+                  "src": "1021:30:33",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 8842,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1021:7:33",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 8843,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1021:9:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8847,
+                  "mutability": "mutable",
+                  "name": "_delegatees",
+                  "nameLocation": "1078:11:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8912,
+                  "src": "1061:28:33",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 8845,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1061:7:33",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 8846,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1061:9:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1011:84:33"
+            },
+            "returnParameters": {
+              "id": 8851,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1122:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 8924,
+            "nodeType": "FunctionDefinition",
+            "src": "1929:124:33",
+            "nodes": [],
+            "body": {
+              "id": 8923,
+              "nodeType": "Block",
+              "src": "1991:62:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8919,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "2011:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8920,
+                        "name": "_pebbleAdminNew",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8915,
+                        "src": "2030:15:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 8918,
+                      "name": "grantRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1471,
+                      "src": "2001:9:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 8921,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2001:45:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8922,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2001:45:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8913,
+              "nodeType": "StructuredDocumentation",
+              "src": "1710:214:33",
+              "text": "@dev Grants Pebble admin role to an address\n@dev Can only be called by Role admin of Pebble admin role, for obvious reasons\n@param _pebbleAdminNew New address to be granted Pebble admin role"
+            },
+            "functionSelector": "3bb5d660",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "grantPebbleAdminRole",
+            "nameLocation": "1938:20:33",
+            "parameters": {
+              "id": 8916,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8915,
+                  "mutability": "mutable",
+                  "name": "_pebbleAdminNew",
+                  "nameLocation": "1967:15:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8924,
+                  "src": "1959:23:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8914,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1959:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1958:25:33"
+            },
+            "returnParameters": {
+              "id": 8917,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1991:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 8936,
+            "nodeType": "FunctionDefinition",
+            "src": "2274:128:33",
+            "nodes": [],
+            "body": {
+              "id": 8935,
+              "nodeType": "Block",
+              "src": "2338:64:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8931,
+                        "name": "PEBBLE_DELEGATEE_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8822,
+                        "src": "2358:21:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8932,
+                        "name": "_delegateeNew",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8927,
+                        "src": "2381:13:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 8930,
+                      "name": "grantRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1471,
+                      "src": "2348:9:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 8933,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2348:47:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8934,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2348:47:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8925,
+              "nodeType": "StructuredDocumentation",
+              "src": "2059:210:33",
+              "text": "@dev Grants Pebble Delegatee role to an address\n@dev Can only be called by Role admin of Delegatee role, for obvious reasons\n@param _delegateeNew New address to be granted Delegatee role"
+            },
+            "functionSelector": "17ad43b6",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "grantPebbleDelegateeRole",
+            "nameLocation": "2283:24:33",
+            "parameters": {
+              "id": 8928,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8927,
+                  "mutability": "mutable",
+                  "name": "_delegateeNew",
+                  "nameLocation": "2316:13:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8936,
+                  "src": "2308:21:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8926,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2308:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2307:23:33"
+            },
+            "returnParameters": {
+              "id": 8929,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2338:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 8948,
+            "nodeType": "FunctionDefinition",
+            "src": "2626:136:33",
+            "nodes": [],
+            "body": {
+              "id": 8947,
+              "nodeType": "Block",
+              "src": "2694:68:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8943,
+                        "name": "PEBBLE_ADMIN_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8814,
+                        "src": "2715:17:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8944,
+                        "name": "_pebbleAdminToRevoke",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8939,
+                        "src": "2734:20:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 8942,
+                      "name": "revokeRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1491,
+                      "src": "2704:10:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 8945,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2704:51:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8946,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2704:51:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8937,
+              "nodeType": "StructuredDocumentation",
+              "src": "2408:213:33",
+              "text": "@dev Revokes Pebble admin role from an address\n@dev Can only be called by Role admin of Pebble admin role, for obvious reasons\n@param _pebbleAdminToRevoke Pebble admin role holder to revoke"
+            },
+            "functionSelector": "1d63e3b8",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokePebbleAdminRole",
+            "nameLocation": "2635:21:33",
+            "parameters": {
+              "id": 8940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8939,
+                  "mutability": "mutable",
+                  "name": "_pebbleAdminToRevoke",
+                  "nameLocation": "2665:20:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8948,
+                  "src": "2657:28:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8938,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2657:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2656:30:33"
+            },
+            "returnParameters": {
+              "id": 8941,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2694:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 8960,
+            "nodeType": "FunctionDefinition",
+            "src": "2968:140:33",
+            "nodes": [],
+            "body": {
+              "id": 8959,
+              "nodeType": "Block",
+              "src": "3038:70:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8955,
+                        "name": "PEBBLE_DELEGATEE_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8822,
+                        "src": "3059:21:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8956,
+                        "name": "_delegateeToRevoke",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8951,
+                        "src": "3082:18:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 8954,
+                      "name": "revokeRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1491,
+                      "src": "3048:10:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 8957,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3048:53:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8958,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3048:53:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8949,
+              "nodeType": "StructuredDocumentation",
+              "src": "2768:195:33",
+              "text": "@dev Revokes Delegatee role from an address\n@dev Can only be called by Role admin of Delegatee role, for obvious reasons\n@param _delegateeToRevoke Delegatee role to revoke"
+            },
+            "functionSelector": "c9776e6b",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokePebbleDelegateeRole",
+            "nameLocation": "2977:25:33",
+            "parameters": {
+              "id": 8952,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8951,
+                  "mutability": "mutable",
+                  "name": "_delegateeToRevoke",
+                  "nameLocation": "3011:18:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8960,
+                  "src": "3003:26:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8950,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3003:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3002:28:33"
+            },
+            "returnParameters": {
+              "id": 8953,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3038:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 8972,
+            "nodeType": "FunctionDefinition",
+            "src": "3296:132:33",
+            "nodes": [],
+            "body": {
+              "id": 8971,
+              "nodeType": "Block",
+              "src": "3363:65:33",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8967,
+                        "name": "PEBBLE_DELEGATEE_ROLE",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8822,
+                        "src": "3384:21:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 8968,
+                        "name": "_delegateeNew",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8963,
+                        "src": "3407:13:33",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 8966,
+                      "name": "_grantRole",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1588,
+                      "src": "3373:10:33",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_bytes32_$_t_address_$returns$__$",
+                        "typeString": "function (bytes32,address)"
+                      }
+                    },
+                    "id": 8969,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3373:48:33",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8970,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3373:48:33"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8961,
+              "nodeType": "StructuredDocumentation",
+              "src": "3131:160:33",
+              "text": "@dev Grants Delegatee role to an address\n@dev DOES NO CHECK FOR ROLE ADMIN\n@param _delegateeNew New address to be granted Delegatee role"
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_grantPebbleDelegateeRole",
+            "nameLocation": "3305:25:33",
+            "parameters": {
+              "id": 8964,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8963,
+                  "mutability": "mutable",
+                  "name": "_delegateeNew",
+                  "nameLocation": "3339:13:33",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8972,
+                  "src": "3331:21:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8962,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3331:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3330:23:33"
+            },
+            "returnParameters": {
+              "id": 8965,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3363:0:33"
+            },
+            "scope": 8973,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 8805,
+              "name": "AccessControlUpgradeable",
+              "nameLocations": [
+                "215:24:33"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1625,
+              "src": "215:24:33"
+            },
+            "id": 8806,
+            "nodeType": "InheritanceSpecifier",
+            "src": "215:24:33"
+          }
+        ],
+        "canonicalName": "PebbleRoleManager",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          8973,
+          1625,
+          3508,
+          3520,
+          1698,
+          2718,
+          2256
+        ],
+        "name": "PebbleRoleManager",
+        "nameLocation": "194:17:33",
+        "scope": 8974,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0-or-later"
+  },
+  "id": 33
+}

@@ -1,0 +1,1165 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "version",
+          "type": "uint8"
+        }
+      ],
+      "name": "Initialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PEBBLE_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PEBBLE_DELEGATEE_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_delegator",
+          "type": "address"
+        }
+      ],
+      "name": "getDelegatorNonce",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_pebbleAdminNew",
+          "type": "address"
+        }
+      ],
+      "name": "grantPebbleAdminRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_delegateeNew",
+          "type": "address"
+        }
+      ],
+      "name": "grantPebbleDelegateeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_pebbleAdminToRevoke",
+          "type": "address"
+        }
+      ],
+      "name": "revokePebbleAdminRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_delegateeToRevoke",
+          "type": "address"
+        }
+      ],
+      "name": "revokePebbleDelegateeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60808060405234610016576109f7908161001c8239f35b600080fdfe608060408181526004918236101561001657600080fd5b600092833560e01c91826301ffc9a7146104ac5750816317ad43b6146104865781631d63e3b814610459578163248a9ca31461042e5781632f2ff15d1461038157816336568abe146102ef5781633bb5d6601461023d5781636ab6cd6c146101e657816391d148541461019f578163a217fddf14610184578163ace4fba414610167578163c9776e6b14610128578163d547741f146100e5575063f45dd5b2146100bf57600080fd5b346100e157816003193601126100e1576020906100da6105a0565b9051908152f35b5080fd5b91905034610124578060031936011261012457610121913561011c600161010a61051a565b938387526065602052862001546105d8565b610924565b80f35b8280fd5b5050346100e15760203660031901126100e157610121906101476104ff565b9061011c6001610155610562565b928387526065602052862001546105d8565b5050346100e157816003193601126100e1576020906100da610562565b5050346100e157816003193601126100e15751908152602090f35b9050346101245781600319360112610124578160209360ff926101c061051a565b90358252606586528282206001600160a01b039091168252855220549151911615158152f35b5050346100e15760203660031901126100e15760209181906001600160a01b0361020e6104ff565b1681527f6e6fd72fa6bc337bb5cda754173b8a247151b73bb8c5caa8cd3ff5cc0fb5d639845220549051908152f35b5050346100e157602090816003193601126101245761025a6104ff565b906102636105a0565b928385526065815261027a600183872001546105d8565b838552606581528185206001600160a01b039093168086529281528185205460ff16156102a5578480f35b8385526065815281852083865290528320805460ff1916600117905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a4388080808480f35b839150346100e157826003193601126100e15761030a61051a565b90336001600160a01b0383160361032657906101219135610924565b608490602085519162461bcd60e51b8352820152602f60248201527f416363657373436f6e74726f6c3a2063616e206f6e6c792072656e6f756e636560448201526e103937b632b9903337b91039b2b63360891b6064820152fd5b905034610124578160031936011261012457359061039d61051a565b9082845260656020526103b5600182862001546105d8565b828452606560209081528185206001600160a01b039093168086529290528084205460ff16156103e3578380f35b82845260656020528084208285526020528320600160ff1982541617905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a43880808380f35b9050346101245760203660031901126101245781602093600192358152606585522001549051908152f35b5050346100e15760203660031901126100e157610121906104786104ff565b9061011c60016101556105a0565b5050346100e15760209081600319360112610124576104a36104ff565b90610263610562565b849134610124576020366003190112610124573563ffffffff60e01b81168091036101245760209250637965db0b60e01b81149081156104ee575b5015158152f35b6301ffc9a760e01b149050836104e7565b600435906001600160a01b038216820361051557565b600080fd5b602435906001600160a01b038216820361051557565b6040810190811067ffffffffffffffff82111761054c57604052565b634e487b7160e01b600052604160045260246000fd5b60405160208101907f504542424c453a504542424c455f44454c4547415445455f524f4c45000000008252601c815261059a81610530565b51902090565b60405160208101907f504542424c453a504542424c455f41444d494e5f524f4c45000000000000000082526018815261059a81610530565b600081815260209160658352604092838320338452815260ff8484205416156106015750505050565b835167ffffffffffffffff9390923360608501868111868210176108ed578752602a855283850191873684378551156108d957603083538551916001928310156108c5576078602188015360295b83811161085b5750610785578751906080820182811089821117610847578952604282528582019260603685378251156108335760308453825181101561083357607860218401536041905b8082116107c7575050610785579161071a949391889360679899519687936106f08886019a7f416363657373436f6e74726f6c3a206163636f756e74200000000000000000008c525180926037880190610901565b8401917001034b99036b4b9b9b4b733903937b6329607d1b60378401525180936048840190610901565b0103602881018552601f1996879101168401968488109088111761077157509261076860449593601f938880975262461bcd60e51b8752600487015251809281602488015287870190610901565b01168101030190fd5b634e487b7160e01b81526041600452602490fd5b60648589519062461bcd60e51b825280600483015260248201527f537472696e67733a20686578206c656e67746820696e73756666696369656e746044820152fd5b9091600f8116601081101561081f576f181899199a1a9b1b9c1cb0b131b232b360811b901a6107f6848661099a565b5360041c91801561080b57600019019061069b565b634e487b7160e01b87526011600452602487fd5b634e487b7160e01b88526032600452602488fd5b634e487b7160e01b86526032600452602486fd5b634e487b7160e01b86526041600452602486fd5b90600f811660108110156108b1576f181899199a1a9b1b9c1cb0b131b232b360811b901a610889838a61099a565b5360041c90801561089d576000190161064f565b634e487b7160e01b86526011600452602486fd5b634e487b7160e01b87526032600452602487fd5b634e487b7160e01b85526032600452602485fd5b634e487b7160e01b84526032600452602484fd5b634e487b7160e01b84526041600452602484fd5b60005b8381106109145750506000910152565b8181015183820152602001610904565b906000918083526065602052604083209160018060a01b03169182845260205260ff60408420541661095557505050565b8083526065602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4565b9081518110156109ab570160200190565b634e487b7160e01b600052603260045260246000fdfea26469706673582212201cdad20fc58a78a3cda5b9067c666ecf76d5858ab8899bc567bc94b989952c9d64736f6c63430008110033",
+    "sourceMap": "233:480:27:-:0;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060408181526004918236101561001657600080fd5b600092833560e01c91826301ffc9a7146104ac5750816317ad43b6146104865781631d63e3b814610459578163248a9ca31461042e5781632f2ff15d1461038157816336568abe146102ef5781633bb5d6601461023d5781636ab6cd6c146101e657816391d148541461019f578163a217fddf14610184578163ace4fba414610167578163c9776e6b14610128578163d547741f146100e5575063f45dd5b2146100bf57600080fd5b346100e157816003193601126100e1576020906100da6105a0565b9051908152f35b5080fd5b91905034610124578060031936011261012457610121913561011c600161010a61051a565b938387526065602052862001546105d8565b610924565b80f35b8280fd5b5050346100e15760203660031901126100e157610121906101476104ff565b9061011c6001610155610562565b928387526065602052862001546105d8565b5050346100e157816003193601126100e1576020906100da610562565b5050346100e157816003193601126100e15751908152602090f35b9050346101245781600319360112610124578160209360ff926101c061051a565b90358252606586528282206001600160a01b039091168252855220549151911615158152f35b5050346100e15760203660031901126100e15760209181906001600160a01b0361020e6104ff565b1681527f6e6fd72fa6bc337bb5cda754173b8a247151b73bb8c5caa8cd3ff5cc0fb5d639845220549051908152f35b5050346100e157602090816003193601126101245761025a6104ff565b906102636105a0565b928385526065815261027a600183872001546105d8565b838552606581528185206001600160a01b039093168086529281528185205460ff16156102a5578480f35b8385526065815281852083865290528320805460ff1916600117905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a4388080808480f35b839150346100e157826003193601126100e15761030a61051a565b90336001600160a01b0383160361032657906101219135610924565b608490602085519162461bcd60e51b8352820152602f60248201527f416363657373436f6e74726f6c3a2063616e206f6e6c792072656e6f756e636560448201526e103937b632b9903337b91039b2b63360891b6064820152fd5b905034610124578160031936011261012457359061039d61051a565b9082845260656020526103b5600182862001546105d8565b828452606560209081528185206001600160a01b039093168086529290528084205460ff16156103e3578380f35b82845260656020528084208285526020528320600160ff1982541617905533917f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d8480a43880808380f35b9050346101245760203660031901126101245781602093600192358152606585522001549051908152f35b5050346100e15760203660031901126100e157610121906104786104ff565b9061011c60016101556105a0565b5050346100e15760209081600319360112610124576104a36104ff565b90610263610562565b849134610124576020366003190112610124573563ffffffff60e01b81168091036101245760209250637965db0b60e01b81149081156104ee575b5015158152f35b6301ffc9a760e01b149050836104e7565b600435906001600160a01b038216820361051557565b600080fd5b602435906001600160a01b038216820361051557565b6040810190811067ffffffffffffffff82111761054c57604052565b634e487b7160e01b600052604160045260246000fd5b60405160208101907f504542424c453a504542424c455f44454c4547415445455f524f4c45000000008252601c815261059a81610530565b51902090565b60405160208101907f504542424c453a504542424c455f41444d494e5f524f4c45000000000000000082526018815261059a81610530565b600081815260209160658352604092838320338452815260ff8484205416156106015750505050565b835167ffffffffffffffff9390923360608501868111868210176108ed578752602a855283850191873684378551156108d957603083538551916001928310156108c5576078602188015360295b83811161085b5750610785578751906080820182811089821117610847578952604282528582019260603685378251156108335760308453825181101561083357607860218401536041905b8082116107c7575050610785579161071a949391889360679899519687936106f08886019a7f416363657373436f6e74726f6c3a206163636f756e74200000000000000000008c525180926037880190610901565b8401917001034b99036b4b9b9b4b733903937b6329607d1b60378401525180936048840190610901565b0103602881018552601f1996879101168401968488109088111761077157509261076860449593601f938880975262461bcd60e51b8752600487015251809281602488015287870190610901565b01168101030190fd5b634e487b7160e01b81526041600452602490fd5b60648589519062461bcd60e51b825280600483015260248201527f537472696e67733a20686578206c656e67746820696e73756666696369656e746044820152fd5b9091600f8116601081101561081f576f181899199a1a9b1b9c1cb0b131b232b360811b901a6107f6848661099a565b5360041c91801561080b57600019019061069b565b634e487b7160e01b87526011600452602487fd5b634e487b7160e01b88526032600452602488fd5b634e487b7160e01b86526032600452602486fd5b634e487b7160e01b86526041600452602486fd5b90600f811660108110156108b1576f181899199a1a9b1b9c1cb0b131b232b360811b901a610889838a61099a565b5360041c90801561089d576000190161064f565b634e487b7160e01b86526011600452602486fd5b634e487b7160e01b87526032600452602487fd5b634e487b7160e01b85526032600452602485fd5b634e487b7160e01b84526032600452602484fd5b634e487b7160e01b84526041600452602484fd5b60005b8381106109145750506000910152565b8181015183820152602001610904565b906000918083526065602052604083209160018060a01b03169182845260205260ff60408420541661095557505050565b8083526065602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4565b9081518110156109ab570160200190565b634e487b7160e01b600052603260045260246000fdfea26469706673582212201cdad20fc58a78a3cda5b9067c666ecf76d5858ab8899bc567bc94b989952c9d64736f6c63430008110033",
+    "sourceMap": "233:480:27:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;259:107:33;;;:::i;:::-;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;5690:7:1;233:480:27;;2813:4:1;233:480:27;;;:::i;:::-;;;;;4808:6:1;233:480:27;;;;4808:22:1;233:480:27;2813:4:1;:::i;:::-;5690:7;:::i;:::-;233:480:27;;;;;;;;;;;;;;-1:-1:-1;;233:480:27;;;;5690:7:1;233:480:27;;;:::i;:::-;3059:21:33;2813:4:1;4808:22;3059:21:33;;:::i;:::-;233:480:27;;;;4808:6:1;233:480:27;;;;4808:22:1;233:480:27;2813:4:1;:::i;233:480:27:-;;;;;;;;;;;;;;;372:115:33;;;:::i;233:480:27:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;3312:6:1;233:480:27;;;;;-1:-1:-1;;;;;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;233:480:27;;;;;;;;-1:-1:-1;;;;;233:480:27;;:::i;:::-;;;;199:43:26;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;2011:17:33;;;:::i;:::-;233:480:27;;;;4808:6:1;233:480:27;;2813:4:1;4808:22;233:480:27;;;4808:22:1;233:480:27;2813:4:1;:::i;:::-;233:480:27;;;4808:6:1;233:480:27;;;;;-1:-1:-1;;;;;233:480:27;;;;;;;;;;;;;;;7873:23:1;7869:149;;233:480:27;;;7869:149:1;233:480:27;;;4808:6:1;233:480:27;;;;;;;;;;;;;;-1:-1:-1;;233:480:27;4808:22:1;233:480:27;;;929:10:9;;7967:40:1;233:480:27;;7967:40:1;7869:149;;;;233:480:27;;;;;;;;;;;;;;;;;;;;:::i;:::-;929:10:9;;-1:-1:-1;;;;;233:480:27;;6337:23:1;233:480:27;;;6441:7:1;233:480:27;;6441:7:1;:::i;233:480:27:-;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;233:480:27;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;4808:6:1;233:480:27;;2813:4:1;233:480:27;;;;4808:22:1;233:480:27;2813:4:1;:::i;:::-;233:480:27;;;4808:6:1;233:480:27;;;;;;;-1:-1:-1;;;;;233:480:27;;;;;;;;;;;;;;;7873:23:1;7869:149;;233:480:27;;;7869:149:1;233:480:27;;;4808:6:1;233:480:27;;;;;;;;;;;;;;;;;;;;;929:10:9;7967:40:1;;;;;7869:149;;;233:480:27;;;;;;;;;;;-1:-1:-1;;233:480:27;;;;;;;;;;;;4808:6:1;233:480:27;;;4808:22:1;233:480:27;;;;;;;;;;;;;;;-1:-1:-1;;233:480:27;;;;5690:7:1;233:480:27;;;:::i;:::-;2715:17:33;2813:4:1;4808:22;2715:17:33;;:::i;233:480:27:-;;;;;;;;;;;;;;;;;;:::i;:::-;2358:21:33;;;:::i;233:480:27:-;;;;;;;;-1:-1:-1;;233:480:27;;;;;;;;;;;;;;;;;-1:-1:-1;;;;3011:58:1;;;:98;;;;233:480:27;;;;;;;3011:98:1;-1:-1:-1;;;1168:51:14;;-1:-1:-1;3011:98:1;;;233:480:27;;;;-1:-1:-1;;;;;233:480:27;;;;;;:::o;:::-;;;;;;;;-1:-1:-1;;;;;233:480:27;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;372:115:33;233:480:27;;438:48:33;;;233:480:27;;;;438:48:33;;;;;;:::i;:::-;233:480:27;428:59:33;;372:115;:::o;259:107::-;233:480:27;;321:44:33;;;233:480:27;;;;321:44:33;;;;;;:::i;3642:103:1:-;-1:-1:-1;233:480:27;;;;;3312:6:1;233:480:27;;;;;;;929:10:9;233:480:27;;;;;;;;;;4113:23:1;4109:412;;3642:103;;;;:::o;4109:412::-;233:480:27;;;;;;929:10:9;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1714:15:11;;;233:480:27;;;;;;;;;;1739:15:11;233:480:27;;;1739:15:11;233:480:27;1797:5:11;;;;;;1909:10;268:18;;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1714:15:11;;;233:480:27;;;;;;;1739:15:11;233:480:27;;;1739:15:11;233:480:27;1764:128:11;1797:5;;;;;;1909:10;;268:18;;233:480:27;;;;;;;;;;;4204:274:1;;;233:480:27;4204:274:1;;;233:480:27;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;;233:480:27;;;;;;;;;;;;:::i;:::-;;4204:274:1;;;;;;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4152:358:1;;1880:1:11;4152:358:1;;233:480:27;;;;;;;;;;;;;;:::i;:::-;;;;;4152:358:1;;;;233:480:27;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;268:18:11;;233:480:27;;;;;;;268:18:11;;;1880:1;268:18;;;;;;233:480:27;268:18:11;233:480:27;;;268:18:11;;1804:3;1844:11;;1852:3;1844:11;;1835:21;;;;;;-1:-1:-1;;;1835:21:11;;1823:33;;;;:::i;:::-;;1880:1;268:18;1804:3;233:480:27;;;;-1:-1:-1;;233:480:27;;1769:26:11;;233:480:27;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;1835:21:11;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;1804:3:11;1844:11;1852:3;1844:11;;1835:21;;;;;;-1:-1:-1;;;1835:21:11;;1823:33;;;;:::i;:::-;;1880:1;268:18;1804:3;233:480:27;;;;-1:-1:-1;;233:480:27;1769:26:11;;233:480:27;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;1835:21:11;-1:-1:-1;;;233:480:27;;;1880:1:11;233:480:27;;;;;-1:-1:-1;;;233:480:27;;;;;;;;;-1:-1:-1;;;233:480:27;;;;;;;;;-1:-1:-1;;;233:480:27;;;;;;;;;;;;;;;;-1:-1:-1;;233:480:27;;;;:::o;:::-;;;;;;;;;;;;;8195:234:1;;-1:-1:-1;233:480:27;;;;3312:6:1;233:480:27;;;;;;;;;;;;;;;;;;;;;;;;8274:149:1;;8195:234;;;:::o;8274:149::-;233:480:27;;;3312:6:1;233:480:27;;;;;;;;;;;;;;;;;;;;8372:40:1;929:10:9;8372:40:1;;;8195:234::o;233:480:27:-;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "DEFAULT_ADMIN_ROLE()": "a217fddf",
+    "PEBBLE_ADMIN_ROLE()": "f45dd5b2",
+    "PEBBLE_DELEGATEE_ROLE()": "ace4fba4",
+    "getDelegatorNonce(address)": "6ab6cd6c",
+    "getRoleAdmin(bytes32)": "248a9ca3",
+    "grantPebbleAdminRole(address)": "3bb5d660",
+    "grantPebbleDelegateeRole(address)": "17ad43b6",
+    "grantRole(bytes32,address)": "2f2ff15d",
+    "hasRole(bytes32,address)": "91d14854",
+    "renounceRole(bytes32,address)": "36568abe",
+    "revokePebbleAdminRole(address)": "1d63e3b8",
+    "revokePebbleDelegateeRole(address)": "c9776e6b",
+    "revokeRole(bytes32,address)": "d547741f",
+    "supportsInterface(bytes4)": "01ffc9a7"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PEBBLE_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PEBBLE_DELEGATEE_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_delegator\",\"type\":\"address\"}],\"name\":\"getDelegatorNonce\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_pebbleAdminNew\",\"type\":\"address\"}],\"name\":\"grantPebbleAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_delegateeNew\",\"type\":\"address\"}],\"name\":\"grantPebbleDelegateeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_pebbleAdminToRevoke\",\"type\":\"address\"}],\"name\":\"revokePebbleAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_delegateeToRevoke\",\"type\":\"address\"}],\"name\":\"revokePebbleDelegateeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getDelegatorNonce(address)\":{\"details\":\"Gets a delegator's next allowed nonceDelegators must use this to sign anything\",\"params\":{\"_delegator\":\"Address of delegator\"},\"returns\":{\"nonce\":\"Delegator's allowed nonce\"}},\"getRoleAdmin(bytes32)\":{\"details\":\"Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.\"},\"grantPebbleAdminRole(address)\":{\"details\":\"Grants Pebble admin role to an addressCan only be called by Role admin of Pebble admin role, for obvious reasons\",\"params\":{\"_pebbleAdminNew\":\"New address to be granted Pebble admin role\"}},\"grantPebbleDelegateeRole(address)\":{\"details\":\"Grants Pebble Delegatee role to an addressCan only be called by Role admin of Delegatee role, for obvious reasons\",\"params\":{\"_delegateeNew\":\"New address to be granted Delegatee role\"}},\"grantRole(bytes32,address)\":{\"details\":\"Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event.\"},\"hasRole(bytes32,address)\":{\"details\":\"Returns `true` if `account` has been granted `role`.\"},\"renounceRole(bytes32,address)\":{\"details\":\"Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`. May emit a {RoleRevoked} event.\"},\"revokePebbleAdminRole(address)\":{\"details\":\"Revokes Pebble admin role from an addressCan only be called by Role admin of Pebble admin role, for obvious reasons\",\"params\":{\"_pebbleAdminToRevoke\":\"Pebble admin role holder to revoke\"}},\"revokePebbleDelegateeRole(address)\":{\"details\":\"Revokes Delegatee role from an addressCan only be called by Role admin of Delegatee role, for obvious reasons\",\"params\":{\"_delegateeToRevoke\":\"Delegatee role to revoke\"}},\"revokeRole(bytes32,address)\":{\"details\":\"Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event.\"},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol\":\"PebbleDelagateVerificationManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"],\"viaIR\":true},\"sources\":{\"lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol\":{\"keccak256\":\"0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626\",\"dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol\":{\"keccak256\":\"0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c\",\"dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618\",\"dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06\",\"dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c\",\"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8\",\"dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol\":{\"keccak256\":\"0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7\",\"dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758\",\"dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4\",\"dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt\"]},\"src/PebbleDelagateVerificationManager/DelagateVerificationInternals.sol\":{\"keccak256\":\"0x0a2fa8bd1208c24760cb21e7a2ff52d86b39949c48ea9afcd019a313b1675cf4\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://7250ab6b6227d83d6a4804edc1183b729f4fb2b69d22509f84b872618f329b7d\",\"dweb:/ipfs/QmWHWTUZsWmBRJJGQXPnbsMP5E9wTjy6pseGVBbEcacnwn\"]},\"src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol\":{\"keccak256\":\"0x5135ecc285067dc968fecc97ded7dda0ddb6d1f7cd2e977f92bc580aa1040ee5\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://4c8a37d1756ba715ed6b181e97b54391338c79c24d15d7f872b982de213ccc92\",\"dweb:/ipfs/Qmbo916R8BPSdA1QVZTZZzTxYmH3LAbJgz6N3J6nJuffLq\"]},\"src/PebbleRoleManager/PebbleRoleManager.sol\":{\"keccak256\":\"0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d\",\"dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "version",
+              "type": "uint8",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Initialized",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "bytes32",
+              "name": "previousAdminRole",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "bytes32",
+              "name": "newAdminRole",
+              "type": "bytes32",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleAdminChanged",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleGranted",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address",
+              "indexed": true
+            },
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "RoleRevoked",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "DEFAULT_ADMIN_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "PEBBLE_ADMIN_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "PEBBLE_DELEGATEE_ROLE",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_delegator",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getDelegatorNonce",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "nonce",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getRoleAdmin",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_pebbleAdminNew",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantPebbleAdminRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_delegateeNew",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantPebbleDelegateeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "grantRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "hasRole",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "renounceRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_pebbleAdminToRevoke",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokePebbleAdminRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_delegateeToRevoke",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokePebbleDelegateeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "role",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "revokeRole"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "supportsInterface",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "getDelegatorNonce(address)": {
+            "details": "Gets a delegator's next allowed nonceDelegators must use this to sign anything",
+            "params": {
+              "_delegator": "Address of delegator"
+            },
+            "returns": {
+              "nonce": "Delegator's allowed nonce"
+            }
+          },
+          "getRoleAdmin(bytes32)": {
+            "details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+          },
+          "grantPebbleAdminRole(address)": {
+            "details": "Grants Pebble admin role to an addressCan only be called by Role admin of Pebble admin role, for obvious reasons",
+            "params": {
+              "_pebbleAdminNew": "New address to be granted Pebble admin role"
+            }
+          },
+          "grantPebbleDelegateeRole(address)": {
+            "details": "Grants Pebble Delegatee role to an addressCan only be called by Role admin of Delegatee role, for obvious reasons",
+            "params": {
+              "_delegateeNew": "New address to be granted Delegatee role"
+            }
+          },
+          "grantRole(bytes32,address)": {
+            "details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+          },
+          "hasRole(bytes32,address)": {
+            "details": "Returns `true` if `account` has been granted `role`."
+          },
+          "renounceRole(bytes32,address)": {
+            "details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`. May emit a {RoleRevoked} event."
+          },
+          "revokePebbleAdminRole(address)": {
+            "details": "Revokes Pebble admin role from an addressCan only be called by Role admin of Pebble admin role, for obvious reasons",
+            "params": {
+              "_pebbleAdminToRevoke": "Pebble admin role holder to revoke"
+            }
+          },
+          "revokePebbleDelegateeRole(address)": {
+            "details": "Revokes Delegatee role from an addressCan only be called by Role admin of Delegatee role, for obvious reasons",
+            "params": {
+              "_delegateeToRevoke": "Delegatee role to revoke"
+            }
+          },
+          "revokeRole(bytes32,address)": {
+            "details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+          },
+          "supportsInterface(bytes4)": {
+            "details": "See {IERC165-supportsInterface}."
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol": "PebbleDelagateVerificationManager"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol": {
+        "keccak256": "0xe8f27a3e3e25067334e76799f03d4de6d8f8535c3fc4806468228a9ebd5de51a",
+        "urls": [
+          "bzz-raw://686aaf8725727d94b36c53baad3779e168b31e33eec8d39b41e282382617c626",
+          "dweb:/ipfs/QmWVRwPpZyweGCw7uRj1rXQTmcwaXB5Ctz3KvpNJPtxDP8"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/access/IAccessControlUpgradeable.sol": {
+        "keccak256": "0xb8f5302f12138c5561362e88a78d061573e6298b7a1a5afe84a1e2c8d4d5aeaa",
+        "urls": [
+          "bzz-raw://740cf4dc535e3082560cf5a031473029f322690fc8037fe9d5e3a8bef42e757c",
+          "dweb:/ipfs/QmTQxFdfxcaueQa23VX34wAPqzruZbkzyeN58tZK2yav2b"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol": {
+        "keccak256": "0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271",
+        "urls": [
+          "bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618",
+          "dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol": {
+        "keccak256": "0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183",
+        "urls": [
+          "bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06",
+          "dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol": {
+        "keccak256": "0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149",
+        "urls": [
+          "bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c",
+          "dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol": {
+        "keccak256": "0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da",
+        "urls": [
+          "bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8",
+          "dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol": {
+        "keccak256": "0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a",
+        "urls": [
+          "bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7",
+          "dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/IERC165Upgradeable.sol": {
+        "keccak256": "0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09",
+        "urls": [
+          "bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758",
+          "dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol": {
+        "keccak256": "0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a",
+        "urls": [
+          "bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4",
+          "dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt"
+        ],
+        "license": "MIT"
+      },
+      "src/PebbleDelagateVerificationManager/DelagateVerificationInternals.sol": {
+        "keccak256": "0x0a2fa8bd1208c24760cb21e7a2ff52d86b39949c48ea9afcd019a313b1675cf4",
+        "urls": [
+          "bzz-raw://7250ab6b6227d83d6a4804edc1183b729f4fb2b69d22509f84b872618f329b7d",
+          "dweb:/ipfs/QmWHWTUZsWmBRJJGQXPnbsMP5E9wTjy6pseGVBbEcacnwn"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol": {
+        "keccak256": "0x5135ecc285067dc968fecc97ded7dda0ddb6d1f7cd2e977f92bc580aa1040ee5",
+        "urls": [
+          "bzz-raw://4c8a37d1756ba715ed6b181e97b54391338c79c24d15d7f872b982de213ccc92",
+          "dweb:/ipfs/Qmbo916R8BPSdA1QVZTZZzTxYmH3LAbJgz6N3J6nJuffLq"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleRoleManager/PebbleRoleManager.sol": {
+        "keccak256": "0x8f098e452dede72e5f8c1bd36bdf2073cf5d69f2dfdd1242d0f7bbe32005d247",
+        "urls": [
+          "bzz-raw://f24cb8639171fbb64bbc768d55405c386afa0d8ff41dc5e3af789722edce3b4d",
+          "dweb:/ipfs/QmV6pdkLQT56FDmbc3zPT2z3tUguwwQYopb1gNQxs96ADJ"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/PebbleDelagateVerificationManager/PebbleDelagateVerificationManager.sol",
+    "id": 6595,
+    "exportedSymbols": {
+      "DelagateVerificationInternals": [
+        6568
+      ],
+      "PebbleDelagateVerificationManager": [
+        6594
+      ],
+      "PebbleRoleManager": [
+        8973
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:669:27",
+    "nodes": [
+      {
+        "id": 6570,
+        "nodeType": "PragmaDirective",
+        "src": "45:23:27",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 6572,
+        "nodeType": "ImportDirective",
+        "src": "70:78:27",
+        "nodes": [],
+        "absolutePath": "src/PebbleRoleManager/PebbleRoleManager.sol",
+        "file": "src/PebbleRoleManager/PebbleRoleManager.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 6595,
+        "sourceUnit": 8974,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 6571,
+              "name": "PebbleRoleManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 8973,
+              "src": "78:17:27",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 6574,
+        "nodeType": "ImportDirective",
+        "src": "149:82:27",
+        "nodes": [],
+        "absolutePath": "src/PebbleDelagateVerificationManager/DelagateVerificationInternals.sol",
+        "file": "./DelagateVerificationInternals.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 6595,
+        "sourceUnit": 6569,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 6573,
+              "name": "DelagateVerificationInternals",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 6568,
+              "src": "157:29:27",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 6594,
+        "nodeType": "ContractDefinition",
+        "src": "233:480:27",
+        "nodes": [
+          {
+            "id": 6593,
+            "nodeType": "FunctionDefinition",
+            "src": "543:168:27",
+            "nodes": [],
+            "body": {
+              "id": 6592,
+              "nodeType": "Block",
+              "src": "656:55:27",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 6590,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 6586,
+                      "name": "nonce",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6584,
+                      "src": "666:5:27",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 6588,
+                          "name": "_delegator",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 6581,
+                          "src": "693:10:27",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 6587,
+                        "name": "_getDelegatorNonce",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 6512,
+                        "src": "674:18:27",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_uint256_$",
+                          "typeString": "function (address) view returns (uint256)"
+                        }
+                      },
+                      "id": 6589,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "674:30:27",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "666:38:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 6591,
+                  "nodeType": "ExpressionStatement",
+                  "src": "666:38:27"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 6579,
+              "nodeType": "StructuredDocumentation",
+              "src": "342:196:27",
+              "text": "@dev Gets a delegator's next allowed nonce\n@dev Delegators must use this to sign anything\n@param _delegator Address of delegator\n@return nonce Delegator's allowed nonce"
+            },
+            "functionSelector": "6ab6cd6c",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDelegatorNonce",
+            "nameLocation": "552:17:27",
+            "parameters": {
+              "id": 6582,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6581,
+                  "mutability": "mutable",
+                  "name": "_delegator",
+                  "nameLocation": "578:10:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6593,
+                  "src": "570:18:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6580,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "570:7:27",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:20:27"
+            },
+            "returnParameters": {
+              "id": 6585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6584,
+                  "mutability": "mutable",
+                  "name": "nonce",
+                  "nameLocation": "645:5:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6593,
+                  "src": "637:13:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6583,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "637:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "636:15:27"
+            },
+            "scope": 6594,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 6575,
+              "name": "PebbleRoleManager",
+              "nameLocations": [
+                "283:17:27"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 8973,
+              "src": "283:17:27"
+            },
+            "id": 6576,
+            "nodeType": "InheritanceSpecifier",
+            "src": "283:17:27"
+          },
+          {
+            "baseName": {
+              "id": 6577,
+              "name": "DelagateVerificationInternals",
+              "nameLocations": [
+                "306:29:27"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 6568,
+              "src": "306:29:27"
+            },
+            "id": 6578,
+            "nodeType": "InheritanceSpecifier",
+            "src": "306:29:27"
+          }
+        ],
+        "canonicalName": "PebbleDelagateVerificationManager",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          6594,
+          6568,
+          8973,
+          1625,
+          3508,
+          3520,
+          1698,
+          2718,
+          2256
+        ],
+        "name": "PebbleDelagateVerificationManager",
+        "nameLocation": "242:33:27",
+        "scope": 6595,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0-or-later"
+  },
+  "id": 27
+}

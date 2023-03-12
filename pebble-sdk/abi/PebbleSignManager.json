@@ -1,0 +1,637 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "version",
+          "type": "uint8"
+        }
+      ],
+      "name": "Initialized",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getVersion",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60808060405234610016576101e5908161001c8239f35b600080fdfe6080600436101561000f57600080fd5b6000803560e01c630d8e6e2c1461002557600080fd5b346101ac57806003193601126101ac57807f521e4caddd81fbdd5f556a9ab5c2a4923bf4e6832e3978f3ad043ffaf5444a6892835491600183811c908085169687156101a2575b602095868410891461018e5786869798998588529182600014610170575050600114610119575b505050601f801993849203011681019381851067ffffffffffffffff861117610105579291849192604094838652818452845191828186015281955b8387106100ed5750508394508582601f949501015201168101030190f35b868101820151898801890152958101958895506100cf565b634e487b7160e01b81526041600452602490fd5b87528592508691907f20f063e71c073277a37d060f904028265ae654567b12df4d619f78a29be0123f5b82841061015857505050820101388080610093565b80548488018601528695508794909301928101610143565b93509450505060ff191682840152151560051b820101388080610093565b634e487b7160e01b88526022600452602488fd5b91607f169161006c565b80fdfea2646970667358221220aca454a4a73aea1e42eccd604cd04b0a648aae621e6c62573f196046a638ff4664736f6c63430008110033",
+    "sourceMap": "234:519:34:-:0;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080600436101561000f57600080fd5b6000803560e01c630d8e6e2c1461002557600080fd5b346101ac57806003193601126101ac57807f521e4caddd81fbdd5f556a9ab5c2a4923bf4e6832e3978f3ad043ffaf5444a6892835491600183811c908085169687156101a2575b602095868410891461018e5786869798998588529182600014610170575050600114610119575b505050601f801993849203011681019381851067ffffffffffffffff861117610105579291849192604094838652818452845191828186015281955b8387106100ed5750508394508582601f949501015201168101030190f35b868101820151898801890152958101958895506100cf565b634e487b7160e01b81526041600452602490fd5b87528592508691907f20f063e71c073277a37d060f904028265ae654567b12df4d619f78a29be0123f5b82841061015857505050820101388080610093565b80548488018601528695508794909301928101610143565b93509450505060ff191682840152151560051b820101388080610093565b634e487b7160e01b88526022600452602488fd5b91607f169161006c565b80fdfea2646970667358221220aca454a4a73aea1e42eccd604cd04b0a648aae621e6c62573f196046a638ff4664736f6c63430008110033",
+    "sourceMap": "234:519:34:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;156:32:35;234:519:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;234:519:34;;;-1:-1:-1;;;234:519:34;;;;;;;;;;;;;-1:-1:-1;234:519:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;234:519:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;234:519:34;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "getVersion()": "0d8e6e2c"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getVersion\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getVersion()\":{\"details\":\"Gets contract version, at correct slot\",\"returns\":{\"_0\":\"version Contract version\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/PebbleSignManager/PebbleSignManager.sol\":\"PebbleSignManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"],\"viaIR\":true},\"sources\":{\"lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618\",\"dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06\",\"dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol\":{\"keccak256\":\"0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8\",\"dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/ECDSAUpgradeable.sol\":{\"keccak256\":\"0x12f297cafe6e2847ae0378502f155654d0764b532a9873c8afe4350950fa7971\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://28074f6df7132e83819042a06ef75ae53c88c53c077b8222b9772b780d58bd58\",\"dweb:/ipfs/QmXXwSxWn4XGCy218fn3f2m3UmFNUiroeQ8sCR3vzNU6Wc\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol\":{\"keccak256\":\"0x3017aded62c4a2b9707f5f06f92934e592c1c9b6f384b91b51340a6d5f841931\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bb693afc2a614ec7afee965caaf5d53c3f32644e33286f60d17ae0e9aca84d44\",\"dweb:/ipfs/QmVJy43EBWvVT5NgpsV8WJfDHtZbnqZGMhmv1WbWaV5dJV\"]},\"lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol\":{\"keccak256\":\"0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4\",\"dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt\"]},\"src/PebbleSignManager/PebbleSignManager.sol\":{\"keccak256\":\"0x35bd3079c1ecb1a02602eed7bd4e3e4fcb5a9409e252b84dec0344da68a0f419\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://3bed6e1b6854af62eaeee8d7944eb16b90d5eaf4bf4d4ecd4f87278d01aa14db\",\"dweb:/ipfs/QmTr9CZx4rEkSeL364HwjA6rYPpCXxgDSujPos1zB6mFfg\"]},\"src/PebbleSignManager/SignInternals.sol\":{\"keccak256\":\"0x4b335a321bb3cd60c459a336cf16cadfb6a3c37f4287de6a2fef73d86f9e1ee1\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://22117862195a24977f68a72a86129c843d5f97b4c45e6756457b46d6237b1cb4\",\"dweb:/ipfs/QmZc99GeJih6GMFeosm9kiS9EuafHSWbciAJpf1y5r7cSF\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.17+commit.8df45f5f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "version",
+              "type": "uint8",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Initialized",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "pure",
+          "type": "function",
+          "name": "getVersion",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "getVersion()": {
+            "details": "Gets contract version, at correct slot",
+            "returns": {
+              "_0": "version Contract version"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/PebbleSignManager/PebbleSignManager.sol": "PebbleSignManager"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol": {
+        "keccak256": "0x037c334add4b033ad3493038c25be1682d78c00992e1acb0e2795caff3925271",
+        "urls": [
+          "bzz-raw://8a313cf42389440e2706837c91370323b85971c06afd6d056d21e2bc86459618",
+          "dweb:/ipfs/QmT8XUrUvQ9aZaPKrqgRU2JVGWnaxBcUYJA7Q7K5KcLBSZ"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/AddressUpgradeable.sol": {
+        "keccak256": "0x2edcb41c121abc510932e8d83ff8b82cf9cdde35e7c297622f5c29ef0af25183",
+        "urls": [
+          "bzz-raw://72460c66cd1c3b1c11b863e0d8df0a1c56f37743019e468dc312c754f43e3b06",
+          "dweb:/ipfs/QmPExYKiNb9PUsgktQBupPaM33kzDHxaYoVeJdLhv8s879"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/StringsUpgradeable.sol": {
+        "keccak256": "0x6b9a5d35b744b25529a2856a8093e7c03fb35a34b1c4fb5499e560f8ade140da",
+        "urls": [
+          "bzz-raw://187b5c3a1c9e77678732a2cc5284237f9cfca6bc28ee8bc0a0f4f951d7b3a2f8",
+          "dweb:/ipfs/Qmb2KFr7WuQu7btdCiftQG64vTzrG4UyzVmo53EYHcnHYA"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/ECDSAUpgradeable.sol": {
+        "keccak256": "0x12f297cafe6e2847ae0378502f155654d0764b532a9873c8afe4350950fa7971",
+        "urls": [
+          "bzz-raw://28074f6df7132e83819042a06ef75ae53c88c53c077b8222b9772b780d58bd58",
+          "dweb:/ipfs/QmXXwSxWn4XGCy218fn3f2m3UmFNUiroeQ8sCR3vzNU6Wc"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol": {
+        "keccak256": "0x3017aded62c4a2b9707f5f06f92934e592c1c9b6f384b91b51340a6d5f841931",
+        "urls": [
+          "bzz-raw://bb693afc2a614ec7afee965caaf5d53c3f32644e33286f60d17ae0e9aca84d44",
+          "dweb:/ipfs/QmVJy43EBWvVT5NgpsV8WJfDHtZbnqZGMhmv1WbWaV5dJV"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts-upgradeable/contracts/utils/math/MathUpgradeable.sol": {
+        "keccak256": "0xc1bd5b53319c68f84e3becd75694d941e8f4be94049903232cd8bc7c535aaa5a",
+        "urls": [
+          "bzz-raw://056027a78e6f4b78a39be530983551651ee5a052e786ca2c1c6a3bb1222b03b4",
+          "dweb:/ipfs/QmXRUpywAqNwAfXS89vrtiE2THRM9dX9pQ4QxAkV1Wx9kt"
+        ],
+        "license": "MIT"
+      },
+      "src/PebbleSignManager/PebbleSignManager.sol": {
+        "keccak256": "0x35bd3079c1ecb1a02602eed7bd4e3e4fcb5a9409e252b84dec0344da68a0f419",
+        "urls": [
+          "bzz-raw://3bed6e1b6854af62eaeee8d7944eb16b90d5eaf4bf4d4ecd4f87278d01aa14db",
+          "dweb:/ipfs/QmTr9CZx4rEkSeL364HwjA6rYPpCXxgDSujPos1zB6mFfg"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/PebbleSignManager/SignInternals.sol": {
+        "keccak256": "0x4b335a321bb3cd60c459a336cf16cadfb6a3c37f4287de6a2fef73d86f9e1ee1",
+        "urls": [
+          "bzz-raw://22117862195a24977f68a72a86129c843d5f97b4c45e6756457b46d6237b1cb4",
+          "dweb:/ipfs/QmZc99GeJih6GMFeosm9kiS9EuafHSWbciAJpf1y5r7cSF"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/PebbleSignManager/PebbleSignManager.sol",
+    "id": 9012,
+    "exportedSymbols": {
+      "EIP712Upgradeable": [
+        3464
+      ],
+      "PebbleSignManager": [
+        9011
+      ],
+      "SignInternals": [
+        9046
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "45:709:34",
+    "nodes": [
+      {
+        "id": 8975,
+        "nodeType": "PragmaDirective",
+        "src": "45:23:34",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 8977,
+        "nodeType": "ImportDirective",
+        "src": "70:111:34",
+        "nodes": [],
+        "absolutePath": "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 9012,
+        "sourceUnit": 3465,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 8976,
+              "name": "EIP712Upgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 3464,
+              "src": "78:17:34",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 8979,
+        "nodeType": "ImportDirective",
+        "src": "182:50:34",
+        "nodes": [],
+        "absolutePath": "src/PebbleSignManager/SignInternals.sol",
+        "file": "./SignInternals.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 9012,
+        "sourceUnit": 9047,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 8978,
+              "name": "SignInternals",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 9046,
+              "src": "190:13:34",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 9011,
+        "nodeType": "ContractDefinition",
+        "src": "234:519:34",
+        "nodes": [
+          {
+            "id": 9000,
+            "nodeType": "FunctionDefinition",
+            "src": "324:206:34",
+            "nodes": [],
+            "body": {
+              "id": 8999,
+              "nodeType": "Block",
+              "src": "439:91:34",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "hexValue": "504542424c45",
+                        "id": 8991,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "473:8:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_b0c30d3f9414022ef63978f5430238eb4154ccdf8a3ff82985f52c1e08759118",
+                          "typeString": "literal_string \"PEBBLE\""
+                        },
+                        "value": "PEBBLE"
+                      },
+                      {
+                        "id": 8992,
+                        "name": "_version",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8985,
+                        "src": "483:8:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_b0c30d3f9414022ef63978f5430238eb4154ccdf8a3ff82985f52c1e08759118",
+                          "typeString": "literal_string \"PEBBLE\""
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 8990,
+                      "name": "__EIP712_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3382,
+                      "src": "449:23:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory,string memory)"
+                      }
+                    },
+                    "id": 8993,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "449:43:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8994,
+                  "nodeType": "ExpressionStatement",
+                  "src": "449:43:34"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 8996,
+                        "name": "_version",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8985,
+                        "src": "514:8:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 8995,
+                      "name": "_setVersion",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9045,
+                      "src": "502:11:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 8997,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "502:21:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8998,
+                  "nodeType": "ExpressionStatement",
+                  "src": "502:21:34"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 8988,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 8987,
+                  "name": "onlyInitializing",
+                  "nameLocations": [
+                    "418:16:34"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2201,
+                  "src": "418:16:34"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "418:16:34"
+              }
+            ],
+            "name": "__PebbleSignMananger_init_unchained",
+            "nameLocation": "333:35:34",
+            "parameters": {
+              "id": 8986,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8985,
+                  "mutability": "mutable",
+                  "name": "_version",
+                  "nameLocation": "383:8:34",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9000,
+                  "src": "369:22:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 8984,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "369:6:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "368:24:34"
+            },
+            "returnParameters": {
+              "id": 8989,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "439:0:34"
+            },
+            "scope": 9011,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 9010,
+            "nodeType": "FunctionDefinition",
+            "src": "654:97:34",
+            "nodes": [],
+            "body": {
+              "id": 9009,
+              "nodeType": "Block",
+              "src": "714:37:34",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 9006,
+                      "name": "_getVersion",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9033,
+                      "src": "731:11:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$__$returns$_t_string_storage_ptr_$",
+                        "typeString": "function () pure returns (string storage pointer)"
+                      }
+                    },
+                    "id": 9007,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "731:13:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "functionReturnParameters": 9005,
+                  "id": 9008,
+                  "nodeType": "Return",
+                  "src": "724:20:34"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 9001,
+              "nodeType": "StructuredDocumentation",
+              "src": "553:96:34",
+              "text": "@dev Gets contract version, at correct slot\n@return version Contract version"
+            },
+            "functionSelector": "0d8e6e2c",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getVersion",
+            "nameLocation": "663:10:34",
+            "parameters": {
+              "id": 9002,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "673:2:34"
+            },
+            "returnParameters": {
+              "id": 9005,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9004,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9010,
+                  "src": "699:13:34",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 9003,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "699:6:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "698:15:34"
+            },
+            "scope": 9011,
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 8980,
+              "name": "EIP712Upgradeable",
+              "nameLocations": [
+                "264:17:34"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 3464,
+              "src": "264:17:34"
+            },
+            "id": 8981,
+            "nodeType": "InheritanceSpecifier",
+            "src": "264:17:34"
+          },
+          {
+            "baseName": {
+              "id": 8982,
+              "name": "SignInternals",
+              "nameLocations": [
+                "283:13:34"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 9046,
+              "src": "283:13:34"
+            },
+            "id": 8983,
+            "nodeType": "InheritanceSpecifier",
+            "src": "283:13:34"
+          }
+        ],
+        "canonicalName": "PebbleSignManager",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          9011,
+          9046,
+          3464,
+          2256
+        ],
+        "name": "PebbleSignManager",
+        "nameLocation": "243:17:34",
+        "scope": 9012,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0-or-later"
+  },
+  "id": 34
+}

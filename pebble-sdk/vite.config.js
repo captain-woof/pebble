@@ -9,11 +9,20 @@ export default defineConfig(({ mode }) => {
                 fileName: "pebble-sdk"
             },
             emptyOutDir: true,
-            minify: true
+            minify: true,
+            rollupOptions: {
+                external: [
+                    "ethers",
+                    "@noble/secp256k1"
+                ]
+            }
         },
         resolve: {
             alias: {
-                "@/": "src/"
+                "@/": "src/",
+                "~/": "./",
+                "types/": "types/",
+                "abi/": "abi/"
             }
         },
         plugins: []
