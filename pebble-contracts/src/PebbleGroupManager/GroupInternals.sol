@@ -391,6 +391,9 @@ contract GroupInternals is PebbleSignManager {
                 groupParticipantOtherThanCreator
             );
         }
+
+        // Mark group creator as participant
+        _markParticipantAcceptanceToGroupInvite(groupId, _groupCreator);
     }
 
     /**

@@ -855,7 +855,17 @@ contract PebbleGroupFunctionalitiesTest is Test {
         );
         vm.stopPrank();
 
-        // Send message
+        // Send message - Group creator
+        vm.startPrank(addresses[0]);
+        vm.expectEmit(true, true, false, false);
+        emit SendMessage(groupId, addresses[0], "");
+        Pebble(address(pebbleProxy)).sendMessageInGroup(
+            groupId,
+            abi.encodePacked("ASSUME THIS IS ENCRYPTED OONGA-BOONGA")
+        );
+        vm.stopPrank();
+
+        // Send message - Any other participant other than group creator
         vm.startPrank(groupParticipantsOtherThanCreator[0]);
         vm.expectEmit(true, true, false, false);
         emit SendMessage(groupId, groupParticipantsOtherThanCreator[0], "");
