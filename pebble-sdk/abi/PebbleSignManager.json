@@ -183,23 +183,23 @@
   },
   "ast": {
     "absolutePath": "src/PebbleSignManager/PebbleSignManager.sol",
-    "id": 9012,
+    "id": 9017,
     "exportedSymbols": {
       "EIP712Upgradeable": [
         3464
       ],
       "PebbleSignManager": [
-        9011
+        9016
       ],
       "SignInternals": [
-        9046
+        9051
       ]
     },
     "nodeType": "SourceUnit",
     "src": "45:709:34",
     "nodes": [
       {
-        "id": 8975,
+        "id": 8980,
         "nodeType": "PragmaDirective",
         "src": "45:23:34",
         "nodes": [],
@@ -210,19 +210,19 @@
         ]
       },
       {
-        "id": 8977,
+        "id": 8982,
         "nodeType": "ImportDirective",
         "src": "70:111:34",
         "nodes": [],
         "absolutePath": "lib/openzeppelin-contracts-upgradeable/contracts/utils/cryptography/EIP712Upgradeable.sol",
         "file": "@openzeppelin/contracts-upgradeable/utils/cryptography/EIP712Upgradeable.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 9012,
+        "scope": 9017,
         "sourceUnit": 3465,
         "symbolAliases": [
           {
             "foreign": {
-              "id": 8976,
+              "id": 8981,
               "name": "EIP712Upgradeable",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -236,23 +236,23 @@
         "unitAlias": ""
       },
       {
-        "id": 8979,
+        "id": 8984,
         "nodeType": "ImportDirective",
         "src": "182:50:34",
         "nodes": [],
         "absolutePath": "src/PebbleSignManager/SignInternals.sol",
         "file": "./SignInternals.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 9012,
-        "sourceUnit": 9047,
+        "scope": 9017,
+        "sourceUnit": 9052,
         "symbolAliases": [
           {
             "foreign": {
-              "id": 8978,
+              "id": 8983,
               "name": "SignInternals",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
-              "referencedDeclaration": 9046,
+              "referencedDeclaration": 9051,
               "src": "190:13:34",
               "typeDescriptions": {}
             },
@@ -262,17 +262,17 @@
         "unitAlias": ""
       },
       {
-        "id": 9011,
+        "id": 9016,
         "nodeType": "ContractDefinition",
         "src": "234:519:34",
         "nodes": [
           {
-            "id": 9000,
+            "id": 9005,
             "nodeType": "FunctionDefinition",
             "src": "324:206:34",
             "nodes": [],
             "body": {
-              "id": 8999,
+              "id": 9004,
               "nodeType": "Block",
               "src": "439:91:34",
               "nodes": [],
@@ -282,7 +282,7 @@
                     "arguments": [
                       {
                         "hexValue": "504542424c45",
-                        "id": 8991,
+                        "id": 8996,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -297,11 +297,11 @@
                         "value": "PEBBLE"
                       },
                       {
-                        "id": 8992,
+                        "id": 8997,
                         "name": "_version",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8985,
+                        "referencedDeclaration": 8990,
                         "src": "483:8:34",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -320,7 +320,7 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 8990,
+                      "id": 8995,
                       "name": "__EIP712_init_unchained",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -331,7 +331,7 @@
                         "typeString": "function (string memory,string memory)"
                       }
                     },
-                    "id": 8993,
+                    "id": 8998,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -347,7 +347,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 8994,
+                  "id": 8999,
                   "nodeType": "ExpressionStatement",
                   "src": "449:43:34"
                 },
@@ -355,11 +355,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 8996,
+                        "id": 9001,
                         "name": "_version",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8985,
+                        "referencedDeclaration": 8990,
                         "src": "514:8:34",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -374,18 +374,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 8995,
+                      "id": 9000,
                       "name": "_setVersion",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9045,
+                      "referencedDeclaration": 9050,
                       "src": "502:11:34",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (string memory)"
                       }
                     },
-                    "id": 8997,
+                    "id": 9002,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -401,7 +401,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 8998,
+                  "id": 9003,
                   "nodeType": "ExpressionStatement",
                   "src": "502:21:34"
                 }
@@ -411,10 +411,10 @@
             "kind": "function",
             "modifiers": [
               {
-                "id": 8988,
+                "id": 8993,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 8987,
+                  "id": 8992,
                   "name": "onlyInitializing",
                   "nameLocations": [
                     "418:16:34"
@@ -430,17 +430,17 @@
             "name": "__PebbleSignMananger_init_unchained",
             "nameLocation": "333:35:34",
             "parameters": {
-              "id": 8986,
+              "id": 8991,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8985,
+                  "id": 8990,
                   "mutability": "mutable",
                   "name": "_version",
                   "nameLocation": "383:8:34",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9000,
+                  "scope": 9005,
                   "src": "369:22:34",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -449,7 +449,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 8984,
+                    "id": 8989,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "369:6:34",
@@ -464,23 +464,23 @@
               "src": "368:24:34"
             },
             "returnParameters": {
-              "id": 8989,
+              "id": 8994,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "439:0:34"
             },
-            "scope": 9011,
+            "scope": 9016,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
-            "id": 9010,
+            "id": 9015,
             "nodeType": "FunctionDefinition",
             "src": "654:97:34",
             "nodes": [],
             "body": {
-              "id": 9009,
+              "id": 9014,
               "nodeType": "Block",
               "src": "714:37:34",
               "nodes": [],
@@ -490,18 +490,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 9006,
+                      "id": 9011,
                       "name": "_getVersion",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9033,
+                      "referencedDeclaration": 9038,
                       "src": "731:11:34",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$__$returns$_t_string_storage_ptr_$",
                         "typeString": "function () pure returns (string storage pointer)"
                       }
                     },
-                    "id": 9007,
+                    "id": 9012,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -517,15 +517,15 @@
                       "typeString": "string storage pointer"
                     }
                   },
-                  "functionReturnParameters": 9005,
-                  "id": 9008,
+                  "functionReturnParameters": 9010,
+                  "id": 9013,
                   "nodeType": "Return",
                   "src": "724:20:34"
                 }
               ]
             },
             "documentation": {
-              "id": 9001,
+              "id": 9006,
               "nodeType": "StructuredDocumentation",
               "src": "553:96:34",
               "text": "@dev Gets contract version, at correct slot\n@return version Contract version"
@@ -537,23 +537,23 @@
             "name": "getVersion",
             "nameLocation": "663:10:34",
             "parameters": {
-              "id": 9002,
+              "id": 9007,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "673:2:34"
             },
             "returnParameters": {
-              "id": 9005,
+              "id": 9010,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9004,
+                  "id": 9009,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 9010,
+                  "scope": 9015,
                   "src": "699:13:34",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -562,7 +562,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 9003,
+                    "id": 9008,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "699:6:34",
@@ -576,7 +576,7 @@
               ],
               "src": "698:15:34"
             },
-            "scope": 9011,
+            "scope": 9016,
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "external"
@@ -586,7 +586,7 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 8980,
+              "id": 8985,
               "name": "EIP712Upgradeable",
               "nameLocations": [
                 "264:17:34"
@@ -595,22 +595,22 @@
               "referencedDeclaration": 3464,
               "src": "264:17:34"
             },
-            "id": 8981,
+            "id": 8986,
             "nodeType": "InheritanceSpecifier",
             "src": "264:17:34"
           },
           {
             "baseName": {
-              "id": 8982,
+              "id": 8987,
               "name": "SignInternals",
               "nameLocations": [
                 "283:13:34"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 9046,
+              "referencedDeclaration": 9051,
               "src": "283:13:34"
             },
-            "id": 8983,
+            "id": 8988,
             "nodeType": "InheritanceSpecifier",
             "src": "283:13:34"
           }
@@ -620,14 +620,14 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          9011,
-          9046,
+          9016,
+          9051,
           3464,
           2256
         ],
         "name": "PebbleSignManager",
         "nameLocation": "243:17:34",
-        "scope": 9012,
+        "scope": 9017,
         "usedErrors": []
       }
     ],

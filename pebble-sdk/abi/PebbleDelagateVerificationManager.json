@@ -851,7 +851,7 @@
         6594
       ],
       "PebbleRoleManager": [
-        8973
+        8978
       ]
     },
     "nodeType": "SourceUnit",
@@ -877,7 +877,7 @@
         "file": "src/PebbleRoleManager/PebbleRoleManager.sol",
         "nameLocation": "-1:-1:-1",
         "scope": 6595,
-        "sourceUnit": 8974,
+        "sourceUnit": 8979,
         "symbolAliases": [
           {
             "foreign": {
@@ -885,7 +885,7 @@
               "name": "PebbleRoleManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
-              "referencedDeclaration": 8973,
+              "referencedDeclaration": 8978,
               "src": "78:17:27",
               "typeDescriptions": {}
             },
@@ -1115,7 +1115,7 @@
                 "283:17:27"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 8973,
+              "referencedDeclaration": 8978,
               "src": "283:17:27"
             },
             "id": 6576,
@@ -1145,7 +1145,7 @@
         "linearizedBaseContracts": [
           6594,
           6568,
-          8973,
+          8978,
           1625,
           3508,
           3520,

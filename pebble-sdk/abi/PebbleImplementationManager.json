@@ -1040,16 +1040,16 @@
   },
   "ast": {
     "absolutePath": "src/PebbleImplementationManager/PebbleImplementationManager.sol",
-    "id": 8775,
+    "id": 8780,
     "exportedSymbols": {
       "Initializable": [
         2256
       ],
       "PebbleImplementationManager": [
-        8774
+        8779
       ],
       "PebbleRoleManager": [
-        8973
+        8978
       ],
       "UUPSUpgradeable": [
         2392
@@ -1059,7 +1059,7 @@
     "src": "45:820:31",
     "nodes": [
       {
-        "id": 8736,
+        "id": 8741,
         "nodeType": "PragmaDirective",
         "src": "45:23:31",
         "nodes": [],
@@ -1070,19 +1070,19 @@
         ]
       },
       {
-        "id": 8738,
+        "id": 8743,
         "nodeType": "ImportDirective",
         "src": "70:100:31",
         "nodes": [],
         "absolutePath": "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol",
         "file": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 8775,
+        "scope": 8780,
         "sourceUnit": 2393,
         "symbolAliases": [
           {
             "foreign": {
-              "id": 8737,
+              "id": 8742,
               "name": "UUPSUpgradeable",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -1096,19 +1096,19 @@
         "unitAlias": ""
       },
       {
-        "id": 8740,
+        "id": 8745,
         "nodeType": "ImportDirective",
         "src": "171:96:31",
         "nodes": [],
         "absolutePath": "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol",
         "file": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 8775,
+        "scope": 8780,
         "sourceUnit": 2257,
         "symbolAliases": [
           {
             "foreign": {
-              "id": 8739,
+              "id": 8744,
               "name": "Initializable",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -1122,23 +1122,23 @@
         "unitAlias": ""
       },
       {
-        "id": 8742,
+        "id": 8747,
         "nodeType": "ImportDirective",
         "src": "268:78:31",
         "nodes": [],
         "absolutePath": "src/PebbleRoleManager/PebbleRoleManager.sol",
         "file": "src/PebbleRoleManager/PebbleRoleManager.sol",
         "nameLocation": "-1:-1:-1",
-        "scope": 8775,
-        "sourceUnit": 8974,
+        "scope": 8780,
+        "sourceUnit": 8979,
         "symbolAliases": [
           {
             "foreign": {
-              "id": 8741,
+              "id": 8746,
               "name": "PebbleRoleManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
-              "referencedDeclaration": 8973,
+              "referencedDeclaration": 8978,
               "src": "276:17:31",
               "typeDescriptions": {}
             },
@@ -1148,17 +1148,17 @@
         "unitAlias": ""
       },
       {
-        "id": 8774,
+        "id": 8779,
         "nodeType": "ContractDefinition",
         "src": "348:516:31",
         "nodes": [
           {
-            "id": 8755,
+            "id": 8760,
             "nodeType": "FunctionDefinition",
             "src": "475:53:31",
             "nodes": [],
             "body": {
-              "id": 8754,
+              "id": 8759,
               "nodeType": "Block",
               "src": "489:39:31",
               "nodes": [],
@@ -1168,7 +1168,7 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 8751,
+                      "id": 8756,
                       "name": "_disableInitializers",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -1179,7 +1179,7 @@
                         "typeString": "function ()"
                       }
                     },
-                    "id": 8752,
+                    "id": 8757,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1195,7 +1195,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 8753,
+                  "id": 8758,
                   "nodeType": "ExpressionStatement",
                   "src": "499:22:31"
                 }
@@ -1207,29 +1207,29 @@
             "name": "",
             "nameLocation": "-1:-1:-1",
             "parameters": {
-              "id": 8749,
+              "id": 8754,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "486:2:31"
             },
             "returnParameters": {
-              "id": 8750,
+              "id": 8755,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "489:0:31"
             },
-            "scope": 8774,
+            "scope": 8779,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
-            "id": 8764,
+            "id": 8769,
             "nodeType": "FunctionDefinition",
             "src": "553:155:31",
             "nodes": [],
             "body": {
-              "id": 8763,
+              "id": 8768,
               "nodeType": "Block",
               "src": "657:51:31",
               "nodes": [],
@@ -1239,7 +1239,7 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 8760,
+                      "id": 8765,
                       "name": "__UUPSUpgradeable_init_unchained",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -1250,7 +1250,7 @@
                         "typeString": "function ()"
                       }
                     },
-                    "id": 8761,
+                    "id": 8766,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1266,7 +1266,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 8762,
+                  "id": 8767,
                   "nodeType": "ExpressionStatement",
                   "src": "667:34:31"
                 }
@@ -1276,10 +1276,10 @@
             "kind": "function",
             "modifiers": [
               {
-                "id": 8758,
+                "id": 8763,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 8757,
+                  "id": 8762,
                   "name": "onlyInitializing",
                   "nameLocations": [
                     "636:16:31"
@@ -1295,29 +1295,29 @@
             "name": "__PebbleImplementatationManager_init_unchained",
             "nameLocation": "562:46:31",
             "parameters": {
-              "id": 8756,
+              "id": 8761,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "608:2:31"
             },
             "returnParameters": {
-              "id": 8759,
+              "id": 8764,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "657:0:31"
             },
-            "scope": 8774,
+            "scope": 8779,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
-            "id": 8773,
+            "id": 8778,
             "nodeType": "FunctionDefinition",
             "src": "790:72:31",
             "nodes": [],
             "body": {
-              "id": 8772,
+              "id": 8777,
               "nodeType": "Block",
               "src": "860:2:31",
               "nodes": [],
@@ -1330,16 +1330,16 @@
             "kind": "function",
             "modifiers": [
               {
-                "id": 8770,
+                "id": 8775,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 8769,
+                  "id": 8774,
                   "name": "onlyPebbleAdmin",
                   "nameLocations": [
                     "844:15:31"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 8831,
+                  "referencedDeclaration": 8836,
                   "src": "844:15:31"
                 },
                 "nodeType": "ModifierInvocation",
@@ -1349,23 +1349,23 @@
             "name": "_authorizeUpgrade",
             "nameLocation": "799:17:31",
             "overrides": {
-              "id": 8768,
+              "id": 8773,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "835:8:31"
             },
             "parameters": {
-              "id": 8767,
+              "id": 8772,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 8766,
+                  "id": 8771,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 8773,
+                  "scope": 8778,
                   "src": "817:7:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1374,7 +1374,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 8765,
+                    "id": 8770,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "817:7:31",
@@ -1390,12 +1390,12 @@
               "src": "816:9:31"
             },
             "returnParameters": {
-              "id": 8771,
+              "id": 8776,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "860:0:31"
             },
-            "scope": 8774,
+            "scope": 8779,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
@@ -1405,7 +1405,7 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 8743,
+              "id": 8748,
               "name": "Initializable",
               "nameLocations": [
                 "392:13:31"
@@ -1414,28 +1414,28 @@
               "referencedDeclaration": 2256,
               "src": "392:13:31"
             },
-            "id": 8744,
+            "id": 8749,
             "nodeType": "InheritanceSpecifier",
             "src": "392:13:31"
           },
           {
             "baseName": {
-              "id": 8745,
+              "id": 8750,
               "name": "PebbleRoleManager",
               "nameLocations": [
                 "411:17:31"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 8973,
+              "referencedDeclaration": 8978,
               "src": "411:17:31"
             },
-            "id": 8746,
+            "id": 8751,
             "nodeType": "InheritanceSpecifier",
             "src": "411:17:31"
           },
           {
             "baseName": {
-              "id": 8747,
+              "id": 8752,
               "name": "UUPSUpgradeable",
               "nameLocations": [
                 "434:15:31"
@@ -1444,7 +1444,7 @@
               "referencedDeclaration": 2392,
               "src": "434:15:31"
             },
-            "id": 8748,
+            "id": 8753,
             "nodeType": "InheritanceSpecifier",
             "src": "434:15:31"
           }
@@ -1454,11 +1454,11 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          8774,
+          8779,
           2392,
           2077,
           1708,
-          8973,
+          8978,
           1625,
           3508,
           3520,
@@ -1468,7 +1468,7 @@
         ],
         "name": "PebbleImplementationManager",
         "nameLocation": "357:27:31",
-        "scope": 8775,
+        "scope": 8780,
         "usedErrors": []
       }
     ],
