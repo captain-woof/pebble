@@ -1,9 +1,9 @@
 import { Contract, Signer, BigNumber } from "ethers";
 import { IPebbleClient } from "types/clients/PebbleClient";
 import { Pebble } from "types/pebble-contracts";
-import { InviteEvent, AllInvitesAcceptedEvent } from "types/pebble-contracts/Pebble";
+import { InviteEvent, AllInvitesAcceptedEvent, SendMessageEvent } from "types/pebble-contracts/Pebble";
 import { abi as PEBBLE_ABI } from "abi/Pebble.json";
-import { generateRandomPrivateKey, generateRandomNumber, getScalarProductWithGeneratorPoint, getScalarProductWithPoint } from "./utils";
+import { generateRandomPrivateKey, generateRandomNumber, getScalarProductWithGeneratorPoint, getScalarProductWithPoint, encryptMessageWithSharedKey, convertBase64ToHex } from "./utils";
 import { Point } from "@noble/secp256k1";
 
 export class PebbleClient {
@@ -143,5 +143,48 @@ export class PebbleClient {
             privKeyParticipant: BigNumber.from(privKeyParticipant.toString()),
             haveAllParticipantsAcceptedInvite
         };
+    }
+
+    /**
+     * @dev Calculates shared key for a participant in a group
+     * @param groupId Group Id to calculate shared key for
+     * @param participantPrivKey Participant's private key for this group
+     * @returns Shared key
+     */
+    async calculateSharedKeyForGroup(groupId: BigNumber, participantPrivKey: BigNumber) {
+        // Calculate shared key
+        const { penultimateSharedKeyX, penultimateSharedKeyY } = await this.pebbleContract.getParticipantGroupPenultimateSharedKey(groupId, await this.signer.getAddress());
+        const sharedKeyPoint = getScalarProductWithPoint(
+            BigInt(participantPrivKey.toString()),
+            new Point(
+                BigInt(penultimateSharedKeyX.toString()),
+                BigInt(penultimateSharedKeyY.toString())
+            )
+        );
+        return BigNumber.from(sharedKeyPoint.x.toString());
+    }
+
+    /**
+     * @dev Sends message from a group participant in a group
+     * @param groupId Group id to send message in
+     * @param message Message to send (plaintext)
+     * @param sharedKey Shared key to use; use `calculateSharedKeyForGroup()` to pre-calculate this
+     */
+    async sendMessage(groupId: BigNumber, message: string, sharedKey: BigNumber) {
+        // Encrypt message
+        const messageEnc = encryptMessageWithSharedKey(message, BigInt(sharedKey.toString()));
+        const messageEncHex = convertBase64ToHex(messageEnc);
+
+        // Send message
+        const tx = await this.pebbleContract.sendMessageInGroup(groupId, messageEncHex);
+        const rcpt = await tx.wait(this.blockConfirmations);
+
+        // Check if event was correctly fired
+        const eventSendMessageEvent = (rcpt.events?.find(({ event }) => event === "SendMessage")) as SendMessageEvent;
+        if (eventSendMessageEvent?.args?.encryptedMessage !== messageEncHex) {
+            throw (Error("Incorrect message sent"));
+        }
+
+        return true;
     }
 }

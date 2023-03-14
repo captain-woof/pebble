@@ -6,11 +6,13 @@ specifiers:
   '@ethersproject/providers': ^5.7.2
   '@noble/secp256k1': ^1.7.1
   '@typechain/ethers-v5': ^10.2.0
+  '@types/crypto-js': ^4.1.1
   '@types/elliptic': ^6.4.14
   '@types/jest': ^29.4.0
   '@types/node': ^18.15.0
   '@typescript-eslint/eslint-plugin': ^5.54.1
   '@typescript-eslint/parser': ^5.54.1
+  crypto-js: ^4.1.1
   eslint: ^8.35.0
   ethers: '5'
   jest: ^29.5.0
@@ -28,11 +30,13 @@ devDependencies:
   '@ethersproject/providers': 5.7.2
   '@noble/secp256k1': 1.7.1
   '@typechain/ethers-v5': 10.2.0_kuvqdvnhbslgxdpi2awxjzdvhe
+  '@types/crypto-js': 4.1.1
   '@types/elliptic': 6.4.14
   '@types/jest': 29.4.0
   '@types/node': 18.15.0
   '@typescript-eslint/eslint-plugin': 5.54.1_mlk7dnz565t663n4razh6a6v6i
   '@typescript-eslint/parser': 5.54.1_ycpbpc6yetojsgtrx3mwntkhsu
+  crypto-js: 4.1.1
   eslint: 8.35.0
   ethers: 5.7.2
   jest: 29.5.0_skxcisbnntvwqykzjpzwatlj3a
@@ -1464,6 +1468,10 @@ packages:
       '@types/node': 18.15.0
     dev: true
 
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
+    dev: true
+
   /@types/elliptic/6.4.14:
     resolution: {integrity: sha512-z4OBcDAU0GVwDTuwJzQCiL6188QvZMkvoERgcVjq0/mPM8jCfdwZ3x5zQEVoL9WCAru3aG5wl3Z5Ww5wBWn7ZQ==}
     dependencies:
@@ -2055,6 +2063,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
     dev: true
 
   /debug/4.3.4:
