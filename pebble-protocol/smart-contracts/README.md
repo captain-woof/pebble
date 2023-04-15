@@ -14,16 +14,18 @@ The protocol's ecosystem (client-side apps) is a work in progress. Once things a
 **All smart contracts for Pebble can be found in the repo under** [**/pebble-contracts**](https://github.com/captain-woof/pebble/tree/main/pebble-contracts)**.**
 {% endhint %}
 
-* **``**[**`Pebble.sol`**](pebble.sol.md) - The main contract with which users would interact. This is where groups are created, invites are sent & accepted, fractional keys are stored, and encrypted messages are sent.
-* **``**[**`PebbleDelegatee.sol`**](pebbledelegatee.sol.md) - This allows relayers to interact with `Pebble.sol` on behalf of delegator users, to provide gas-less transaction services to them. There's provisions for an incentivizing  fee for doing so.
+* [**`Pebble.sol`**](pebble.sol.md) - The main contract with which users would interact. This is where groups are created, invites are sent & accepted, fractional keys are stored, and encrypted messages are sent.
+* [**`PebbleDelegatee.sol`**](pebbledelegatee.sol.md) - This allows relayers to interact with `Pebble.sol` on behalf of delegator users, to provide gas-less transaction services to them. There's provisions for an incentivizing  fee for doing so.
 
 ### Deployments
 
-| Contracts                                | Address        |
-| ---------------------------------------- | -------------- |
-| **PebbleProxy.sol** _(proxy)_            | To be deployed |
-| **Pebble.sol** _(implementation)_        | To be deployed |
-| **PebbleDelegatee.sol** _(for relayers)_ | To be deployed |
+Mumbai
+
+| Contracts                                | Address                                                                                                                         |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **PebbleProxy.sol** _(proxy)_            | [0x20c71962d9ab6754bac2090cf144fdbf21932b66](https://mumbai.polygonscan.com/address/0x20c71962d9ab6754bac2090cf144fdbf21932b66) |
+| **Pebble.sol** _(implementation)_        | [0xbb603bfaa1234d21008c4d0a6f2da766c3230f06](https://mumbai.polygonscan.com/address/0xbb603bfaa1234d21008c4d0a6f2da766c3230f06) |
+| **PebbleDelegatee.sol** _(for relayers)_ | To be deployed                                                                                                                  |
 
 ## Events
 
