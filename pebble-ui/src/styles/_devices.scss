@@ -1,0 +1,7 @@
+$breakpoint-tablet: 600px;
+
+@mixin tablet-and-desktop {
+    @media (min-width: $breakpoint-tablet) {
+        @content;
+    }
+}
