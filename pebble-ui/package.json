@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pebble/sdk": "link:../pebble-sdk",
     "@wagmi/core": "^0.10.10",
     "@web3modal/ethereum": "^2.3.6",
     "@web3modal/html": "^2.3.6",
+    "ethers": "^5",
     "pinia": "^2.0.35",
     "vue": "^3.2.45",
     "vue-router": "4",

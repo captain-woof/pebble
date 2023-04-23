@@ -9,7 +9,8 @@ export default defineConfig({
     alias: {
       "@components": path.resolve(__dirname, "src", "components"),
       "@styles": path.resolve(__dirname, "src", "styles"),
-      "@store": path.resolve(__dirname, "src", "store")
+      "@store": path.resolve(__dirname, "src", "store"),
+      "@utils": path.resolve(__dirname, "src", "utils")
     }
   },
   plugins: [

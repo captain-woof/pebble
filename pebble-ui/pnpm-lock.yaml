@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@pebble/sdk':
+    specifier: link:../pebble-sdk
+    version: link:../pebble-sdk
   '@wagmi/core':
     specifier: ^0.10.10
     version: 0.10.10(ethers@5.7.2)(react@18.2.0)(typescript@4.9.3)
@@ -10,6 +13,9 @@ dependencies:
   '@web3modal/html':
     specifier: ^2.3.6
     version: 2.3.6(react@18.2.0)
+  ethers:
+    specifier: ^5
+    version: 5.7.2
   pinia:
     specifier: ^2.0.35
     version: 2.0.35(typescript@4.9.3)(vue@3.2.45)

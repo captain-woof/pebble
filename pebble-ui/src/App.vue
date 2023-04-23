@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppBar from "@components/molecules/app-bar/index.vue";
 import MainContainer from '@components/atoms/main-container.vue';
+import Toast from "@components/molecules/toast/index.vue";
 </script>
 
 <template>
@@ -13,6 +14,9 @@ import MainContainer from '@components/atoms/main-container.vue';
       <router-view>
       </router-view>
     </MainContainer>
+
+    <!-- Toast -->
+    <Toast />
   </v-layout>
 </template>
 

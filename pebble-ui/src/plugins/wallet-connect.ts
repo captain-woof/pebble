@@ -4,7 +4,7 @@ import { Web3Modal } from '@web3modal/html';
 import { configureChains, createClient, watchAccount, watchNetwork } from '@wagmi/core';
 import { polygonMumbai } from '@wagmi/core/chains';
 import useWalletStore from "@store/wallet";
-import { Router, useRouter } from "vue-router";
+import { Router } from "vue-router";
 
 const WalletConnectPlugin: Plugin = {
     install(app, ...options: [Router]) {
