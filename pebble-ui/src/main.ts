@@ -9,5 +9,5 @@ createApp(App)
     .use(router)
     .use(pinia)
     .use(vuetify)
-    .use(walletConnect)
+    .use(walletConnect, router)
     .mount('#app');

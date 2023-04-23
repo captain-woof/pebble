@@ -1,8 +1,18 @@
 <script setup lang="ts">
+import { defineProps } from 'vue';
+
+// Props
+const props = defineProps({
+    spaceForNavbar: {
+        type: Boolean,
+        default: false
+    }
+});
 </script>
 
 <template>
-    <v-container tag="section" class="full-page-section">
+    <v-container tag="section" class="full-page-section"
+        :class="{ 'full-page-section--space-for-navbar': props.spaceForNavbar }">
         <slot>
         </slot>
     </v-container>
@@ -18,6 +28,11 @@
     padding: 0.5rem;
     margin: 0 auto;
     display: block;
+
+    &--space-for-navbar {
+        min-height: calc(100vh - 64px);
+        margin: 64px auto 0 auto;
+    }
 
     @include devices.tablet-and-desktop {
         padding: 2rem;

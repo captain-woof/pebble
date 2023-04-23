@@ -4,11 +4,13 @@ import { Web3Modal } from '@web3modal/html';
 import { configureChains, createClient, watchAccount, watchNetwork } from '@wagmi/core';
 import { polygonMumbai } from '@wagmi/core/chains';
 import useWalletStore from "@store/wallet";
+import { Router, useRouter } from "vue-router";
 
 const WalletConnectPlugin: Plugin = {
-    install(app, ...options) {
-        // Create wallet store
+    install(app, ...options: [Router]) {
+        // Constants
         const walletStore = useWalletStore();
+        const router = options[0];
 
         // Create Web3Modal
         const chains = [polygonMumbai]
@@ -37,8 +39,15 @@ const WalletConnectPlugin: Plugin = {
             walletStore.network = network.chain ?? null;
         });
 
-        watchAccount((account) => {
+        watchAccount(async (account) => {
             walletStore.account = account;
+
+            // Redirect based on connect status
+            if (account.isConnected) {
+                await router.push({ name: "contacts" });
+            } else {
+                await router.push({ name: "home" });
+            }
         });
     },
 }
