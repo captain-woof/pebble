@@ -2,10 +2,10 @@
 </script>
 
 <template>
-    <section class="full-page-section">
+    <v-container tag="section" class="full-page-section">
         <slot>
         </slot>
-    </section>
+    </v-container>
 </template>
 
 <style scoped lang="scss">

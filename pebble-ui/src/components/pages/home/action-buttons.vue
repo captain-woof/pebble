@@ -1,7 +1,19 @@
 <script setup lang="ts">
-// Methods
-function handleGetStarted() {
+import useWalletStore from '@store/wallet';
+import { useRouter } from 'vue-router';
 
+// States
+const walletStore = useWalletStore();
+const router = useRouter();
+
+// Methods
+async function handleGetStarted() {
+    // Redirect if connected
+    if (walletStore.account?.isConnected) {
+        await router.push({ name: "contacts" });
+    } else {
+        await walletStore.web3Modal?.openModal();
+    }
 }
 </script>
 
@@ -15,7 +27,7 @@ function handleGetStarted() {
         </a>
 
         <!-- Get started -->
-        <v-btn class="ml-sm-2" append-icon="mdi-send-variant" @click="handleGetStarted">
+        <v-btn class="ml-sm-2" append-icon="mdi-send-variant" @click.stop="handleGetStarted">
             Get started
         </v-btn>
     </div>

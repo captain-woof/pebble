@@ -2,14 +2,15 @@
 </script>
 
 <template>
-    <div class="full-page-container">
+    <v-main class="main-container">
         <slot>
         </slot>
-    </div>
+    </v-main>
 </template>
 
 <style scoped>
-.full-page-container {
+.main-container {
     min-height: 100vh;
+    padding: 0 !important;
 }
 </style>

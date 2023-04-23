@@ -9,6 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@wagmi/core": "^0.10.10",
+    "@web3modal/ethereum": "^2.3.6",
+    "@web3modal/html": "^2.3.6",
+    "pinia": "^2.0.35",
     "vue": "^3.2.45",
     "vue-router": "4",
     "vuetify": "^3.1.6"
