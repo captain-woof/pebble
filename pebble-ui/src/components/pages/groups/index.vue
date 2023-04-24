@@ -2,6 +2,15 @@
 import FullPageSection from "@components/atoms/full-page-section.vue";
 import Groups from "@components/molecules/groups/index.vue";
 import GroupChat from "@components/molecules/group-chat/index.vue";
+import usePebbleStore, { IGroupSummary } from "@store/pebble";
+
+// States
+const pebbleStore = usePebbleStore();
+
+// Methods
+function handleGroupClick(group: IGroupSummary) {
+    pebbleStore.groupSelectedSummary = group;
+}
 </script>
 
 <template>
@@ -9,7 +18,7 @@ import GroupChat from "@components/molecules/group-chat/index.vue";
         <div class="groups-page">
             <!-- Groups -->
             <div class="groups-page__groups-container">
-                <Groups />
+                <Groups @groupClick="handleGroupClick" />
             </div>
 
             <!-- Group chat -->

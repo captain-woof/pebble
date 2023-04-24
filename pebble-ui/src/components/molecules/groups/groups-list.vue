@@ -18,19 +18,19 @@ const groupsSummaryForList = computed(() => pebbleStore.groupsSummary.map(({ par
 
 // Emits
 const emit = defineEmits<{
-    (e: "groupClick", group: typeof groupsSummaryForList.value[0]): void
+    (e: "groupClick", group: typeof pebbleStore.groupsSummary[0]): void
 }>();
 
 // Methods
-async function handleGroupClick(group: typeof groupsSummaryForList.value[0]) {
-    emit("groupClick", group);
+async function handleGroupClick(groupIndex: number) {
+    emit("groupClick", pebbleStore.groupsSummary[groupIndex]);
 }
 </script>
 
 <template>
     <v-list tag="ul" class="groups-list my-2">
         <v-list-item v-for="(group, i) in groupsSummaryForList" lines="three" tag="li" :key="group.id"
-            @click="handleGroupClick(group)">
+            @click="handleGroupClick(i)">
             <!-- Title -->
             <v-list-item-title>
                 {{ group.title }}

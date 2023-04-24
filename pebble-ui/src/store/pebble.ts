@@ -5,22 +5,25 @@ import useWalletStore from "./wallet";
 import { getGroupsFromLocalStorage, setGroupInLocalStorage } from "@utils/localStorage";
 import { Poller } from "@utils/poller";
 
+export interface IGroupSummary {
+    id: string;
+    creator: string;
+    allInvitesAccepted: boolean;
+    participants: Array<{
+        invitee: string;
+    }>;
+    messages: Array<{
+        id: string;
+        messageEnc: string;
+        sender: string;
+        timestamp: string
+    }>;
+}
+
 export interface IPebbleStoreState {
     pebbleClient: null | PebbleClient;
-    groupsSummary: Array<{
-        id: string;
-        creator: string;
-        allInvitesAccepted: boolean;
-        participants: Array<{
-            invitee: string;
-        }>;
-        messages: Array<{
-            id: string;
-            messageEnc: string;
-            sender: string;
-            timestamp: string
-        }>;
-    }>;
+    groupsSummary: Array<IGroupSummary>;
+    groupSelectedSummary: null | IGroupSummary;
     poller: null | Poller
 }
 
@@ -28,6 +31,7 @@ const usePebbleStore = defineStore("pebble", {
     state: (): IPebbleStoreState => ({
         pebbleClient: null,
         groupsSummary: [],
+        groupSelectedSummary: null,
         poller: null
     }),
     actions: {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IPebbleStoreState } from '@store/pebble';
 import { defineProps } from 'vue';
 import CreateNewGroup from "./create-new-group.vue";
 import GroupsList from './groups-list.vue';
@@ -12,7 +13,10 @@ const props = defineProps({
     }
 });
 
-// States
+// Emits
+const emit = defineEmits<{
+    (e: "groupClick", group: IPebbleStoreState["groupsSummary"][0]): void
+}>();
 
 </script>
 
@@ -24,7 +28,7 @@ const props = defineProps({
         </h1>
 
         <!-- List of groups -->
-        <GroupsList />
+        <GroupsList @groupClick="(group) => emit('groupClick', group)" />
 
         <!-- Create new group -->
         <CreateNewGroup />
