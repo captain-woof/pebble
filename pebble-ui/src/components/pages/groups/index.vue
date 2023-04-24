@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import FullPageSection from "@components/atoms/full-page-section.vue";
-import Contacts from "@components/molecules/contacts/index.vue";
+import Groups from "@components/molecules/groups/index.vue";
 import GroupChat from "@components/molecules/group-chat/index.vue";
 </script>
 
 <template>
     <FullPageSection class="full-page-section" spaceForNavbar>
-        <div class="contacts-page">
-            <!-- Contacts -->
-            <div class="contacts-page__contacts-container">
-                <Contacts />
+        <div class="groups-page">
+            <!-- Groups -->
+            <div class="groups-page__groups-container">
+                <Groups />
             </div>
 
             <!-- Group chat -->
-            <div class="contacts-page__group-chat-container">
+            <div class="groups-page__group-chat-container">
                 <GroupChat />
             </div>
         </div>
@@ -25,14 +25,15 @@ import GroupChat from "@components/molecules/group-chat/index.vue";
 
 .full-page-section {
     display: flex;
+    height: calc(100vh - 64px) !important;
 }
 
-.contacts-page {
+.groups-page {
     display: flex;
     align-items: center;
     width: 100%;
 
-    .contacts-page__contacts-container {
+    .groups-page__groups-container {
         flex-grow: 1;
         height: 100%;
 
@@ -42,7 +43,7 @@ import GroupChat from "@components/molecules/group-chat/index.vue";
         }
     }
 
-    .contacts-page__group-chat-container {
+    .groups-page__group-chat-container {
         flex-grow: 0;
         display: none;
         height: 100%;

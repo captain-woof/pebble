@@ -44,7 +44,7 @@ const WalletConnectPlugin: Plugin = {
 
             // Redirect based on connect status
             if (account.isConnected) {
-                await router.push({ name: "contacts" });
+                await router.push({ name: "groups" });
             } else {
                 await router.push({ name: "home" });
             }

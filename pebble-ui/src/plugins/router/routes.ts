@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import HomePage from "@components/pages/home/index.vue";
-import ContactsPage from "@components/pages/contacts/index.vue";
+import GroupsPage from "@components/pages/groups/index.vue";
 import GroupChatPage from "@components/pages/group-chat/index.vue";
 
 export const routes: Array<RouteRecordRaw> = [
@@ -11,11 +11,11 @@ export const routes: Array<RouteRecordRaw> = [
         path: "/"
     },
 
-    // Contacts
+    // Groups
     {
-        name: "contacts",
-        component: ContactsPage,
-        path: "/contacts"
+        name: "groups",
+        component: GroupsPage,
+        path: "/groups"
     },
 
     // Group chat

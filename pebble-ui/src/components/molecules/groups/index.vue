@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import CreateNewGroup from "./create-new-group.vue";
+import GroupsList from './groups-list.vue';
 
 // Props
 const props = defineProps({
@@ -16,13 +17,14 @@ const props = defineProps({
 </script>
 
 <template>
-    <component :is="props.tag" class="contacts">
+    <component :is="props.tag" class="groups">
         <!-- Heading -->
         <h1 class="text-h5">
-            Contacts
+            Groups
         </h1>
 
-        <!-- List of contacts -->
+        <!-- List of groups -->
+        <GroupsList />
 
         <!-- Create new group -->
         <CreateNewGroup />
@@ -30,10 +32,8 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-.contacts {
+.groups {
     height: 100%;
     position: relative;
-
-    
 }
 </style>

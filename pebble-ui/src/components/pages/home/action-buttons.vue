@@ -10,7 +10,7 @@ const router = useRouter();
 async function handleGetStarted() {
     // Redirect if connected
     if (walletStore.account?.isConnected) {
-        await router.push({ name: "contacts" });
+        await router.push({ name: "groups" });
     } else {
         await walletStore.web3Modal?.openModal();
     }

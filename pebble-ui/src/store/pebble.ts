@@ -8,7 +8,7 @@ import { Poller } from "@utils/poller";
 export interface IPebbleStoreState {
     pebbleClient: null | PebbleClient;
     groupsSummary: Array<{
-        id: string | number | BigNumber;
+        id: string;
         creator: string;
         allInvitesAccepted: boolean;
         participants: Array<{
@@ -18,7 +18,7 @@ export interface IPebbleStoreState {
             id: string;
             messageEnc: string;
             sender: string;
-            timestamp: string | number | BigNumber
+            timestamp: string
         }>;
     }>;
     poller: null | Poller
