@@ -73,12 +73,19 @@ async function handleCreateNewGroup() {
     <v-btn @click="handleCreateNewGroupDrawerOpen" icon="mdi-plus" class="create-new-group-btn"></v-btn>
 
     <!-- Drawer -->
-    <v-navigation-drawer v-model="showCreateNewGroupDrawer" tag="div" location="bottom" class="create-new-group-drawer"
-        :style="{ 'height': 'auto' }">
-        <!-- Heading -->
-        <h2 class="text-h5 pa-4">
-            Create group
-        </h2>
+    <v-navigation-drawer v-model="showCreateNewGroupDrawer" tag="div" location="bottom" temporary
+        class="create-new-group-drawer" :style="{ 'height': 'auto' }">
+        <!-- Header -->
+        <header class="d-flex align-center justify-space-between">
+            <!-- Heading -->
+            <h2 class="text-h5 pa-4">
+                Create group
+            </h2>
+
+            <!-- Close button -->
+            <v-btn @click="showCreateNewGroupDrawer = false" icon="mdi-close"></v-btn>
+        </header>
+
         <v-divider></v-divider>
 
         <!-- Input for participants -->
