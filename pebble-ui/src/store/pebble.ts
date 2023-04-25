@@ -18,12 +18,14 @@ export interface IGroupSummary {
         sender: string;
         timestamp: string
     }>;
+    detailsFetchedForFirstTime: boolean;
+    didAcceptGroupInvite: boolean;
 }
 
 export interface IPebbleStoreState {
     pebbleClient: null | PebbleClient;
     groupsSummary: Array<IGroupSummary>;
-    groupSelectedSummary: null | IGroupSummary;
+    groupSelected: null | IGroupSummary;
     poller: null | Poller
 }
 
@@ -31,7 +33,7 @@ const usePebbleStore = defineStore("pebble", {
     state: (): IPebbleStoreState => ({
         pebbleClient: null,
         groupsSummary: [],
-        groupSelectedSummary: null,
+        groupSelected: null,
         poller: null
     }),
     actions: {
@@ -41,7 +43,7 @@ const usePebbleStore = defineStore("pebble", {
                 const { groupId, privateKeyCreator } = await this.pebbleClient.createGroup(groupParticipantsOtherThanCreator);
 
                 setGroupInLocalStorage(walletStore.account?.address as string, groupId, privateKeyCreator);
-                await this.restartPoller();
+                this.restartPoller();
 
                 return {
                     groupId,
@@ -49,9 +51,36 @@ const usePebbleStore = defineStore("pebble", {
                 }
             }
         },
+        async acceptInvite() {
+            if (this.pebbleClient) {
+                await this.pebbleClient.acceptInviteToGroup(BigNumber.from(this.groupSelected?.id));
+                this.restartPoller();
+            }
+        },
         async fetchGroupsSummary() {
             if (this.pebbleClient) {
                 this.groupsSummary = await this.pebbleClient.fetchGroupsSummary();
+            }
+        },
+        async fetchGroupSelected() {
+            if (this.pebbleClient && this.groupSelected?.id) {
+                // Push necessary promises to resolve
+                const promises: Array<Promise<any>> = [];
+                promises.push(this.pebbleClient.fetchGroup(BigNumber.from(this.groupSelected.id)));
+                if (!this.groupSelected?.allInvitesAccepted && !this.groupSelected.didAcceptGroupInvite) {
+                    promises.push((async () => ({
+                        didAcceptGroupInvite: await this.pebbleClient?.didAcceptGroupInvite(BigNumber.from(this.groupSelected?.id)) ?? false
+                    }))());
+                }
+
+                // Resolve and combine results
+                const results = await Promise.all(promises);
+                const resultObj = results.reduce((obj, result) => ({ ...obj, ...result }), {});
+                this.groupSelected = {
+                    ...this.groupSelected,
+                    ...resultObj,
+                    detailsFetchedForFirstTime: true
+                };
             }
         },
         async startPoller() {
@@ -63,11 +92,15 @@ const usePebbleStore = defineStore("pebble", {
                 45 * 1000,
                 async () => {
                     await this.fetchGroupsSummary();
+
+                    if (this.groupSelected) {
+                        await this.fetchGroupSelected();
+                    }
                 }
             );
             this.poller.start(true);
         },
-        async restartPoller() {
+        restartPoller() {
             if (this.poller) {
                 this.poller.restart();
             }

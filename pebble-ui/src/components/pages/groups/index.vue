@@ -3,13 +3,27 @@ import FullPageSection from "@components/atoms/full-page-section.vue";
 import Groups from "@components/molecules/groups/index.vue";
 import GroupChat from "@components/molecules/group-chat/index.vue";
 import usePebbleStore, { IGroupSummary } from "@store/pebble";
+import { useDisplay } from "vuetify";
+import { useRouter } from "vue-router";
 
 // States
 const pebbleStore = usePebbleStore();
+const { mdAndUp } = useDisplay();
+const router = useRouter();
 
 // Methods
 function handleGroupClick(group: IGroupSummary) {
-    pebbleStore.groupSelectedSummary = group;
+    pebbleStore.groupSelected = group;
+
+    // Navigate to group-chat route if on phone
+    if (!mdAndUp.value) {
+        router.push({
+            name: "group-chat",
+            params: {
+                groupId: group.id
+            }
+        })
+    }
 }
 </script>
 

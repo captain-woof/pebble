@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import FullPageSection from "@components/atoms/full-page-section.vue";
-import { useRoute } from "vue-router";
-import { computed } from "vue";
-
-// States
-const route = useRoute();
-const groupId = computed(() => route.params.groupId ? parseInt(route.params.groupId as string) : null);
-
+import GroupChat from "@components/molecules/group-chat/index.vue"
 </script>
 
 <template>
-    <FullPageSection>
-        
+    <FullPageSection class="group-chat-page">
+        <GroupChat />
     </FullPageSection>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.group-chat-page {
+    height: 100%;
+}
+</style>
