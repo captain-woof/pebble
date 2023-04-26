@@ -24,7 +24,7 @@ const props = defineProps({
 .full-page-section {
     min-height: 100vh;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     padding: 0.5rem;
     margin: 0 auto;
     display: block;
