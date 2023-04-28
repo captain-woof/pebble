@@ -28,8 +28,8 @@
   "keywords": [
     "pebble",
     "pebble-protocol",
-    "messaging-protocol",
-    "message-on-blockchain",
+    "chat-protocol",
+    "group-chat-on-blockchain",
     "multiple-participants-messaging"
   ],
   "author": "Sohail Saha <captainwoof.official@gmail.com>",
