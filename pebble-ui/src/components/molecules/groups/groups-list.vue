@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import usePebbleStore from '@store/pebble';
+import { utils } from 'ethers';
 import { computed, defineEmits } from 'vue';
 import { shortenAddress, convertUnixSecsToHumanFormatDateTime, convertUnixSecsToTimeFromNow } from "@utils/string";
+import useWalletStore from '@store/wallet';
 
 // States
+const walletStore = useWalletStore();
 const pebbleStore = usePebbleStore();
 const groupsSummaryForList = computed(() => pebbleStore.groupsSummary.map(({ participants, messages, id, creator, allInvitesAccepted }) => ({
     id,
-    title: participants.reduce((titlePartial, { invitee }, i) => (`${titlePartial}, ${shortenAddress(invitee)}`), "You"),
+    title: [
+        creator,
+        ...participants.map(({ invitee }) => invitee)
+    ]
+        .filter((address) => utils.getAddress(address) !== walletStore.account?.address)
+        .map(shortenAddress)
+        .join(", "),
     subtitle: !allInvitesAccepted
         ? "Awaiting participants to accept invites"
         : (
