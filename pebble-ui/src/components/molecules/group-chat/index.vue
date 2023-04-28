@@ -4,6 +4,7 @@ import { computed, watch } from "vue";
 import usePebbleStore from "@store/pebble";
 import Loader from "./loader.vue";
 import AcceptInvite from "./accept-invite.vue";
+import Messages from "./messages.vue";
 
 // States
 const route = useRoute();
@@ -28,8 +29,8 @@ watch(groupId, async (groupIdNew, groupIdOld) => {
             }
         }
 
-        // Start syncing group details by restarting Poller on demand
-        await pebbleStore.restartPoller();
+        // Start syncing group details
+        pebbleStore.startPoller();
     }
 }, { immediate: true });
 </script>
@@ -43,6 +44,7 @@ watch(groupId, async (groupIdNew, groupIdOld) => {
         <AcceptInvite v-else-if="showAcceptInvite" />
 
         <!-- Messages -->
+        <Messages v-else />
     </div>
 </template>
 

@@ -22,7 +22,7 @@ async function handleAcceptInvite() {
 </script>
 
 <template>
-    <div class="accept-invite pa-4">
+    <div class="accept-invite pa-2 pa-sm-4">
         <!-- Waiting for everyone to accept invite -->
         <div v-if="didAcceptGroupInvite" class="accept-invite__waiting-for-everyone">
             <v-progress-circular indeterminate></v-progress-circular>

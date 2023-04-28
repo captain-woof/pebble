@@ -28,7 +28,7 @@ const emit = defineEmits<{
         </h1>
 
         <!-- List of groups -->
-        <GroupsList @groupClick="(group) => emit('groupClick', group)" />
+        <GroupsList @groupClick="(group: any) => emit('groupClick', group)" />
 
         <!-- Create new group -->
         <CreateNewGroup />
