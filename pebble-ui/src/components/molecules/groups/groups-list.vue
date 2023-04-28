@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import usePebbleStore from '@store/pebble';
 import { computed, defineEmits } from 'vue';
-import { shortenAddress } from "@utils/string";
+import { shortenAddress, convertUnixSecsToHumanFormat, convertUnixSecsToTimeFromNow } from "@utils/string";
 
 // States
 const pebbleStore = usePebbleStore();
@@ -11,7 +11,7 @@ const groupsSummaryForList = computed(() => pebbleStore.groupsSummary.map(({ par
     subtitle: !allInvitesAccepted
         ? "Awaiting participants to accept invites"
         : (
-            messages[0]?.timestamp ? `${new Date(messages[0].timestamp as string).toLocaleTimeString()} • ${shortenAddress(messages[0].sender)}` : "No messages yet"
+            messages[0]?.timestamp ? `${convertUnixSecsToTimeFromNow(messages[0]?.timestamp)} • ${shortenAddress(messages[0].sender)}` : "No messages yet"
         ),
     allInvitesAccepted
 })));
