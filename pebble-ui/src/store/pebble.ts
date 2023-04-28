@@ -27,7 +27,8 @@ export interface IPebbleStoreState {
     groupsSummary: Array<IGroupSummary>;
     groupSelected: null | IGroupSummary;
     groupSelectedSharedKey: null | bigint;
-    poller: null | Poller
+    poller: null | Poller;
+    lastPollAtSecs: null | number; // Null = poll in progress
 }
 
 const usePebbleStore = defineStore("pebble", {
@@ -36,7 +37,8 @@ const usePebbleStore = defineStore("pebble", {
         groupsSummary: [],
         groupSelected: null,
         groupSelectedSharedKey: null,
-        poller: null
+        poller: null,
+        lastPollAtSecs: null
     }),
     actions: {
         async createGroup(groupParticipantsOtherThanCreator: Array<string>) {
@@ -133,14 +135,24 @@ const usePebbleStore = defineStore("pebble", {
             this.poller = new Poller(
                 30 * 1000,
                 async () => {
-                    await this.fetchGroupsSummary();
+                    const lastPollAtSecsPrev = this.lastPollAtSecs;
 
-                    if (this.groupSelected) {
-                        if (!this.groupSelectedSharedKey) {
-                            await this.calculateSharedKeyForSelectedGroup();
+                    try {
+                        this.lastPollAtSecs = null; // Poll start
+
+                        await this.fetchGroupsSummary();
+
+                        if (this.groupSelected) {
+                            if (!this.groupSelectedSharedKey) {
+                                await this.calculateSharedKeyForSelectedGroup();
+                            }
+
+                            await this.fetchGroupSelected();
                         }
 
-                        await this.fetchGroupSelected();
+                        this.lastPollAtSecs = Math.round(Date.now() / 1000); // Poll end   
+                    } catch (error) {
+                        this.lastPollAtSecs = lastPollAtSecsPrev; // Poll time undo
                     }
                 }
             );

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, onUpdated } from "vue";
 import usePebbleStore from "@store/pebble";
 import { decryptMessageWithSharedKey, convertHexToBase64 } from "@pebble/sdk";
 import useWalletStore from "@store/wallet";
 import { utils } from "ethers";
-import { convertUnixSecsToHumanFormat } from "@utils/string";
+import { convertUnixSecsToHumanFormatDateTime, convertUnixSecsToHumanFormatTime } from "@utils/string";
 
 // Interface
 interface IMessagesPlainText {
@@ -36,7 +36,7 @@ watch(() => pebbleStore.groupSelected?.messages, (messagesEncNew, messagesEncPre
             sender: utils.getAddress(messageEnc.sender),
             messagePlaintext: decryptMessage(messageEnc.messageEnc),
             own: walletStore.account?.address === utils.getAddress(messageEnc.sender),
-            timestamp: convertUnixSecsToHumanFormat(messageEnc.timestamp)
+            timestamp: convertUnixSecsToHumanFormatDateTime(messageEnc.timestamp)
         }));
 
     if (messagesToPush.length !== 0) {
@@ -44,6 +44,10 @@ watch(() => pebbleStore.groupSelected?.messages, (messagesEncNew, messagesEncPre
     }
 }, { immediate: true, deep: true });
 
+// Methods
+onUpdated(() => {
+    scrollLastMessageIntoView();
+});
 
 function scrollLastMessageIntoView() {
     if (autoScroll.value) {
@@ -77,12 +81,36 @@ async function handleSendMessage() {
 <template>
     <div class="messages w-100 px-2 px-sm-4">
         <!-- Heading -->
-        <h1 class="text-h5">
+        <h1 class="messages__heading text-h5">
             Group #{{ pebbleStore.groupSelected?.id }}
         </h1>
 
+        <!-- Menu bar -->
+        <div class="messages__menu-bar">
+            <!-- Auto scroll -->
+            <v-checkbox label="Auto-scroll" v-model="autoScroll" class="messages__menu-bar__auto-scroll"
+                density="compact"></v-checkbox>
+
+            <!-- Last poll / Polling stat -->
+            <div class="messages__menu-bar__poll-stat">
+                <!-- Last poll + Poll manually -->
+                <div v-if="pebbleStore.lastPollAtSecs" class="messages__menu-bar__poll-stat__last-sync">
+                    <p class="messages__menu-bar__poll-stat__in-progress__text text-caption">Last sync at {{
+                        convertUnixSecsToHumanFormatTime(pebbleStore.lastPollAtSecs.toString()) }}</p>
+                    <v-btn icon="mdi-reload" class="ml-1" size="x-small" variant="plain" @click="pebbleStore.restartPoller"></v-btn>
+                </div>
+
+                <!-- Poll in progress -->
+                <div v-else class="messages__menu-bar__poll-stat__in-progress">
+                    <p class="messages__menu-bar__poll-stat__in-progress__text text-caption">Syncing</p>
+                    <v-progress-circular class="ml-1" indeterminate size="12" width="2"></v-progress-circular>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Messages list -->
-        <div class="messages__list w-100" @scroll="handleMessagesScroll">
+        <div class="messages__list w-100">
             <div v-for="(messageForDisplay, i) in messagesForDisplay"
                 class="messages__list__message mb-4 bg-background-elevated px-4 py-2 rounded-lg"
                 :class="{ 'messages__list__message--own': messageForDisplay.own, 'messages__list__message--last': i === messagesForDisplay.length - 1 }"
@@ -119,6 +147,32 @@ async function handleSendMessage() {
     position: relative;
     display: flex;
     flex-direction: column;
+
+    .messages__menu-bar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .messages__menu-bar__poll-stat {
+            margin: 0 0 0 auto;
+
+            .messages__menu-bar__poll-stat__last-sync {
+                display: flex;
+                align-items: center;
+            }
+
+            .messages__menu-bar__poll-stat__in-progress {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .messages__menu-bar__auto-scroll {
+            width: fit-content;
+            flex-grow: 0;
+        }
+    }
 
     .messages__list {
         flex-grow: 1;

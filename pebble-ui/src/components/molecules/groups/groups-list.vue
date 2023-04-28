@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import usePebbleStore from '@store/pebble';
 import { computed, defineEmits } from 'vue';
-import { shortenAddress, convertUnixSecsToHumanFormat, convertUnixSecsToTimeFromNow } from "@utils/string";
+import { shortenAddress, convertUnixSecsToHumanFormatDateTime, convertUnixSecsToTimeFromNow } from "@utils/string";
 
 // States
 const pebbleStore = usePebbleStore();
