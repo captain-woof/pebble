@@ -6,10 +6,12 @@ import { alchemyProvider } from "@wagmi/core/providers/alchemy";
 import { polygonMumbai } from '@wagmi/core/chains';
 import useWalletStore from "@store/wallet";
 import { Router } from "vue-router";
+import usePebbleStore from "@store/pebble";
 
 const WalletConnectPlugin: Plugin = {
     install(app, ...options: [Router]) {
         // Constants
+        const pebbleStore = usePebbleStore();
         const walletStore = useWalletStore();
         const router = options[0];
 
@@ -58,6 +60,8 @@ const WalletConnectPlugin: Plugin = {
                 await router.push({ name: "groups" });
             } else {
                 await router.push({ name: "home" });
+                pebbleStore.stopPoller();
+                pebbleStore.deselectGroupSelected();
             }
         });
     },

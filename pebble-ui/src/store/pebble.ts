@@ -41,6 +41,10 @@ const usePebbleStore = defineStore("pebble", {
         lastPollAtSecs: null
     }),
     actions: {
+        deselectGroupSelected() {
+            this.groupSelected = null;
+            this.groupSelectedSharedKey = null;
+        },
         async createGroup(groupParticipantsOtherThanCreator: Array<string>) {
             if (this.pebbleClient) {
                 const { groupId, privateKeyCreator } = await this.pebbleClient.createGroup(groupParticipantsOtherThanCreator);
@@ -127,7 +131,7 @@ const usePebbleStore = defineStore("pebble", {
                 }
             }
         },
-        async startPoller() {
+        startPoller() {
             if (this.poller) {
                 this.poller.stop();
             }
@@ -161,6 +165,11 @@ const usePebbleStore = defineStore("pebble", {
         restartPoller() {
             if (this.poller) {
                 this.poller.restart();
+            }
+        },
+        stopPoller() {
+            if (this.poller) {
+                this.poller.stop();
             }
         }
     }
