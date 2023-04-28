@@ -1,5 +1,9 @@
 {
-  "name": "@pebble/sdk",
+  "name": "pebble-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/captain-woof/pebble.git"
+  },
   "version": "1.0.0",
   "type": "module",
   "files": [
@@ -28,8 +32,8 @@
   "keywords": [
     "pebble",
     "pebble-protocol",
-    "messaging-protocol",
-    "message-on-blockchain",
+    "chat-protocol",
+    "group-chat-on-blockchain",
     "multiple-participants-messaging"
   ],
   "author": "Sohail Saha <captainwoof.official@gmail.com>",
