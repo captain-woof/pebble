@@ -51,7 +51,7 @@ export function encryptMessageWithSharedKey(message: string, key: bigint) {
 
 /**
  * @dev Decrypt a message with shared key
- * @param messageEnc Message to decrypt
+ * @param messageEnc Message to decrypt (base64)
  * @param key Shared key
  * @returns Decrypted message in plaintext
  */
@@ -66,4 +66,17 @@ export function decryptMessageWithSharedKey(messageEnc: string, key: bigint) {
  */
 export function convertBase64ToHex(b64Text: string) {
     return `0x${enc.Hex.stringify(enc.Base64.parse(b64Text))}`;
+}
+
+/**
+ * @dev Converts a Hex encoded string to Base64 encoded one
+ * @param hexText Hex text to convert
+ * @returns Base64 string
+ */
+export function convertHexToBase64(hexText: string) {
+    return enc.Base64.stringify(enc.Hex.parse(
+        hexText.startsWith("0x")
+            ? hexText.slice(2)
+            : hexText
+    ));
 }

@@ -56,3 +56,9 @@ export async function deployPebbleProxy(pebbleContractImplAddr: string) {
     // Return
     return pebbleContractProxy;
 }
+
+export function waitForSecs(secsToWait: number) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, secsToWait * 1000);
+    });
+}

@@ -10,12 +10,14 @@ export class PebbleClient {
     signer: Signer;
     pebbleContract: Pebble;
     blockConfirmations: number;
+    graphQueryUrl: string;
 
     // Constructor
     constructor({ config, contracts }: IPebbleClient) {
         this.signer = config.signer;
         this.blockConfirmations = config.blockConfirmations ?? 1;
         this.pebbleContract = new Contract(contracts.pebbleContractAddr, PEBBLE_ABI, this.signer) as Pebble;
+        this.graphQueryUrl = config.graphQueryUrl;
     }
 
     /**
@@ -84,6 +86,17 @@ export class PebbleClient {
         return {
             penultimateSharedKeysX, penultimateSharedKeysY
         };
+    }
+
+    /**
+     * @dev Returns `true`, if signer accepted a group's invitation
+     * @param groupId Group id to check in
+     */
+    async didAcceptGroupInvite(groupId: BigNumber) {
+        return await this.pebbleContract.didParticipantAcceptGroupInvite(
+            groupId,
+            await this.signer.getAddress()
+        );
     }
 
     /**
@@ -169,6 +182,7 @@ export class PebbleClient {
      * @param groupId Group id to send message in
      * @param message Message to send (plaintext)
      * @param sharedKey Shared key to use; use `calculateSharedKeyForGroup()` to pre-calculate this
+     * @param messageEncHex Encrypted message, in hex format (0x...)
      */
     async sendMessage(groupId: BigNumber, message: string, sharedKey: BigNumber) {
         // Encrypt message
@@ -185,6 +199,125 @@ export class PebbleClient {
             throw (Error("Incorrect message sent"));
         }
 
-        return true;
+        return messageEncHex;
+    }
+
+    /**
+     * @dev Fetches array of summary groups that signer is in, including last 3 messages
+     * @param pageNum Page number of data to fetch, starting from 0; set -1 to disable pagination
+     * @param pageSize Page size of data to fetch; set -1 to disable pagination
+     * @returns Array of groups
+     */
+    async fetchGroupsSummary(pageNum = -1, pageSize = -1) {
+        const signerPublicAddress = await this.signer.getAddress();
+
+        const signerPart = `{ or: [{ creator: "${signerPublicAddress}" }, { participants_: { invitee: "${signerPublicAddress}" } }] }`;
+        const paginationPart = `, first: ${pageSize}, orderBy: id, orderDirection: asc, skip: ${pageNum * pageSize}`;
+
+        const queryGraphql = `{
+            groups(where: ${signerPart}${pageNum === -1 ? "" : paginationPart}){
+                id
+                creator
+                allInvitesAccepted
+                participants {
+                    invitee
+                }
+                messages(orderBy: timestamp, orderDirection: desc, first: 3) {
+                    id
+                    messageEnc
+                    sender
+                    timestamp
+                }
+            }
+        }`;
+        const query = {
+            query: `query MyQuery ${queryGraphql}`,
+            operationName: "MyQuery"
+        };
+
+        const resp = await fetch(this.graphQueryUrl, {
+            method: "POST",
+            mode: "cors",
+            credentials: "omit",
+            headers: {
+                "accept": "application/json, multipart/mixed",
+                "accept-language": "en-US,en-IN;q=0.9,en;q=0.8",
+                "cache-control": "no-cache",
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(query)
+        });
+
+        return (((await resp.json())?.data?.groups) ?? []) as Array<{
+            id: string;
+            creator: string;
+            allInvitesAccepted: boolean;
+            participants: Array<{
+                invitee: string;
+            }>;
+            messages: Array<{
+                id: string;
+                messageEnc: string;
+                sender: string;
+                timestamp: string
+            }>;
+        }>;
+    }
+
+    /**
+     * @dev Fetches array of groups that signer is in
+     * @param groupId Group ID to fetch
+     * @returns Array of groups
+     */
+    async fetchGroup(groupId: BigNumber) {
+        const queryGraphql = `{
+            group(id: ${groupId.toString()}){
+                id
+                creator
+                allInvitesAccepted
+                participants {
+                    invitee
+                }
+                messages(orderBy: timestamp, orderDirection: asc) {
+                    id
+                    messageEnc
+                    sender
+                    timestamp
+                }
+            }
+        }`;
+
+        const query = {
+            query: `query MyQuery ${queryGraphql}`,
+            operationName: "MyQuery"
+        };
+
+        const resp = await fetch(this.graphQueryUrl, {
+            method: "POST",
+            mode: "cors",
+            credentials: "omit",
+            headers: {
+                "accept": "application/json, multipart/mixed",
+                "accept-language": "en-US,en-IN;q=0.9,en;q=0.8",
+                "cache-control": "no-cache",
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(query)
+        });
+
+        return (((await resp.json())?.data?.group) ?? {}) as {
+            id: string;
+            creator: string;
+            allInvitesAccepted: boolean;
+            participants: Array<{
+                invitee: string;
+            }>;
+            messages: Array<{
+                id: string;
+                messageEnc: string;
+                sender: string;
+                timestamp: string
+            }>;
+        };
     }
 }

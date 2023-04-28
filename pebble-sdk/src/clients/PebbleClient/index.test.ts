@@ -4,7 +4,7 @@ import { ContractFactory } from "ethers";
 import PEBBLE from "abi/Pebble.json";
 import { Pebble__factory } from "types/pebble-contracts/factories/Pebble__factory";
 import { PebbleClient } from "./";
-import { decryptMessageWithSharedKey, encryptMessageWithSharedKey } from "./utils";
+import { convertHexToBase64, decryptMessageWithSharedKey, encryptMessageWithSharedKey } from "./utils";
 
 /**
  * Runs tests for Pebble Client
@@ -32,7 +32,8 @@ describe("PebbleClient", () => {
         const groupCreatorSigner = signersTest[1];
         const pebbleClientGroupCreator = new PebbleClient({
             config: {
-                signer: groupCreatorSigner
+                signer: groupCreatorSigner,
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -65,7 +66,8 @@ describe("PebbleClient", () => {
         const groupCreatorSigner = signersTest[1];
         const pebbleClientGroupCreator = new PebbleClient({
             config: {
-                signer: groupCreatorSigner
+                signer: groupCreatorSigner,
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -79,7 +81,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 1
         const pebbleClientGroupParticipant1 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[0]
+                signer: groupParticipantsOtherThanCreatorSigners[0],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -90,7 +93,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 2
         const pebbleClientGroupParticipant2 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[1]
+                signer: groupParticipantsOtherThanCreatorSigners[1],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -112,7 +116,8 @@ describe("PebbleClient", () => {
         const groupCreatorSigner = signersTest[1];
         const pebbleClientGroupCreator = new PebbleClient({
             config: {
-                signer: groupCreatorSigner
+                signer: groupCreatorSigner,
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -126,7 +131,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 1
         const pebbleClientGroupParticipant1 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[0]
+                signer: groupParticipantsOtherThanCreatorSigners[0],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -137,7 +143,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 2
         const pebbleClientGroupParticipant2 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[1]
+                signer: groupParticipantsOtherThanCreatorSigners[1],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -197,7 +204,8 @@ describe("PebbleClient", () => {
         const groupCreatorSigner = signersTest[1];
         const pebbleClientGroupCreator = new PebbleClient({
             config: {
-                signer: groupCreatorSigner
+                signer: groupCreatorSigner,
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -211,7 +219,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 1
         const pebbleClientGroupParticipant1 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[0]
+                signer: groupParticipantsOtherThanCreatorSigners[0],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -222,7 +231,8 @@ describe("PebbleClient", () => {
         // Accept invite - participant 2
         const pebbleClientGroupParticipant2 = new PebbleClient({
             config: {
-                signer: groupParticipantsOtherThanCreatorSigners[1]
+                signer: groupParticipantsOtherThanCreatorSigners[1],
+                graphQueryUrl: ""
             },
             contracts: {
                 pebbleContractAddr: pebbleContract.address
@@ -235,6 +245,20 @@ describe("PebbleClient", () => {
 
         // Send message
         const message = "SOME PLAINTEXT MESSAGE";
-        await expect(pebbleClientGroupCreator.sendMessage(groupId, message, sharedKeyGroupCreator)).resolves.toBeTruthy();
+        const messageEncHex = await pebbleClientGroupCreator.sendMessage(groupId, message, sharedKeyGroupCreator);
+
+        // Check if message can be decrypted successfully
+        const messagePlaintext = decryptMessageWithSharedKey(
+            convertHexToBase64(messageEncHex),
+            BigInt(sharedKeyGroupCreator.toString())
+        );
+
+        expect(messagePlaintext).toEqual(message);
+
+        console.log({
+            messagePlaintext,
+            privateKeyCreator: privateKeyCreator.toString(),
+            sharedKeyGroupCreator: sharedKeyGroupCreator.toString()
+        });
     });
 });

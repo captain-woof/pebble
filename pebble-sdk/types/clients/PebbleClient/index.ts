@@ -7,5 +7,6 @@ export interface IPebbleClient {
     config: {
         signer: Signer;
         blockConfirmations?: number;
+        graphQueryUrl: string;
     }
 }
