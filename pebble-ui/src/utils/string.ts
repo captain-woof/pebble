@@ -1,5 +1,6 @@
 import dayJs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { utils } from "ethers";
 
 dayJs.extend(relativeTime);
 
@@ -9,8 +10,9 @@ dayJs.extend(relativeTime);
  * @returns Shortened address
  */
 export function shortenAddress(address: string) {
-    const firstPart = address.slice(0, 6);
-    const lastPart = address.slice(address.length - 2, address.length);
+    const addressChecksummed = utils.getAddress(address);
+    const firstPart = addressChecksummed.slice(0, 6);
+    const lastPart = addressChecksummed.slice(addressChecksummed.length - 2, addressChecksummed.length);
     return `${firstPart}...${lastPart}`;
 }
 

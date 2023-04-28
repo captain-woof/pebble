@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import useWalletStore from '@store/wallet';
 import { disconnect } from "@wagmi/core";
+import { shortenAddress } from '@utils/string';
 
 // States
 const walletStore = useWalletStore();
@@ -9,7 +10,7 @@ const isLoading = computed(() => walletStore.account?.isConnecting || walletStor
 const buttonText = computed(() => {
     switch (walletStore.account?.status) {
         case "connected":
-            return `Connected: ${walletStore.account.address.slice(0, 7)}...`;
+            return `Connected: ${shortenAddress(walletStore.account.address)}`;
         case "connecting":
         case "reconnecting":
             return "Connecting";
