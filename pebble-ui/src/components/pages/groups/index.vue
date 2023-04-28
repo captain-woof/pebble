@@ -36,7 +36,7 @@ function handleGroupClick(group: IGroupSummary) {
             </div>
 
             <!-- Group chat -->
-            <div class="groups-page__group-chat-container">
+            <div v-if="pebbleStore.groupSelected" class="groups-page__group-chat-container">
                 <GroupChat />
             </div>
         </div>
