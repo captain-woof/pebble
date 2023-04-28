@@ -38,27 +38,29 @@ async function handleGroupClick(groupIndex: number) {
 
 <template>
     <v-list tag="ul" class="groups-list my-2">
-        <v-list-item v-for="(group, i) in groupsSummaryForList" lines="three" tag="li" :key="group.id"
-            @click="handleGroupClick(i)">
-            <!-- Title -->
-            <v-list-item-title>
-                {{ group.title }}
-            </v-list-item-title>
+        <div v-for="(group, i) in groupsSummaryForList">
+            <!-- Group details -->
+            <v-list-item lines="three" tag="li" :key="group.id" @click="handleGroupClick(i)">
+                <!-- Title -->
+                <v-list-item-title>
+                    {{ group.title }}
+                </v-list-item-title>
 
-            <!-- Subtitle -->
-            <v-list-item-subtitle>
-                <span>
-                    {{ group.subtitle }}
-                </span>
+                <!-- Subtitle -->
+                <v-list-item-subtitle>
+                    <span>
+                        {{ group.subtitle }}
+                    </span>
 
-                <!-- Loader, if needed -->
-                <v-progress-circular v-if="!group.allInvitesAccepted" indeterminate size="12" width="1"
-                    class="ml-1"></v-progress-circular>
-            </v-list-item-subtitle>
+                    <!-- Loader, if needed -->
+                    <v-progress-circular v-if="!group.allInvitesAccepted" indeterminate size="12" width="1"
+                        class="ml-1"></v-progress-circular>
+                </v-list-item-subtitle>
+            </v-list-item>
 
             <!-- Divider, if needed -->
             <v-divider v-if="i !== groupsSummaryForList.length - 1"></v-divider>
-        </v-list-item>
+        </div>
     </v-list>
 </template>
 
