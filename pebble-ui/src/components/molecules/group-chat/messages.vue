@@ -67,6 +67,8 @@ function decryptMessage(messageEnc: string) {
 }
 
 async function handleSendMessage() {
+    if (!messageToSend.value) return;
+
     try {
         sendingMessage.value = true;
         await pebbleStore.sendMessage(messageToSend.value);
@@ -98,7 +100,8 @@ async function handleSendMessage() {
                 <div v-if="pebbleStore.lastPollAtSecs" class="messages__menu-bar__poll-stat__last-sync">
                     <p class="messages__menu-bar__poll-stat__in-progress__text text-caption">Last sync at {{
                         convertUnixSecsToHumanFormatTime(pebbleStore.lastPollAtSecs.toString()) }}</p>
-                    <v-btn icon="mdi-reload" class="ml-1" size="x-small" variant="plain" @click="pebbleStore.restartPoller"></v-btn>
+                    <v-btn icon="mdi-reload" class="ml-1" size="x-small" variant="plain"
+                        @click="pebbleStore.restartPoller"></v-btn>
                 </div>
 
                 <!-- Poll in progress -->
