@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onUpdated } from "vue";
+import { ref, watch, onUpdated, onMounted } from "vue";
 import usePebbleStore from "@store/pebble";
 import { decryptMessageWithSharedKey, convertHexToBase64 } from "@pebble/sdk";
 import useWalletStore from "@store/wallet";
@@ -45,8 +45,9 @@ watch(() => pebbleStore.groupSelected?.messages, (messagesEncNew, messagesEncPre
 }, { immediate: true, deep: true });
 
 // Methods
-onUpdated(() => {
-    scrollLastMessageIntoView();
+onUpdated(scrollLastMessageIntoView);
+onMounted(() => {
+    setTimeout(scrollLastMessageIntoView, 500);
 });
 
 function scrollLastMessageIntoView() {
