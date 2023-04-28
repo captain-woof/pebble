@@ -185,6 +185,7 @@ async function handleSendMessage() {
         flex-direction: column;
 
         .messages__list__message {
+            width: fit-content;
 
             &--own {
                 margin-left: auto;
