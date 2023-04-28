@@ -49,9 +49,17 @@ watch(groupId, async (groupIdNew, groupIdOld) => {
 </template>
 
 <style lang="scss" scoped>
+@use "@styles/_devices.scss";
+
 .group-chat {
-    height: 100%;
     width: 100%;
     position: relative;
+    margin-top: 64px;
+    height: calc(100vh - 64px - 1.5rem);
+
+    @include devices.lg-tablet-and-desktop {
+        height: 100%;
+        margin-top: unset;
+    }
 }
 </style>
