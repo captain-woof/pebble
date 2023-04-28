@@ -89,8 +89,9 @@ async function handleCreateNewGroup() {
         <v-divider></v-divider>
 
         <!-- Input for participants -->
-        <v-combobox v-model="participants" class="pa-4" label="Participants to invite" chips multiple :scrim="false"
-            clearable closable-chips prepend-inner-icon="mdi-account-multiple-plus-outline" focused
+        <v-combobox v-model="participants" class="pa-4" label="Participants to invite" chips multiple
+            :disabled="createGroupInProgress" :scrim="false" clearable closable-chips
+            prepend-inner-icon="mdi-account-multiple-plus-outline" focused
             :hint="`Addresses must be on ${walletStore.network?.name}`" :error="!!createGroupErrorMessage"
             :error-messages="createGroupErrorMessage" @click:clear="handleClear"></v-combobox>
 
