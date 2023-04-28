@@ -1,7 +1,7 @@
 import { Plugin } from "vue";
 import { watchAccount, fetchSigner } from "@wagmi/core";
 import usePebbleStore from "@store/pebble";
-import { PebbleClient } from "@pebble/sdk";
+import { PebbleClient } from "pebble-sdk";
 
 const pebblePlugin: Plugin = {
     install(app, ...options) {

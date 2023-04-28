@@ -1,4 +1,4 @@
-import { PebbleClient } from "@pebble/sdk";
+import { PebbleClient } from "pebble-sdk";
 import { defineStore } from "pinia";
 import { BigNumber } from "ethers";
 import useWalletStore from "./wallet";

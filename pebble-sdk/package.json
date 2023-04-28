@@ -1,5 +1,9 @@
 {
-  "name": "@pebble/sdk",
+  "name": "pebble-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/captain-woof/pebble.git"
+  },
   "version": "1.0.0",
   "type": "module",
   "files": [

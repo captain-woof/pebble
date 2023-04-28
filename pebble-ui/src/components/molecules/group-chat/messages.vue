@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onUpdated, onMounted } from "vue";
 import usePebbleStore from "@store/pebble";
-import { decryptMessageWithSharedKey, convertHexToBase64 } from "@pebble/sdk";
+import { decryptMessageWithSharedKey, convertHexToBase64 } from "pebble-sdk";
 import useWalletStore from "@store/wallet";
 import { utils } from "ethers";
 import { convertUnixSecsToHumanFormatDateTime, convertUnixSecsToHumanFormatTime } from "@utils/string";
