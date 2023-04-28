@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 import { computed, watch } from "vue";
 import usePebbleStore from "@store/pebble";
-import Loader from "./loader.vue";
+import Loader from "@components/atoms/loader.vue";
 import AcceptInvite from "./accept-invite.vue";
 import Messages from "./messages.vue";
 

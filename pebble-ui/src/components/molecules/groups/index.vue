@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { IPebbleStoreState } from '@store/pebble';
-import { defineProps } from 'vue';
+import Loader from '@components/atoms/loader.vue';
+import usePebbleStore, { IPebbleStoreState } from '@store/pebble';
+import { defineProps, computed } from 'vue';
 import CreateNewGroup from "./create-new-group.vue";
 import GroupsList from './groups-list.vue';
 
@@ -12,6 +13,10 @@ const props = defineProps({
         type: String
     }
 });
+
+// States
+const pebbleStore = usePebbleStore();
+const showGroupsList = computed(() => pebbleStore.groupsSummary.length !== 0);
 
 // Emits
 const emit = defineEmits<{
@@ -28,7 +33,8 @@ const emit = defineEmits<{
         </h1>
 
         <!-- List of groups -->
-        <GroupsList @groupClick="(group: any) => emit('groupClick', group)" />
+        <GroupsList v-if="showGroupsList" @groupClick="(group: any) => emit('groupClick', group)" />
+        <Loader v-else />
 
         <!-- Create new group -->
         <CreateNewGroup />
