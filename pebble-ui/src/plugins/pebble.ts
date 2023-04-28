@@ -21,7 +21,7 @@ const pebblePlugin: Plugin = {
                 });
 
                 // Start poller based on connect status
-                await pebbleStore.startPoller();
+                pebbleStore.startPoller();
             } else {
                 pebbleStore.pebbleClient = null;
             }

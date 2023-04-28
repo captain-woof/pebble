@@ -51,6 +51,7 @@ const usePebbleStore = defineStore("pebble", {
 
                 const walletStore = useWalletStore();
                 setGroupInLocalStorage(walletStore.account?.address as string, groupId, privateKeyCreator);
+                
                 this.restartPoller();
 
                 return {
@@ -66,8 +67,7 @@ const usePebbleStore = defineStore("pebble", {
 
                 const walletStore = useWalletStore();
                 setGroupInLocalStorage(walletStore.account?.address as string, groupId, privKeyParticipant);
-                this.restartPoller();
-
+                
                 this.restartPoller();
             }
         },
@@ -80,9 +80,9 @@ const usePebbleStore = defineStore("pebble", {
                     messagePlaintext,
                     BigNumber.from(this.groupSelectedSharedKey)
                 );
-            }
 
-            this.restartPoller();
+                this.restartPoller();
+            }
         },
         async fetchGroupsSummary() {
             if (this.pebbleClient) {
@@ -132,9 +132,7 @@ const usePebbleStore = defineStore("pebble", {
             }
         },
         startPoller() {
-            if (this.poller) {
-                this.poller.stop();
-            }
+            this.stopPoller();
 
             this.poller = new Poller(
                 30 * 1000,
