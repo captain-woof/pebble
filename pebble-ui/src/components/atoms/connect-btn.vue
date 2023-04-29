@@ -21,17 +21,20 @@ const buttonText = computed(() => {
 });
 
 // Methods
-async function handleConnectBtnClick() {
+function handleConnectBtnClick() {
     if (walletStore.account?.isDisconnected) {
         walletStore.web3Modal?.openModal();
     } else if (walletStore.account?.isConnected) {
-        await disconnect();
+        walletStore.web3Modal?.openModal({
+            route: "Account"
+        });
     }
 }
 </script>
 
 <template>
-    <v-btn :loading="isLoading" @click.stop="handleConnectBtnClick" variant="elevated" prepend-icon="mdi-wallet-bifold-outline">
+    <v-btn :loading="isLoading" @click.stop="handleConnectBtnClick" variant="elevated"
+        prepend-icon="mdi-wallet-bifold-outline">
         {{ buttonText }}
 
         <template #loader>
