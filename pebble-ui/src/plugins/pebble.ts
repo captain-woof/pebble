@@ -8,6 +8,8 @@ const pebblePlugin: Plugin = {
         const pebbleStore = usePebbleStore();
 
         watchAccount(async (account) => {
+            pebbleStore.resetStore();
+
             if (account.isConnected) {
                 pebbleStore.pebbleClient = new PebbleClient({
                     contracts: {
@@ -23,7 +25,7 @@ const pebblePlugin: Plugin = {
                 // Start poller based on connect status
                 pebbleStore.startPoller();
             } else {
-                pebbleStore.pebbleClient = null;
+
             }
         });
     },

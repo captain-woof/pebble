@@ -60,8 +60,6 @@ const WalletConnectPlugin: Plugin = {
                 await router.push({ name: "groups" });
             } else {
                 await router.push({ name: "home" });
-                pebbleStore.stopPoller();
-                pebbleStore.deselectGroupSelected();
             }
         });
     },
