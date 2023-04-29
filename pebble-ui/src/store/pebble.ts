@@ -31,19 +31,29 @@ export interface IPebbleStoreState {
     lastPollAtSecs: null | number; // Null = poll in progress
 }
 
+const defaultState: IPebbleStoreState = {
+    pebbleClient: null,
+    groupsSummary: [],
+    groupSelected: null,
+    groupSelectedSharedKey: null,
+    poller: null,
+    lastPollAtSecs: null
+}
+
 const usePebbleStore = defineStore("pebble", {
-    state: (): IPebbleStoreState => ({
-        pebbleClient: null,
-        groupsSummary: [],
-        groupSelected: null,
-        groupSelectedSharedKey: null,
-        poller: null,
-        lastPollAtSecs: null
-    }),
+    state: (): IPebbleStoreState => defaultState,
     actions: {
         deselectGroupSelected() {
             this.groupSelected = null;
             this.groupSelectedSharedKey = null;
+        },
+        resetStore() {
+            this.stopPoller();
+            this.pebbleClient = null;
+            this.groupsSummary = [];
+            this.deselectGroupSelected();
+            this.poller = null;
+            this.lastPollAtSecs = null;
         },
         async createGroup(groupParticipantsOtherThanCreator: Array<string>) {
             if (this.pebbleClient) {
@@ -51,7 +61,7 @@ const usePebbleStore = defineStore("pebble", {
 
                 const walletStore = useWalletStore();
                 setGroupInLocalStorage(walletStore.account?.address as string, groupId, privateKeyCreator);
-                
+
                 this.restartPoller();
 
                 return {
@@ -67,7 +77,7 @@ const usePebbleStore = defineStore("pebble", {
 
                 const walletStore = useWalletStore();
                 setGroupInLocalStorage(walletStore.account?.address as string, groupId, privKeyParticipant);
-                
+
                 this.restartPoller();
             }
         },
