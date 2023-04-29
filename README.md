@@ -12,7 +12,7 @@ description: A quick introduction to the protocol and the ecosystem
 
 ## Overview
 
-**Pebble is a open-sourced protocol for end-to-end encrypted Messaging on Polygon. It allows as many group participants as needed.**
+**Pebble is a open protocol for end-to-end encrypted group-chat on blockchain.**
 
 Take ownership of your messages, and stay ensured that only your intended parties can read what you send.
 
