@@ -24,7 +24,7 @@ export interface IGroupSummary {
 
 export interface IPebbleStoreState {
     pebbleClient: null | PebbleClient;
-    groupsSummary: Array<IGroupSummary>;
+    groupsSummary: null | Array<IGroupSummary>;
     groupSelected: null | IGroupSummary;
     groupSelectedSharedKey: null | bigint;
     poller: null | Poller;
@@ -33,7 +33,7 @@ export interface IPebbleStoreState {
 
 const defaultState: IPebbleStoreState = {
     pebbleClient: null,
-    groupsSummary: [],
+    groupsSummary: null,
     groupSelected: null,
     groupSelectedSharedKey: null,
     poller: null,
@@ -50,7 +50,7 @@ const usePebbleStore = defineStore("pebble", {
         resetStore() {
             this.stopPoller();
             this.pebbleClient = null;
-            this.groupsSummary = [];
+            this.groupsSummary = null;
             this.deselectGroupSelected();
             this.poller = null;
             this.lastPollAtSecs = null;
@@ -96,7 +96,6 @@ const usePebbleStore = defineStore("pebble", {
         },
         async fetchGroupsSummary() {
             if (this.pebbleClient) {
-                this.groupsSummary
                 this.groupsSummary = (await this.pebbleClient.fetchGroupsSummary()).map((groupSummary) => ({
                     ...groupSummary,
                     detailsFetchedForFirstTime: false,

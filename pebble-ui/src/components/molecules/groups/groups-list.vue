@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import usePebbleStore from '@store/pebble';
+import usePebbleStore, { IGroupSummary } from '@store/pebble';
 import { utils } from 'ethers';
 import { computed, defineEmits } from 'vue';
-import { shortenAddress, convertUnixSecsToHumanFormatDateTime, convertUnixSecsToTimeFromNow } from "@utils/string";
+import { shortenAddress, convertUnixSecsToTimeFromNow } from "@utils/string";
 import useWalletStore from '@store/wallet';
 
 // States
 const walletStore = useWalletStore();
 const pebbleStore = usePebbleStore();
-const groupsSummaryForList = computed(() => pebbleStore.groupsSummary.map(({ participants, messages, id, creator, allInvitesAccepted }) => ({
+const groupsSummaryForList = computed(() => pebbleStore.groupsSummary?.map(({ participants, messages, id, creator, allInvitesAccepted }) => ({
     id,
     title: [
         creator,
@@ -27,18 +27,26 @@ const groupsSummaryForList = computed(() => pebbleStore.groupsSummary.map(({ par
 
 // Emits
 const emit = defineEmits<{
-    (e: "groupClick", group: typeof pebbleStore.groupsSummary[0]): void
+    (e: "groupClick", group: IGroupSummary): void
 }>();
 
 // Methods
 async function handleGroupClick(groupIndex: number) {
-    emit("groupClick", pebbleStore.groupsSummary[groupIndex]);
+    emit("groupClick", pebbleStore.groupsSummary?.[groupIndex] as IGroupSummary);
 }
 </script>
 
 <template>
-    <v-list tag="ul" class="groups-list my-2">
-        <div v-for="(group, i) in groupsSummaryForList">
+    <v-list v-if="groupsSummaryForList" tag="ul" class="groups-list my-2">
+        <!-- If there are no groups to show -->
+        <div v-if="groupsSummaryForList.length === 0" class="h-100 d-flex justify-center align-center">
+            <span class="body-text-1">
+                No groups yet
+            </span>
+        </div>
+
+        <!-- If there are groups to show -->
+        <div v-else v-for="(group, i) in groupsSummaryForList">
             <!-- Group details -->
             <v-list-item lines="three" tag="li" :key="group.id" @click="handleGroupClick(i)">
                 <!-- Title -->
