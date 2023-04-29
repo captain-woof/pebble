@@ -1,6 +1,6 @@
 import { Point, utils } from "@noble/secp256k1";
 import AES from "crypto-js/aes";
-import { enc } from "crypto-js";
+import { enc, lib } from "crypto-js";
 
 /**
  * @dev Generates a random private key
@@ -40,13 +40,80 @@ export function getScalarProductWithGeneratorPoint(scalar: bigint) {
 }
 
 /**
+ * @dev Tries to guess encoding type and parsed Word array of a plaintext message
+ * @param message Plaintext message
+ * @returns Encoding type and parsed Word array, or null
+ */
+export function getMessageWordArray(message: string) {
+    let encodingType: (null | "utf8" | "utf16" | "utf16-le" | "utf16-be") = null;
+    let messageWordArray: null | lib.WordArray = null;
+
+    try {
+        messageWordArray = enc.Utf8.parse(message);
+        encodingType = "utf8";
+    } catch {
+        try {
+            messageWordArray = enc.Utf16.parse(message);
+            encodingType = "utf16";
+        } catch {
+            try {
+                messageWordArray = enc.Utf16LE.parse(message);
+                encodingType = "utf16-le";
+            } catch {
+                messageWordArray = enc.Utf16BE.parse(message);
+                encodingType = "utf16-be";
+            }
+        }
+    }
+
+    return {
+        encodingType,
+        messageWordArray
+    };
+}
+
+/**
+ * @dev Tries to guess encoding type and plaintext of a Word array
+ * @param message Word array of the message
+ * @returns Encoding type and stringified Word array, or null
+ */
+export function getMessagePlaintext(messageWordArray: lib.WordArray) {
+    let encodingType: (null | "utf8" | "utf16" | "utf16-le" | "utf16-be") = null;
+    let message: null | string = null;
+
+    try {
+        message = enc.Utf8.stringify(messageWordArray);
+        encodingType = "utf8";
+    } catch {
+        try {
+            message = enc.Utf16.stringify(messageWordArray);
+            encodingType = "utf16";
+        } catch {
+            try {
+                message = enc.Utf16LE.stringify(messageWordArray);
+                encodingType = "utf16-le";
+            } catch {
+                message = enc.Utf16BE.stringify(messageWordArray);
+                encodingType = "utf16-be";
+            }
+        }
+    }
+
+    return {
+        encodingType,
+        message
+    };
+}
+
+/**
  * @dev Encrypt a message with shared key
  * @param message Message to encrypt
  * @param key Shared key
  * @returns Encrypted message in Base64 string
  */
 export function encryptMessageWithSharedKey(message: string, key: bigint) {
-    return AES.encrypt(message, key.toString()).toString();
+    const { messageWordArray } = getMessageWordArray(message);
+    return AES.encrypt(messageWordArray, key.toString()).toString();
 }
 
 /**
@@ -56,7 +123,8 @@ export function encryptMessageWithSharedKey(message: string, key: bigint) {
  * @returns Decrypted message in plaintext
  */
 export function decryptMessageWithSharedKey(messageEnc: string, key: bigint) {
-    return AES.decrypt(messageEnc, key.toString()).toString(enc.Utf8);
+    const { message } = getMessagePlaintext(AES.decrypt(messageEnc, key.toString()));
+    return message;
 }
 
 /**
