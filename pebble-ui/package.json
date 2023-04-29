@@ -14,7 +14,7 @@
     "@web3modal/html": "^2.3.6",
     "dayjs": "^1.11.7",
     "ethers": "^5",
-    "pebble-sdk": "^1.0.0",
+    "pebble-sdk": "^1.0.1",
     "pinia": "^2.0.35",
     "vue": "^3.2.45",
     "vue-router": "4",
